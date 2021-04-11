@@ -25,14 +25,14 @@
 		
 			<div style="color: red;">
 			
-				<div *ngIf="inemail.invalid && (inemail.dirty || inemail.touched || submitted)" class="errorText">
-					<div *ngIf="inemail.errors.required">
+				<div *ngIf="inusername.invalid && (inusername.dirty || inusername.touched || submitted)" class="errorText">
+					<div *ngIf="inusername.errors.required">
 						Email is required.
 					</div>
-					<div *ngIf="inemail.errors.minlength">
+					<div *ngIf="inusername.errors.minlength">
 						Email must be at least 4 characters long.
 					</div>
-					<div *ngIf="inemail.errors.maxlength">
+					<div *ngIf="inusername.errors.maxlength">
 						Email cannot exceed 32 characters.
 					</div>
 				</div>
@@ -58,8 +58,8 @@
 			<ion-list>
 
 				<ion-item>
-					<ion-label fixed>Email</ion-label>
-					<ion-input type="text" id="email" name="email" [(ngModel)]="email" minlength="4" maxlength="32" required="true" #inemail="ngModel"></ion-input>
+					<ion-label fixed>Username</ion-label>
+					<ion-input type="text" id="username" name="username" [(ngModel)]="username" minlength="4" maxlength="32" required="true" #inusername="ngModel"></ion-input>
 				</ion-item>
 
 				<ion-item>

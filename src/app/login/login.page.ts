@@ -6,7 +6,6 @@ import { NgForm } from '@angular/forms';
 import { SessionService } from '../services/session.service';
 import { CustomerService } from '../services/customer.service';
 import { Customer } from '../models/customer';
-import { AccessRightEnum } from '../models/access-right-enum.enum';
 
 @Component({
 	selector: 'app-login',
@@ -15,7 +14,7 @@ import { AccessRightEnum } from '../models/access-right-enum.enum';
 })
 export class LoginPage implements OnInit {
 	submitted: boolean;
-	email: string;
+	username: string;
 	password: string;
 	loginError: boolean;
 	errorMessage: string;
@@ -31,20 +30,20 @@ export class LoginPage implements OnInit {
 
 
 	clear() {
-		this.email = "";
+		this.username = "";
 		this.password = "";
 	}
 
 
 
-	staffLogin(customerLoginForm: NgForm) {
+	customerLogin(customerLoginForm: NgForm) {
 		this.submitted = true;
 
 		if (customerLoginForm.valid) {
-			this.sessionService.setEmail(this.email);
+			this.sessionService.setUsername(this.username);
 			this.sessionService.setPassword(this.password);
 
-			this.customerService.staffLogin(this.email, this.password).subscribe(
+			this.customerService.customerLogin(this.username, this.password).subscribe(
 				response => {
 					let customer: Customer = response;
 
@@ -69,7 +68,7 @@ export class LoginPage implements OnInit {
 
 
 
-	staffLogout(): void {
+	customerLogout(): void {
 		this.sessionService.setIsLogin(false);
 		this.sessionService.setCurrentCustomer(null);
 	}
