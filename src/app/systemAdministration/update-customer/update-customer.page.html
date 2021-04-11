@@ -1,0 +1,133 @@
+<ion-header>
+
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button *ngIf="customerToUpdate != null" (click)="back()">
+        <ion-icon slot="start" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Update Customer</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+  <form *ngIf="retrieveCustomerError == false && customerToUpdate != null" #updateCustomertForm="ngForm"
+    (ngSubmit)="update(updateCustomerForm)">
+
+    <ion-card>
+
+      <ion-card-content>
+
+        <div *ngIf="retrieveCustomerError == true" style="color: red;">
+          Customer ID {{customerId}} does not exist!
+        </div>
+
+        <div *ngIf="resultSuccess == true" style="color: blue;">
+          {{message}}
+        </div>
+
+        <div *ngIf="resultError == true" style="color: red;">
+          {{message}}
+        </div>
+
+
+
+        <div style="color: red;">
+
+          <div *ngIf="username.invalid && (username.dirty || username.touched || submitted)" class="errorText">
+            <div *ngIf="username.errors.required">
+              Email is required.
+            </div>
+          </div>
+
+          <div *ngIf="password.invalid && (password.dirty || password.touched || submitted)" class="errorText">
+            <div *ngIf="password.errors.required">
+              Password is required.
+            </div>
+          </div>
+
+          <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched || submitted)"
+            class="errorText">
+            <div *ngIf="firstName.errors.required">
+              First Name is required.
+            </div>
+          </div>
+
+          <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched || submitted)"
+            class="errorText">
+            <div *ngIf="lastName.errors.required">
+              Last name is required.
+            </div>
+          </div>
+
+          <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched || submitted)" class="errorText">
+            <div *ngIf="phoneNumber.errors.required">
+              Phone Number is required.
+            </div>
+          </div>
+        </div>
+
+        <ion-list>
+
+          <ion-item>
+            <ion-label><b>Customer ID</b></ion-label>
+            {{customerToUpdate.customerId}}
+          </ion-item>
+
+          <ion-item>
+            <ion-label><b>Email</b></ion-label>
+            <ion-input type="text" id="username" name="username" [(ngModel)]="customerToUpdate.username" required="true"
+              #username="ngModel"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label><b>Password</b></ion-label>
+            <ion-input type="text" id="password" name="password" [(ngModel)]="customerToUpdate.password"
+              required="true" #password="ngModel"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label><b>First Name</b></ion-label>
+            <ion-input type="text" id="firstName" name="firstName"
+              [(ngModel)]="customerToUpdate.firstName" required="true" #firstName="ngModel"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label><b>Last Name</b></ion-label>
+            <ion-input type="text" id="lastName" name="lastName"
+              [(ngModel)]="customerToUpdate.lastName" required="true" #lastName="ngModel"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label><b>Phone Number</b></ion-label>
+            <ion-input type="text" id="phoneNumber" name="phoneNumber" [(ngModel)]="customerToUpdate.phoneNumber"
+              required="true" #phoneNumber="ngModel"></ion-input>
+          </ion-item>
+
+        </ion-list>
+
+
+      </ion-card-content>
+
+    </ion-card>
+
+    <ion-card style="text-align: center;">
+
+      <ion-card-content>
+        <ion-button type="submit" ion-button block>
+          Update
+        </ion-button>
+      </ion-card-content>
+      
+    </ion-card>
+
+
+  </form>
+
+</ion-content>
+
+<ion-toolbar>
+  <ion-title>&copy; 2021 IS3106 GP22.</ion-title>
+</ion-toolbar>

@@ -9,25 +9,22 @@ const routes: Routes = [
     redirectTo: 'index',
     pathMatch: 'full'
   },
-  {
-    path: 'index',
-    loadChildren: () => import('./index/index.module').then( m => m.IndexPageModule),
-    canActivate: [AuthGuard]
-    },
-  {
-    path: 'index',
-    loadChildren: () => import('./index/index.module').then( m => m.IndexPageModule)
-  },
   // {
-  //   path: 'viewAllRecords',
-  //   loadChildren: () => import('./view-all-records/view-all-records.module').then( m => m.ViewAllRecordsPageModule),
-  //   canActivate: [AuthGuard]
+  //   path: 'folder/:id',
+  //   loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
   // },
-  // {
-  //   path: 'createNewRecord',
-  //   loadChildren: () => import('./create-new-record/create-new-record.module').then( m => m.CreateNewRecordPageModule),
-  //   canActivate: [AuthGuard]
-  // }
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'create-new-customer',
+    loadChildren: () => import('./systemAdministration/create-new-customer/create-new-customer.module').then( m => m.CreateNewCustomerPageModule)
+  },
+  {
+    path: 'update-customer',
+    loadChildren: () => import('./systemAdministration/update-customer/update-customer.module').then( m => m.UpdateCustomerPageModule)
+  }
 ];
 
 @NgModule({

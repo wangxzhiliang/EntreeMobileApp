@@ -1,0 +1,121 @@
+<ion-header>
+
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Create New Customer</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <form #createCustomerForm="ngForm" (ngSubmit)="create(createCustomerForm)">
+    <ion-card>
+
+      <ion-card-content>
+
+        <div *ngIf="resultSuccess == true" style="color: blue;">
+          {{message}}
+        </div>
+
+        <div *ngIf="resultError == true" style="color: red;">
+          {{message}}
+        </div>
+
+        <div style="color: red;">
+
+          <div *ngIf="username.invalid && (username.dirty || username.touched || submitted)" class="errorText">
+            <div *ngIf="username.errors.required">
+              Email is required.
+            </div>
+          </div>
+
+          <div *ngIf="password.invalid && (password.dirty || password.touched || submitted)" class="errorText">
+            <div *ngIf="password.errors.required">
+              Password is required.
+            </div>
+          </div>
+
+          <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched || submitted)"
+            class="errorText">
+            <div *ngIf="firstName.errors.required">
+              First Name is required.
+            </div>
+          </div>
+
+          <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched || submitted)"
+            class="errorText">
+            <div *ngIf="lastName.errors.required">
+              Last Name is required.
+            </div>
+          </div>
+
+          <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched || submitted)" class="errorText">
+            <div *ngIf="phoneNumber.errors.required">
+              Phone Number is required.
+            </div>
+          </div>
+
+        </div>
+
+        <ion-list>
+
+          <ion-item>
+            <ion-label><b>Username</b></ion-label>
+            <ion-input type="text" id="username" name="username" [(ngModel)]="newCustomer.username" 
+            required="true" #username="ngModel">
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label><b>Password</b></ion-label>
+            <ion-input type="text" id="password" name="password" [(ngModel)]="newCustomer.password"
+              required="true" #password="ngModel"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label><b>First Name</b></ion-label>
+            <ion-input type="text" id="firstName" name="firstName" [(ngModel)]="newCustomer.firstName"
+              required="true" #firstName="ngModel"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label><b>Last Name</b></ion-label>
+            <ion-input type="text" id="lastName" name="lastName" [(ngModel)]="newCustomer.lastName"
+              required="true" #lastName="ngModel"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label><b>Phone Number</b></ion-label>
+            <ion-input type="text" id="phoneNumber" name="phoneNumber" [(ngModel)]="newCustomer.phoneNumber" required="true"
+              #phoneNumber="ngModel"></ion-input>
+          </ion-item>
+        </ion-list>
+
+      </ion-card-content>
+
+    </ion-card>
+
+    <ion-card style="text-align: center;">
+
+      <ion-card-content>
+        <ion-button (click)="clear()">
+          Clear
+        </ion-button>
+        <ion-button type="submit" ion-button block>
+          Create
+        </ion-button>
+      </ion-card-content>
+
+    </ion-card>
+
+  </form>
+
+</ion-content>
+
+<ion-footer>
+
+  <ion-title>&copy; 2021 IS3106 GP22.</ion-title>
+
+</ion-footer>
