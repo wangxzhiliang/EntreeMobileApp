@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-export class Customer {
-=======
 export class Customer 
 {
 	customerId: number | undefined;
@@ -19,5 +16,4 @@ export class Customer
 		this.username = username;
 		this.password = password;
 	}
->>>>>>> 510e93678aa1edf79bf6fd2b3c57079a343e7ed0
 }
