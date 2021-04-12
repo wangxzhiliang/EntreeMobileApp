@@ -85,4 +85,35 @@
 
 		</ion-list>
 	</ion-card>
+
+	<ion-card>
+		<ion-card-header>
+			<ion-card-subtitle>Reviews</ion-card-subtitle>
+		</ion-card-header>
+		<ion-list *ngIf="retrieveRestaurantError == false && restaurantToView != null 
+			&& restaurantToView.reviews.length>0">
+			<ion-slides>
+				<ion-slide *ngFor="let dish of restaurantToView.dishes">
+					<div>
+						<img src="{{dish.photo}}" />
+						<ion-item>
+							<ion-label><b>Dish Name</b></ion-label>
+							{{dish.name}}
+						</ion-item>
+						<ion-item>
+							<ion-label><b>Dish Description</b></ion-label>
+							{{dish.description}}
+						</ion-item>
+						<ion-item>
+							<ion-label><b>Recommended</b></ion-label>
+							<ion-icon name="star" *ngIf="dish.recommended == true"></ion-icon>
+						</ion-item>
+					</div>
+
+				</ion-slide>
+			</ion-slides>
+
+		</ion-list>
+	</ion-card>
+
 </ion-content>

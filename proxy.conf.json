@@ -1,14 +1,5 @@
 {
-<<<<<<< HEAD
-	"/api": {
-		"target": "http://localhost:8080/RestaurantReviewRws/Resources",
-		"secure": false,
-		"pathRewrite": {
-		  "^/api": ""
-		}
-	}
-}
-=======
+
     "/api": {
         "target": "http://localhost:8080/RestaurantReviewRws/Resources",
         "secure": false,
@@ -17,4 +8,4 @@
         }
     }
 }
->>>>>>> 83c8a9535155d1faa04fec379f5fefccae792c0d
+
