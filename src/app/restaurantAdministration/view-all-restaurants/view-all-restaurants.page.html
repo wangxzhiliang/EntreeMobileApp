@@ -10,23 +10,19 @@
 </ion-header>
 
 <ion-content>
-	<ion-list>
-		<ion-list-header>
-			Restaurants
-		</ion-list-header>
-		<ion-item *ngFor="let restaurant of restaurants" button (click)="viewRestaurantDetails(restaurant)">
-			<!-- <ion-avatar slot="start">
-            <img src="./avatar-finn.png">
-          </ion-avatar> -->
-		  <ion-label>
-            <h2>{{restaurant.name}}</h2>
-            <p>{{restaurant.description}}</p>
-          </ion-label>
-		</ion-item>
-	</ion-list>
+	<ion-card *ngFor="let restaurant of restaurants" button (click)="viewRestaurantDetails(restaurant)">
+		<img src="{{restaurant.photos[0]}}" *ngIf="restaurant.photos.length>0">
+
+		<ion-card-header>
+          <ion-card-title>{{restaurant.name}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          {{restaurant.description}}
+        </ion-card-content>
+	</ion-card>
 
 	<ion-footer>
 		<ion-toolbar>
 			<ion-title>&copy; 2021 IS3106.</ion-title>
 		</ion-toolbar>
-	</ion-footer>>
+	</ion-footer>
