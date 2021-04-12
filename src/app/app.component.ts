@@ -16,17 +16,13 @@ export class AppComponent {
 	public appPagesLogout = [
 		{ title: 'Home', url: '/index', icon: 'home' },
 		{ title: 'Login', url: '/login', icon: 'lock-closed' },
-    { title: 'Create New Customer Account', url: '/systemAdministration/create-new-customer', icon: 'add-circle' },
-    { title: 'View All Restaurants', url: '/viewAllRestaurants', icon: 'arrow-forward' }
+    	{ title: 'Create New Customer Account', url: '/systemAdministration/create-new-customer', icon: 'add-circle' },
+    	{ title: 'View All Restaurants', url: '/viewAllRestaurants', icon: 'arrow-forward' }
 	];
 
 	public appPagesSystemAdministration = [
-		{
-			title: 'Update Customer Details',
-			url: '/systemAdministration/update-customer',
-			icon: 'add-circle'
-		},
-    { title: 'View All Restaurants', url: '/viewAllRestaurants', icon: 'arrow-forward' }
+		{title: 'Update Customer Details', url: '/systemAdministration/update-customer', icon: 'add-circle'},
+    	{ title: 'View All Restaurants', url: '/viewAllRestaurants', icon: 'arrow-forward' }
 	];
   
   constructor(public sessionService: SessionService) {

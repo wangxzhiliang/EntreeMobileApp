@@ -14,7 +14,7 @@ import { Customer } from '../models/customer'
 })
 export class LoginPage implements OnInit {
 	submitted: boolean;
-	username: string;
+	email: string;
 	password: string;
 	loginError: boolean;
 	errorMessage: string;
@@ -30,7 +30,7 @@ export class LoginPage implements OnInit {
 
 
 	clear() {
-		this.username = "";
+		this.email = "";
 		this.password = "";
 	}
 
@@ -40,10 +40,10 @@ export class LoginPage implements OnInit {
 		this.submitted = true;
 
 		if (customerLoginForm.valid) {
-			this.sessionService.setUsername(this.username);
+			this.sessionService.setEmail(this.email);
 			this.sessionService.setPassword(this.password);
 
-			this.customerService.customerLogin(this.username, this.password).subscribe(
+			this.customerService.customerLogin(this.email, this.password).subscribe(
 				response => {
 					let customer: Customer = response;
 

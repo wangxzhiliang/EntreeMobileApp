@@ -31,9 +31,9 @@ export class CustomerService
 
 
 
-	customerLogin(username: string | undefined, password: string | undefined): Observable<Customer>
+	customerLogin(email: string | undefined, password: string | undefined): Observable<Customer>
 	{
-		return this.httpClient.get<Customer>(this.baseUrl + "/customerLogin?username=" + username + "&password=" + password).pipe
+		return this.httpClient.get<Customer>(this.baseUrl + "/customerLogin?email=" + email + "&password=" + password).pipe
 		(
 			catchError(this.handleError)
 		);
@@ -62,7 +62,7 @@ export class CustomerService
   //retrieveCustomerByEmail in rws
 	getCustomers(): Observable<Customer[]>
   {				
-    return this.httpClient.get<Customer[]>(this.baseUrl + "/retrieveAllCustomers?username=" + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe
+    return this.httpClient.get<Customer[]>(this.baseUrl + "/retrieveAllCustomers?email=" + this.sessionService.getEmail() + "&password=" + this.sessionService.getPassword()).pipe
     (
       catchError(this.handleError)
     );
@@ -70,7 +70,7 @@ export class CustomerService
     
   getCustomerByCustomerId(customerId: number): Observable<Customer>
   {
-    return this.httpClient.get<Customer>(this.baseUrl + "/retrieveCustomer/" + customerId + "?username=" + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe
+    return this.httpClient.get<Customer>(this.baseUrl + "/retrieveCustomer/" + customerId + "?email=" + this.sessionService.getEmail() + "&password=" + this.sessionService.getPassword()).pipe
     (
       catchError(this.handleError)
     );
@@ -99,7 +99,7 @@ export class CustomerService
  //Dont think can delete customer 
   // deleteCustomer(customerId: number): Observable<any>
   // {
-  //   return this.httpClient.delete<any>(this.baseUrl + "/" + customerId + "?username=" + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe
+  //   return this.httpClient.delete<any>(this.baseUrl + "/" + customerId + "?email=" + this.sessionService.getEmail() + "&password=" + this.sessionService.getPassword()).pipe
   //   (
   //     catchError(this.handleError)
   //   );

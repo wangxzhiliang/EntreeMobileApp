@@ -25,14 +25,14 @@
 		
 			<div style="color: red;">
 			
-				<div *ngIf="inusername.invalid && (inusername.dirty || inusername.touched || submitted)" class="errorText">
-					<div *ngIf="inusername.errors.required">
+				<div *ngIf="inemail.invalid && (inemail.dirty || inemail.touched || submitted)" class="errorText">
+					<div *ngIf="inemail.errors.required">
 						Email is required.
 					</div>
-					<div *ngIf="inusername.errors.minlength">
+					<div *ngIf="inemail.errors.minlength">
 						Email must be at least 4 characters long.
 					</div>
-					<div *ngIf="inusername.errors.maxlength">
+					<div *ngIf="inemail.errors.maxlength">
 						Email cannot exceed 32 characters.
 					</div>
 				</div>
@@ -58,8 +58,8 @@
 			<ion-list>
 
 				<ion-item>
-					<ion-label fixed>Username</ion-label>
-					<ion-input type="text" id="username" name="username" [(ngModel)]="username" minlength="4" maxlength="32" required="true" #inusername="ngModel"></ion-input>
+					<ion-label fixed>Email</ion-label>
+					<ion-input type="text" id="email" name="email" [(ngModel)]="email" minlength="4" maxlength="32" required="true" #inemail="ngModel"></ion-input>
 				</ion-item>
 
 				<ion-item>
@@ -73,6 +73,7 @@
 					</ion-button>					
 					<ion-button type="submit" ion-button block>
 						Login
+						
 					</ion-button>
 				</ion-item>
 
@@ -91,12 +92,19 @@
 		You are login as {{sessionService.getCurrentCustomer().firstName}} {{sessionService.getCurrentCustomer().lastName}} 	
         
       </ion-card-content>
+
+	  <ion-toolbar>
+		<ion-button expand="full" (click)="customerLogout()">
+			<ion-icon slot="start" name="exit"></ion-icon>
+			Logout
+		</ion-button>
+	</ion-toolbar>
 	  
     </ion-card>
 
 </ion-content>
 
-<ion-footer *ngIf="sessionService.getIsLogin() == true">
+<!-- <ion-footer *ngIf="sessionService.getIsLogin() == true">
 
 	<ion-toolbar>
 		<ion-button expand="full" (click)="customerLogout()">
@@ -105,4 +113,4 @@
 		</ion-button>
 	</ion-toolbar>
 	
-</ion-footer>
+</ion-footer> -->

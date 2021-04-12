@@ -36,8 +36,8 @@
 
         <div style="color: red;">
 
-          <div *ngIf="username.invalid && (username.dirty || username.touched || submitted)" class="errorText">
-            <div *ngIf="username.errors.required">
+          <div *ngIf="email.invalid && (email.dirty || email.touched || submitted)" class="errorText">
+            <div *ngIf="email.errors.required">
               Email is required.
             </div>
           </div>
@@ -78,8 +78,8 @@
 
           <ion-item>
             <ion-label><b>Email</b></ion-label>
-            <ion-input type="text" id="username" name="username" [(ngModel)]="customerToUpdate.username" required="true"
-              #username="ngModel"></ion-input>
+            <ion-input type="text" id="email" name="email" [(ngModel)]="customerToUpdate.email" required="true"
+              #email="ngModel"></ion-input>
           </ion-item>
 
           <ion-item>
