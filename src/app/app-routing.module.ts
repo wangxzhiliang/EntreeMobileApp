@@ -22,18 +22,28 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'createNewCustomer',
+    path: 'systemAdministration/createNewCustomer',
     loadChildren: () => import('./systemAdministration/create-new-customer/create-new-customer.module').then( m => m.CreateNewCustomerPageModule)
   },
   {
-    path: 'updateCustomer',
+    path: 'systemAdministration/updateCustomer',
     loadChildren: () => import('./systemAdministration/update-customer/update-customer.module').then( m => m.UpdateCustomerPageModule)
   },
   {
     path: 'viewAllRestaurants',
-    loadChildren: () => import('./view-all-restaurants/view-all-restaurants.module').then( m => m.ViewAllRestaurantsPageModule),
+    loadChildren: () => import('./restaurantAdministration/view-all-restaurants/view-all-restaurants.module').then( m => m.ViewAllRestaurantsPageModule),
     canActivate: [AuthGuard]
   },
+  {
+    path: 'restaurantAdministration/viewRestaurantDetails',
+    loadChildren: () => import('./restaurantAdministration/view-restaurant-details/view-restaurant-details.module').then( m => m.ViewRestaurantDetailsPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'restaurantAdministration/viewRestaurantDetails/:restaurantId',
+    loadChildren: () => import('./restaurantAdministration/view-restaurant-details/view-restaurant-details.module').then( m => m.ViewRestaurantDetailsPageModule),
+    canActivate: [AuthGuard]
+  }
 
 ];
 
