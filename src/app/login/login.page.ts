@@ -5,7 +5,7 @@ import { NgForm } from '@angular/forms';
 
 import { SessionService } from '../services/session.service';
 import { CustomerService } from '../services/customer.service';
-import { Customer } from '../models/customer';
+import { Customer } from '../models/customer'
 
 @Component({
 	selector: 'app-login',
