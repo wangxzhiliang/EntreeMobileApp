@@ -59,7 +59,12 @@ const routes: Routes = [
     path: 'restaurantAdministration/viewRestaurantDetails/:restaurantId',
     loadChildren: () => import('./restaurantAdministration/view-restaurant-details/view-restaurant-details.module').then( m => m.ViewRestaurantDetailsPageModule),
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'restaurantAdministration/createNewReservation',
+    loadChildren: () => import('./restaurantAdministration/create-new-reservation/create-new-reservation.module').then( m => m.CreateNewReservationPageModule)
   }
+
 
 ];
 
