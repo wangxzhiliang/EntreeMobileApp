@@ -53,6 +53,7 @@ export class LoginPage implements OnInit {
 						this.sessionService.setCurrentCustomer(customer);
 						this.loginError = false;
 						this.sessionService.setCreditCard(customer.creditCard);
+						this.sessionService.setCreditCardId(customer.creditCard.creditCardId);
 					}
 					else {
 						this.loginError = true;

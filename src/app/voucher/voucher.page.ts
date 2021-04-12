@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 import { VoucherService } from '../services/voucher.service';
 import { Voucher } from '../models/voucher';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-voucher',
@@ -15,15 +17,44 @@ export class VoucherPage implements OnInit {
 
 
   constructor(private router: Router,
-    private voucherService: VoucherService) { 
+    private voucherService: VoucherService,
+    private sessionService: SessionService,
+    public alertController: AlertController) { 
   }
 
   ngOnInit() {
     this.refreshVouchers();
   }
 
-  checkoutVocher(event, voucher) {
-    this.router.navigate(["/checkoutVoucher/" + voucher.voucherId]);
+  async checkoutVocher(event, voucher) {
+    if(this.sessionService.getIsLogin()) {
+      this.router.navigate(["/checkoutVoucher/" + voucher.voucherId]);
+    }
+    else {
+
+      const alert = await this.alertController.create({
+        header: 'Login to Continue',
+        message: 'Confirm delete product <strong>Strong???</strong>?',
+        buttons: [
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            cssClass: 'secondary',
+            handler: (blah) => {
+  
+            }
+          }, {
+            text: 'Okay',
+            handler: () => {
+              this.router.navigate(["/login"]);
+            }
+          }
+        ]
+      });
+  
+      await alert.present();  
+      
+    }
   }
 
   refreshVouchers() {

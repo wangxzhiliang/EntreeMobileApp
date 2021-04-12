@@ -6,6 +6,7 @@ import { AlertController } from '@ionic/angular';
 import { VoucherService } from '../services/voucher.service';
 import { SessionService } from '../services/session.service';
 import { Voucher } from '../models/voucher';
+import { CreditCard } from '../models/credit-card';
 
 @Component({
   selector: 'app-checkout-voucher',
@@ -18,6 +19,7 @@ export class CheckoutVoucherPage implements OnInit {
   voucherToView: Voucher
   voucherId: number;
   validDate: Date;
+  creditCard: CreditCard;
 
   retrieveVoucherError: boolean;
   error: boolean;
@@ -37,8 +39,12 @@ export class CheckoutVoucherPage implements OnInit {
   ngOnInit() {
     this.voucherId = parseInt(this.activatedRoute.snapshot.paramMap.get('voucherId'));
     this.refreshVoucher();
-    console.log(typeof(this.sessionService.getCreditCard().expiryDate));
-    this.validDate = this.sessionService.getCreditCard().expiryDate;
+    // console.log(typeof(this.sessionService.getCreditCard().expiryDate));
+    // this.validDate = this.sessionService.getCreditCard().expiryDate;
+    
+
+
+    
     // this.validDate = this.sessionService.getCreditCard().expiryDate.toISOString();
   }
 
@@ -56,5 +62,9 @@ export class CheckoutVoucherPage implements OnInit {
         console.log('********** CheckoutVoucher.ts: ' + error);
       }
     )
+  }
+
+  back() {
+    this.router.navigate(["/voucher"]);
   }
 }
