@@ -22,11 +22,11 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'systemAdministration/createNewCustomer',
+    path: 'createNewCustomer',
     loadChildren: () => import('./systemAdministration/create-new-customer/create-new-customer.module').then( m => m.CreateNewCustomerPageModule)
   },
   {
-    path: 'systemAdministration/updateCustomer',
+    path: 'updateCustomer',
     loadChildren: () => import('./systemAdministration/update-customer/update-customer.module').then( m => m.UpdateCustomerPageModule)
   },
   {
@@ -64,6 +64,10 @@ const routes: Routes = [
     path: 'addCreditCard',
     loadChildren: () => import('./systemAdministration/add-credit-card/add-credit-card.module').then( m => m.AddCreditCardPageModule),
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'viewCreditCard',
+    loadChildren: () => import('./systemAdministration/view-credit-card/view-credit-card.module').then( m => m.ViewCreditCardPageModule)
   }
   
 

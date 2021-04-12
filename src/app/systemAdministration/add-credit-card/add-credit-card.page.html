@@ -10,10 +10,24 @@
 	</ion-toolbar>
 
 </ion-header>
-
 <ion-content>
-  <form #createCreditCardForm="ngForm" (ngSubmit)="create(createCreditCard)">
-    <ion-card>
+  <form #createCreditCardForm="ngForm" (ngSubmit)="create(createCreditCardForm)">
+
+    <ion-card *ngIf="sessionService.getCreditCard() != null">
+	      
+      <ion-card-content>
+        <ion-item>
+          You already have a credit card under this account.
+        </ion-item>
+        <ion-item>
+          <ion-button (click)="viewCreditCard()">
+            View Credit Card
+          </ion-button>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+     <ion-card *ngIf="sessionService.getCreditCard() == null">
 
       <ion-card-content>
 
@@ -72,23 +86,19 @@
 
           <ion-item>
             <ion-label><b>Expiry Date</b></ion-label>
-            <ion-input type="text" id="firstName" name="firstName" [(ngModel)]="newCustomer.firstName"
-              required="true" #firstName="ngModel"></ion-input>
+            <ion-datetime displayFormat="MM/YYYY" pickerFormat="MMMM YYYY" min="2021" max="2040" id="expiryDate" name="expiryDate" [(ngModel)]="newCreditCard.expiryDate"
+            required="true" #expiryDate="ngModel"></ion-datetime>
           </ion-item>
 
           <ion-item>
             <ion-label><b>Name on card</b></ion-label>
-            <ion-datetime displayFormat="MM/YYYY" pickerFormat="MMMM YYYY" id="nameOnCard" name="nameOnCard" [(ngModel)]="newCreditCard.nameOnCard"
-            required="true" #nameOnCard="ngModel"></ion-datetime>
+            <ion-input type="text" id="nameOnCard" name="nam\" [(ngModel)]="newCreditCard.nameOnCard"
+              required="true" #nameOnCard="ngModel"></ion-input>
           </ion-item>
 
         </ion-list>
 
       </ion-card-content>
-
-    </ion-card>
-
-    <ion-card style="text-align: center;">
 
       <ion-card-content>
         <ion-button (click)="clear()">

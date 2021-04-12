@@ -53,6 +53,14 @@ export class CreditCardService
       catchError(this.handleError)
     );
   }
+
+  viewAllCreditCardDetails(): Observable<CreditCard>
+  {				
+    return this.httpClient.get<CreditCard>(this.baseUrl + this.sessionService.getCurrentCustomer().userId + "/retrieveMyCreditCards").pipe
+    (
+      catchError(this.handleError)
+    );
+  }
 	
   createNewCreditCard(newCreditCard: CreditCard): Observable<number>
   {		
