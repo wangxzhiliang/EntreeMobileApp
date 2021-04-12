@@ -89,7 +89,7 @@
 	      
       <ion-card-content>
 	  
-		You are login as {{sessionService.getCurrentCustomer().firstName}} {{sessionService.getCurrentCustomer().lastName}} 	
+		You are login as {{sessionService.getCurrentCustomer().email}}	
         
       </ion-card-content>
 
@@ -104,13 +104,8 @@
 
 </ion-content>
 
-<!-- <ion-footer *ngIf="sessionService.getIsLogin() == true">
+<ion-footer>
 
-	<ion-toolbar>
-		<ion-button expand="full" (click)="customerLogout()">
-			<ion-icon slot="start" name="exit"></ion-icon>
-			Logout
-		</ion-button>
-	</ion-toolbar>
-	
-</ion-footer> -->
+	<ion-title>&copy; 2021 IS3106.</ion-title>
+  
+</ion-footer>

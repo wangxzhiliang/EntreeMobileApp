@@ -8,15 +8,15 @@ import { SessionService } from '../../services/session.service';
 import { Customer } from '../../models/customer';
 
 @Component({
-  selector: 'app-update-customer',
-  templateUrl: './update-customer.page.html',
-  styleUrls: ['./update-customer.page.scss'],
+  selector: 'app-change-password',
+  templateUrl: './change-password.page.html',
+  styleUrls: ['./change-password.page.scss'],
 })
-export class UpdateCustomerPage implements OnInit {
+export class ChangePasswordPage implements OnInit {
 
   submitted: boolean;
   userId: number;
-  customerToUpdate: Customer;
+  customerToChange: Customer;
   retrieveCustomerError: boolean;
   resultSuccess: boolean;
   resultError: boolean;
@@ -42,7 +42,7 @@ export class UpdateCustomerPage implements OnInit {
 
     this.customerService.getCustomerById(this.userId).subscribe(
       response => {
-        this.customerToUpdate = response;
+        this.customerToChange = response;
       },
       error => {
         this.retrieveCustomerError = true;
@@ -53,28 +53,27 @@ export class UpdateCustomerPage implements OnInit {
 
 
 
-  update(updateCustomerForm: NgForm) {
+  update(changePasswordForm: NgForm) {
     this.submitted = true;
 
-    if (updateCustomerForm.valid) {
-      this.customerService.customerUpdate(this.customerToUpdate).subscribe(
+    if (changePasswordForm.valid) {
+      this.customerService.customerUpdate(this.customerToChange).subscribe(
         response => {
           this.resultSuccess = true;
           this.resultError = false;
-          this.message = "Customer updated successfully";
+          this.message = "Customer password updated successfully";
         },
         error => {
           this.resultError = true;
           this.resultSuccess = false;
           this.message = "An error has occurred while updating the customer: " + error;
 
-          console.log('********** UpdateCustomerComponent.ts: ' + error);
+          console.log('********** UpdateCustomerPassword.ts: ' + error);
         }
       );
     }
   }
   back() {
-		this.router.navigate(["/index"]);
+		this.router.navigate(["/"]);
 	}
 }
-

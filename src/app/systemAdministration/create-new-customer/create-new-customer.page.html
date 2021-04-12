@@ -1,11 +1,13 @@
 <ion-header>
 
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Create New Customer</ion-title>
-  </ion-toolbar>
+		<ion-buttons slot="start">      
+			<ion-button (click)="back()">
+				<ion-icon slot="start" name="arrow-back"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+		<ion-title>Create Account</ion-title>
+	</ion-toolbar>
 
 </ion-header>
 
@@ -62,7 +64,7 @@
         <ion-list>
 
           <ion-item>
-            <ion-label><b>Username</b></ion-label>
+            <ion-label><b>Email</b></ion-label>
             <ion-input type="text" id="email" name="email" [(ngModel)]="newCustomer.email" 
             required="true" #email="ngModel">
             </ion-input>
@@ -116,6 +118,6 @@
 
 <ion-footer>
 
-  <ion-title>&copy; 2021 IS3106 GP22.</ion-title>
+  <ion-title>&copy; 2021 IS3106.</ion-title>
 
 </ion-footer>
