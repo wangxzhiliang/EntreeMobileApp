@@ -29,10 +29,13 @@ export class VoucherService {
     );
   }
 
-  // getVoucherByVoucherId(voucherId: number): Observable<Voucher>
-  // {
-  //   return this.httpClient.get<Voucher>(this.baseUrl + "/")
-  // }
+  getVoucherById(voucherId: number): Observable<Voucher>
+  {
+    return this.httpClient.get<Voucher>(this.baseUrl + "/retrieveVoucherDetails/" + voucherId).pipe
+    (
+      catchError(this.handleError)
+    );
+  }
 
 
   private handleError(error: HttpErrorResponse)

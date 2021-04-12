@@ -32,6 +32,14 @@ const routes: Routes = [
   {
     path: 'voucher',
     loadChildren: () => import('./voucher/voucher.module').then( m => m.VoucherPageModule)
+  },
+  {
+    path: 'checkoutVoucher',
+    loadChildren: () => import('./checkout-voucher/checkout-voucher.module').then( m => m.CheckoutVoucherPageModule)
+  },
+  {
+    path: 'checkoutVoucher/:voucherId',
+    loadChildren: () => import('./checkout-voucher/checkout-voucher.module').then( m => m.CheckoutVoucherPageModule)
   }
 ];
 

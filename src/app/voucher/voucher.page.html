@@ -10,21 +10,21 @@
 <ion-content>
 
   <ion-card *ngFor="let voucher of vouchers" >
-    <img src="http://localhost:8080/RestaurantReview-war/uploadedFiles/side.jpg"/>
+    <img src="../../assets/img/voucher.jpg"/>
     <ion-card-header>
       <ion-card-title>{{voucher.title}}</ion-card-title>
-      <ion-card-subtitle>{{voucher.price}}</ion-card-subtitle>
-      <ion-card-subtitle>{{voucher.expiryDate}}</ion-card-subtitle>
-      <ion-button expand="full">{{voucher.amountRedeemable}}</ion-button>
+      <ion-card-subtitle>Price: ${{voucher.price}}.00</ion-card-subtitle>
+      <ion-card-subtitle>Valid till: {{voucher.expiryDate}}</ion-card-subtitle>
+      <ion-label>Voucher Value: ${{voucher.amountRedeemable}}.00</ion-label>
+      <ion-card-content>
+        {{voucher.content}}
+      </ion-card-content>
     </ion-card-header>
 
-    <ion-card-content>
-      {{voucher.content}}
-    </ion-card-content>
+  
+    <ion-button expand="full" (click)="checkoutVocher($event, voucher)">Buy</ion-button>
+
+
   </ion-card>
-
-
-
-
 
 </ion-content>

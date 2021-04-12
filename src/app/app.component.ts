@@ -9,7 +9,8 @@ export class AppComponent {
 		{ title: 'Home', url: '/index', icon: 'home' },
 		{ title: 'View All Records', url: '/viewAllRecords', icon: 'arrow-forward' },
 		{ title: 'Create New Record', url: '/createNewRecord', icon: 'arrow-forward' },
-    { title: 'View Vouchers', url: '/voucher', icon: 'arrow-forward' }
+    { title: 'View Vouchers', url: '/voucher', icon: 'arrow-forward' },
+    { title: 'Check Out', url: '/checkoutVoucher', icon: 'arrow-forward' }
 	];
   
   constructor() {}

@@ -22,6 +22,9 @@ export class VoucherPage implements OnInit {
     this.refreshVouchers();
   }
 
+  checkoutVocher(event, voucher) {
+    this.router.navigate(["/checkoutVoucher/" + voucher.voucherId]);
+  }
 
   refreshVouchers() {
     this.voucherService.getVouchers().subscribe(
