@@ -59,6 +59,7 @@ export class CustomerService
 		return throwError(errorMessage);		
 	}
 
+  //retrieveCustomerByEmail in rws
 	getCustomers(): Observable<Customer[]>
   {				
     return this.httpClient.get<Customer[]>(this.baseUrl + "/retrieveAllCustomers?username=" + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe
@@ -85,8 +86,6 @@ export class CustomerService
     );
   }
 	
-	
-	
   updateCustomer(customerToUpdate: Customer): Observable<any>
   {
     let updateCustomerReq: UpdateCustomerReq = new UpdateCustomerReq(customerToUpdate);
@@ -96,8 +95,6 @@ export class CustomerService
       catchError(this.handleError)
     );
   }
-	
-  
   
   deleteCustomer(customerId: number): Observable<any>
   {
