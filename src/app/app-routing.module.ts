@@ -30,9 +30,25 @@ const routes: Routes = [
     loadChildren: () => import('./systemAdministration/update-customer/update-customer.module').then( m => m.UpdateCustomerPageModule)
   },
   {
+    path: 'voucher',
+    loadChildren: () => import('./voucher/voucher.module').then( m => m.VoucherPageModule)
+  },
+  {
+    path: 'checkoutVoucher',
+    loadChildren: () => import('./checkout-voucher/checkout-voucher.module').then( m => m.CheckoutVoucherPageModule)
+  },
+  {
+    path: 'checkoutVoucher/:voucherId',
+    loadChildren: () => import('./checkout-voucher/checkout-voucher.module').then( m => m.CheckoutVoucherPageModule)
+  },
+  {
     path: 'viewAllRestaurants',
     loadChildren: () => import('./restaurantAdministration/view-all-restaurants/view-all-restaurants.module').then( m => m.ViewAllRestaurantsPageModule),
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'changePassword',
+    loadChildren: () => import('./systemAdministration/change-password/change-password.module').then( m => m.ChangePasswordPageModule)
   },
   {
     path: 'restaurantAdministration/viewRestaurantDetails',

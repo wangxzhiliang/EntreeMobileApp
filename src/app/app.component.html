@@ -22,7 +22,21 @@
 
         <ion-list *ngIf="sessionService.getIsLogin()">
 					<ion-list-header>
-						<ion-label>System Administration</ion-label>
+						<ion-label>Page Navigation</ion-label>
+					</ion-list-header>
+					<ion-menu-toggle auto-hide="false" *ngFor="let p of appPagesSystemAdministration">
+						<ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+							<ion-icon slot="start" [name]="p.icon"></ion-icon>
+							<ion-label>
+								{{p.title}}
+							</ion-label>
+						</ion-item>
+					</ion-menu-toggle>
+        </ion-list>
+
+        <ion-list *ngIf="!sessionService.getIsLogin()">
+					<ion-list-header>
+						<ion-label>Page Navigation</ion-label>
 					</ion-list-header>
 					<ion-menu-toggle auto-hide="false" *ngFor="let p of appPagesSystemAdministration">
 						<ion-item [routerDirection]="'root'" [routerLink]="[p.url]">

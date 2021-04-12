@@ -55,6 +55,7 @@ export class LoginPage implements OnInit {
 					else {
 						this.loginError = true;
 					}
+					
 				},
 				error => {
 					this.loginError = true;
