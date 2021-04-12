@@ -19,8 +19,6 @@ export class CreateNewCustomerPage implements OnInit {
   resultError: boolean;
   message: string;
 
-
-
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
     private customerService: CustomerService,) {
@@ -30,7 +28,6 @@ export class CreateNewCustomerPage implements OnInit {
     this.resultSuccess = false;
     this.resultError = false;
   }
-
 
 
   ngOnInit() {
@@ -43,8 +40,6 @@ export class CreateNewCustomerPage implements OnInit {
     this.newCustomer = new Customer();
   }
 
-
-
   create(createCustomerForm: NgForm) {
 
     this.submitted = true;
@@ -55,7 +50,7 @@ export class CreateNewCustomerPage implements OnInit {
           let newCustomerId: number = response;
           this.resultSuccess = true;
           this.resultError = false;
-          this.message = "New customer " + newCustomerId + " created successfully";
+          this.message = "Congratulations " + this.newCustomer.firstName + " " + this.newCustomer.lastName + "! You have created an account successfully";
 
           this.newCustomer = new Customer();
           this.submitted = false;
@@ -71,5 +66,9 @@ export class CreateNewCustomerPage implements OnInit {
       );
     }
   }
+
+  back() {
+		this.router.navigate(["/index"]);
+	}
 
 }

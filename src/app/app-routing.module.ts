@@ -35,6 +35,9 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
+    path: 'changePassword',
+    loadChildren: () => import('./systemAdministration/change-password/change-password.module').then( m => m.ChangePasswordPageModule)
+  },
     path: 'restaurantAdministration/viewRestaurantDetails',
     loadChildren: () => import('./restaurantAdministration/view-restaurant-details/view-restaurant-details.module').then( m => m.ViewRestaurantDetailsPageModule),
     canActivate: [AuthGuard]

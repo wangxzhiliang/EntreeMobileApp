@@ -1,19 +1,19 @@
 <ion-header>
 
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button *ngIf="customerToUpdate != null" (click)="back()">
-        <ion-icon slot="start" name="arrow-back"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title>Update Customer</ion-title>
-  </ion-toolbar>
+		<ion-buttons slot="start">      
+			<ion-button (click)="back()">
+				<ion-icon slot="start" name="arrow-back"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+		<ion-title>Update Personal Details</ion-title>
+	</ion-toolbar>
 
 </ion-header>
 
 <ion-content>
 
-  <form *ngIf="retrieveCustomerError == false && customerToUpdate != null" #updateCustomertForm="ngForm"
+  <form *ngIf="retrieveCustomerError == false && customerToUpdate != null" #updateCustomerForm="ngForm"
     (ngSubmit)="update(updateCustomerForm)">
 
     <ion-card>
@@ -36,17 +36,17 @@
 
         <div style="color: red;">
 
-          <div *ngIf="email.invalid && (email.dirty || email.touched || submitted)" class="errorText">
-            <div *ngIf="email.errors.required">
-              Email is required.
-            </div>
-          </div>
-
-          <div *ngIf="password.invalid && (password.dirty || password.touched || submitted)" class="errorText">
+          <!-- <div *ngIf="password.invalid && (password.dirty || password.touched || submitted)" class="errorText">
             <div *ngIf="password.errors.required">
               Password is required.
             </div>
-          </div>
+            <div *ngIf="password.errors.minlength">
+              Password must be at least 4 characters long.
+            </div>
+            <div *ngIf="password.errors.maxlength">
+              Password cannot exceed 32 characters.
+            </div>
+          </div> -->
 
           <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched || submitted)"
             class="errorText">
@@ -71,22 +71,11 @@
 
         <ion-list>
 
-          <ion-item>
-            <ion-label><b>Customer ID</b></ion-label>
-            {{customerToUpdate.customerId}}
-          </ion-item>
-
-          <ion-item>
-            <ion-label><b>Email</b></ion-label>
-            <ion-input type="text" id="email" name="email" [(ngModel)]="customerToUpdate.email" required="true"
-              #email="ngModel"></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-label><b>Password</b></ion-label>
-            <ion-input type="text" id="password" name="password" [(ngModel)]="customerToUpdate.password"
-              required="true" #password="ngModel"></ion-input>
-          </ion-item>
+          <!-- <ion-item>
+            <ion-label><b>New Password</b></ion-label>
+            <ion-input type="text" id="password" name="password"
+              [(ngModel)]="customerToUpdate.password" minlength="4" maxlength="32" required="true" #password="ngModel"></ion-input>
+          </ion-item> -->
 
           <ion-item>
             <ion-label><b>First Name</b></ion-label>
@@ -129,5 +118,5 @@
 </ion-content>
 
 <ion-toolbar>
-  <ion-title>&copy; 2021 IS3106 GP22.</ion-title>
+  <ion-title>&copy; 2021 IS3106.</ion-title>
 </ion-toolbar>
