@@ -37,7 +37,6 @@ export class ViewAllRestaurantsPage implements OnInit {
   }
 
   viewRestaurantDetails(restaurant) {
-    console.log("**********ViewAllRestaurantsPage.ts: " + restaurant.userId);
     this.router.navigate(["/restaurantAdministration/viewRestaurantDetails/" + restaurant.userId]);
   }
 

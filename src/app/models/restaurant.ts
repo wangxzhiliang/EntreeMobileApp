@@ -17,7 +17,7 @@ export class Restaurant {
     closeTime: number | undefined;
     description: string | undefined;
     tableConfiguration: TableConfiguration | undefined;
-    dishes: Dish[] | undefined;
+    dishes: Dish[] | null;
     promotions: Promotion[] | undefined;
     reviews: Review[] | undefined;
     customerVouchers: CustomerVoucher[] | undefined;

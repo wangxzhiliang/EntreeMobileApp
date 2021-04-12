@@ -1,30 +1,88 @@
 <ion-header>
-  <ion-toolbar>
+	<ion-toolbar>
 		<ion-buttons slot="start">
 			<ion-button (click)="back()">
 				<ion-icon slot="start" name="arrow-back"></ion-icon>
 			</ion-button>
 		</ion-buttons>
 		<ion-title>View Restaurant Details</ion-title>
-	</ion-toolbar>>
+	</ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card>
+	<ion-card>
+		<ion-card-header>
+			<ion-card-subtitle>Restaurant Details</ion-card-subtitle>
+		</ion-card-header>
 
-		<ion-card-content>
+		<div *ngIf="retrieveRestaurantError == true" style="color: red;">
+			Restaurant ID {{restaurantId}} does not exist!
+		</div>
 
-			<div *ngIf="retrieveRestaurantError == true" style="color: red;">
-				Restaurant ID {{restaurantId}} does not exist!
-			</div>
+		<ion-list *ngIf="retrieveRestaurantError == false && restaurantToView != null">
 
-      <ion-list *ngIf="retrieveRestaurantError == false && restaurantToView != null">
+			<ion-slides>
+				<ion-slide *ngFor="let photo of restaurantToView.photos">
+					<img src="{{photo}}" />
+				</ion-slide>
+			</ion-slides>
 
-				<ion-item>
-					<ion-label><b>Restaurant Name</b></ion-label>
-					{{restaurantToView.name}}
-				</ion-item>
-      </ion-list>
-    </ion-card-content>>
-  </ion-card>>
+			<ion-item>
+				<ion-label><b>Restaurant Name</b></ion-label>
+				{{restaurantToView.name}}
+			</ion-item>
+
+			<ion-item>
+				<ion-label class="ion-text-wrap"><b>Restaurant Description</b></ion-label>
+				{{restaurantToView.description}}
+			</ion-item>
+
+			<ion-item>
+				<ion-label><b>Restaurant Address</b></ion-label>
+				{{restaurantToView.address}}
+			</ion-item>
+			<ion-item>
+				<ion-label><b>Restaurant Postal Code</b></ion-label>
+				{{restaurantToView.postalCode}}
+			</ion-item>
+			<ion-item>
+				<ion-label class="ion-text-wrap"><b>Restaurant Contact Number</b></ion-label>
+				{{restaurantToView.contactNumber}}
+			</ion-item>
+			<ion-item>
+				<ion-label><b>Restaurant Opening Hours</b></ion-label>
+				{{restaurantToView.openTime}} - {{restaurantToView.closeTime}}
+			</ion-item>
+		</ion-list>
+	</ion-card>
+
+	<ion-card>
+		<ion-card-header>
+			<ion-card-subtitle>Dishes</ion-card-subtitle>
+		</ion-card-header>
+		<ion-list *ngIf="retrieveRestaurantError == false && restaurantToView != null 
+			&& restaurantToView.dishes.length>0">
+			<ion-slides>
+				<ion-slide *ngFor="let dish of restaurantToView.dishes">
+					<div>
+						<img src="{{dish.photo}}" />
+						<ion-item>
+							<ion-label><b>Dish Name</b></ion-label>
+							{{dish.name}}
+						</ion-item>
+						<ion-item>
+							<ion-label><b>Dish Description</b></ion-label>
+							{{dish.description}}
+						</ion-item>
+						<ion-item>
+							<ion-label><b>Recommended</b></ion-label>
+							<ion-icon name="star" *ngIf="dish.recommended == true"></ion-icon>
+						</ion-item>
+					</div>
+
+				</ion-slide>
+			</ion-slides>
+
+		</ion-list>
+	</ion-card>
 </ion-content>
