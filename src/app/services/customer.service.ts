@@ -96,12 +96,13 @@ export class CustomerService
     );
   }
   
-  deleteCustomer(customerId: number): Observable<any>
-  {
-    return this.httpClient.delete<any>(this.baseUrl + "/" + customerId + "?username=" + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe
-    (
-      catchError(this.handleError)
-    );
-  }
+  //Dont think can delete customer 
+  // deleteCustomer(customerId: number): Observable<any>
+  // {
+  //   return this.httpClient.delete<any>(this.baseUrl + "/" + customerId + "?username=" + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe
+  //   (
+  //     catchError(this.handleError)
+  //   );
+  // }
 
 }

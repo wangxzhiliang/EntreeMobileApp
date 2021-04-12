@@ -24,7 +24,10 @@ export class AppComponent {
 			title: 'Update Customer Details',
 			url: '/systemAdministration/update-customer',
 			icon: 'add-circle'
-		}
+		},
+    { title: 'View All Records', url: '/viewAllRecords', icon: 'arrow-forward' },
+		{ title: 'Create New Record', url: '/createNewRecord', icon: 'arrow-forward' },
+    { title: 'View All Restaurants', url: '/viewAllRestaurants', icon: 'arrow-forward' }
 	];
   
   constructor(public sessionService: SessionService) {
