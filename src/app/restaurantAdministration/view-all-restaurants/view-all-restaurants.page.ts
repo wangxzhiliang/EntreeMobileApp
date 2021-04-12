@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Restaurant } from '../models/restaurant';
-import { RestaurantService } from '../services/restaurant.service';;
+import { Restaurant } from '../../models/restaurant';
+import { RestaurantService } from '../../services/restaurant.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-all-restaurants',
@@ -11,7 +12,7 @@ export class ViewAllRestaurantsPage implements OnInit {
 
   restaurants: Restaurant[] | null;
 
-  constructor(private restaurantService: RestaurantService) {
+  constructor(private router: Router, private restaurantService: RestaurantService) {
     this.restaurants = new Array();
    }
 
@@ -33,6 +34,11 @@ export class ViewAllRestaurantsPage implements OnInit {
       }
       
     );
+  }
+
+  viewRestaurantDetails(restaurant) {
+    console.log("**********ViewAllRestaurantsPage.ts: " + restaurant.userId);
+    this.router.navigate(["/restaurantAdministration/viewRestaurantDetails/" + restaurant.userId]);
   }
 
 }

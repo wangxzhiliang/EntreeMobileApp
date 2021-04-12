@@ -6,7 +6,7 @@ import { TableConfiguration } from "./table-configuration";
 
 export class Restaurant {
 
-    restaurantId: number | undefined;
+    userId: number | undefined;
     name: string | undefined; 
     address: string | undefined;
     postalCode: string | undefined;
@@ -22,12 +22,12 @@ export class Restaurant {
     reviews: Review[] | undefined;
     customerVouchers: CustomerVoucher[] | undefined;
     
-    constructor(restaurantId?: number, name?: string, address?: string, postalCode?: string, 
+    constructor(userId?: number, name?: string, address?: string, postalCode?: string, 
         contactNumber?: string, photos?: string[], acceptReservation?: boolean, openTime?: number,
         closeTime?: number, description?: string, tableConfiguration?: TableConfiguration, 
         dishes?: Dish[], promotions?: Promotion[], reviews?: Review[], customerVouchers?: CustomerVoucher[])
 	{
-		this.restaurantId = restaurantId;
+		this.userId = userId;
         this.name = name; 
         this.address = address;
         this.postalCode = postalCode;
