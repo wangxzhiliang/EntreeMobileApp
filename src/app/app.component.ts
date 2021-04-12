@@ -10,13 +10,13 @@ import { SessionService } from './services/session.service';
 export class AppComponent {
   public appPagesLogin = [
 		{ title: 'Home', url: '/index', icon: 'home' },
-		{ title: 'View All Records', url: '/viewAllRecords', icon: 'arrow-forward' },
-		{ title: 'Create New Record', url: '/createNewRecord', icon: 'arrow-forward' },
-		{ title: 'View Vouchers', url: '/voucher', icon: 'arrow-forward' },
-		{ title: 'Check Out', url: '/checkoutVoucher', icon: 'arrow-forward' },
+		// { title: 'View All Records', url: '/viewAllRecords', icon: 'arrow-forward' },
+		// { title: 'Create New Record', url: '/createNewRecord', icon: 'arrow-forward' },
+		
 		{ title: 'Logout', url: '/login', icon: 'exit' },
-		{title: 'Update Personal Details', url: '/updateCustomer', icon: 'add-circle'},
-		{title: 'Change Password', url: '/changePassword', icon: 'add-circle'}
+		{ title: 'Update Personal Details', url: '/updateCustomer', icon: 'add-circle'},
+		{ title: 'Change Password', url: '/changePassword', icon: 'add-circle'}
+		// { title: 'View Vouchers', url: '/'}
 	];
 
 	public appPagesLogout = [
@@ -26,7 +26,9 @@ export class AppComponent {
 	];
 
 	public appPagesSystemAdministration = [
-    	{ title: 'View All Restaurants', url: '/viewAllRestaurants', icon: 'arrow-forward' }
+    	{ title: 'View All Restaurants', url: '/viewAllRestaurants', icon: 'arrow-forward' },
+		{ title: 'View Vouchers', url: '/voucher', icon: 'arrow-forward' }
+		// { title: 'Check Out', url: '/checkoutVoucher', icon: 'arrow-forward' },
 	];
   
   constructor(public sessionService: SessionService) {
