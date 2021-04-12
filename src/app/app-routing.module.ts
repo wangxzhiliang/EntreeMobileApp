@@ -68,7 +68,7 @@ const routes: Routes = [
   {
     path: 'viewCreditCard',
     loadChildren: () => import('./systemAdministration/view-credit-card/view-credit-card.module').then( m => m.ViewCreditCardPageModule)
-  }
+  },
   
 
 ];

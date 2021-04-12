@@ -72,7 +72,7 @@ export class CreditCardService
 
   deleteCreditCard(creditCardId: number): Observable<any>
   {
-    return this.httpClient.delete<any>(this.baseUrl + this.sessionService.getCurrentCustomer().userId + this.sessionService.getCreditCard().creditCardId).pipe
+    return this.httpClient.delete<any>(this.baseUrl + this.sessionService.getCurrentCustomer().userId + "/creditCardId?=" + creditCardId).pipe
     (
       catchError(this.handleError)
     );

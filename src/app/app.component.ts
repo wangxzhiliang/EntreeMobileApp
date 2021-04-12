@@ -16,7 +16,8 @@ export class AppComponent {
 		{ title: 'Logout', url: '/login', icon: 'exit' },
 		{ title: 'Update Personal Details', url: '/updateCustomer', icon: 'add-circle'},
 		{ title: 'Change Password', url: '/changePassword', icon: 'add-circle'},
-		{ title: 'Add Credit Card', url: '/addCreditCard', icon: 'add-circle'}
+		{ title: 'Add Credit Card', url: '/addCreditCard', icon: 'add-circle'},
+		{ title: 'View Credit Card', url: '/viewCreditCard', icon: 'arrow-forward'}
 		// { title: 'View Vouchers', url: '/'}
 	];
 
