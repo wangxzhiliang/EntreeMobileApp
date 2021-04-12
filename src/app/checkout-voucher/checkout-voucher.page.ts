@@ -17,6 +17,7 @@ export class CheckoutVoucherPage implements OnInit {
 
   voucherToView: Voucher
   voucherId: number;
+  validDate: Date;
 
   retrieveVoucherError: boolean;
   error: boolean;
@@ -36,6 +37,9 @@ export class CheckoutVoucherPage implements OnInit {
   ngOnInit() {
     this.voucherId = parseInt(this.activatedRoute.snapshot.paramMap.get('voucherId'));
     this.refreshVoucher();
+    console.log(typeof(this.sessionService.getCreditCard().expiryDate));
+    this.validDate = this.sessionService.getCreditCard().expiryDate;
+    // this.validDate = this.sessionService.getCreditCard().expiryDate.toISOString();
   }
 
   ionViewWillEnter() {

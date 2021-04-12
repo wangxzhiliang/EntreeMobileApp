@@ -29,8 +29,16 @@
     </ion-item>
 
     <ion-item>
-      <ion-icon name="calendar-outline"></ion-icon>
+      <ion-icon name="person-circle-outline"></ion-icon>
       <ion-label>{{sessionService.getCreditCard().expiryDate}}</ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="calendar-outline"></ion-icon>
+      <!-- <ion-label>{{validDate}}</ion-label> -->
+      <ion-datetime value="{{voucherToView.expiryDate}}" displayFormat="MM/YY" disabled></ion-datetime>
+      <!-- <ion-datetime [(ngModel)]="validDate" displayFormat="MM/YY" disabled></ion-datetime> -->
+
     </ion-item>
 
   </ion-card>
