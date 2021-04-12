@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-button (click)="back()">
+				<ion-icon slot="start" name="arrow-back"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+		<ion-title>View Restaurant Details</ion-title>
+	</ion-toolbar>>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+
+		<ion-card-content>
+
+			<div *ngIf="retrieveRestaurantError == true" style="color: red;">
+				Restaurant ID {{restaurantId}} does not exist!
+			</div>
+
+      <ion-list *ngIf="retrieveRestaurantError == false && restaurantToView != null">
+
+				<ion-item>
+					<ion-label><b>Restaurant Name</b></ion-label>
+					{{restaurantToView.name}}
+				</ion-item>
+      </ion-list>
+    </ion-card-content>>
+  </ion-card>>
+</ion-content>

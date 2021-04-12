@@ -27,6 +27,14 @@ export class RestaurantService {
       );
   }
 
+  getRestaurantByRestaurantId(userId: number): Observable<Restaurant>
+    {
+      return this.httpClient.get<Restaurant>(this.baseUrl + "/retrieveRestaurantDetails?restaurantId=" + userId).pipe
+      (
+        catchError(this.handleError)
+      );
+    }
+
   private handleError(error: HttpErrorResponse) {
     let errorMessage: string = "";
 
