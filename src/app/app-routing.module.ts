@@ -22,11 +22,11 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'create-new-customer',
+    path: 'systemAdministration/createNewCustomer',
     loadChildren: () => import('./systemAdministration/create-new-customer/create-new-customer.module').then( m => m.CreateNewCustomerPageModule)
   },
   {
-    path: 'update-customer',
+    path: 'systemAdministration/updateCustomer',
     loadChildren: () => import('./systemAdministration/update-customer/update-customer.module').then( m => m.UpdateCustomerPageModule)
   },
   {
@@ -40,7 +40,27 @@ const routes: Routes = [
   {
     path: 'checkoutVoucher/:voucherId',
     loadChildren: () => import('./checkout-voucher/checkout-voucher.module').then( m => m.CheckoutVoucherPageModule)
+  },
+  {
+    path: 'viewAllRestaurants',
+    loadChildren: () => import('./restaurantAdministration/view-all-restaurants/view-all-restaurants.module').then( m => m.ViewAllRestaurantsPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'changePassword',
+    loadChildren: () => import('./systemAdministration/change-password/change-password.module').then( m => m.ChangePasswordPageModule)
+  },
+  {
+    path: 'restaurantAdministration/viewRestaurantDetails',
+    loadChildren: () => import('./restaurantAdministration/view-restaurant-details/view-restaurant-details.module').then( m => m.ViewRestaurantDetailsPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'restaurantAdministration/viewRestaurantDetails/:restaurantId',
+    loadChildren: () => import('./restaurantAdministration/view-restaurant-details/view-restaurant-details.module').then( m => m.ViewRestaurantDetailsPageModule),
+    canActivate: [AuthGuard]
   }
+
 ];
 
 @NgModule({

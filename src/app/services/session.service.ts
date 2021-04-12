@@ -49,16 +49,16 @@ export class SessionService
 
 
 
-	getUsername(): string
+	getEmail(): string
 	{
-		return sessionStorage.username;
+		return sessionStorage.email;
 	}
 
 
 
-	setUsername(username: string | undefined): void
+	setEmail(email: string | undefined): void
 	{
-		sessionStorage.username = username;
+		sessionStorage.email = email;
 	}
 	
 	

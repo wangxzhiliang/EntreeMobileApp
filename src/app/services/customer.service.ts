@@ -5,8 +5,6 @@ import { catchError } from 'rxjs/operators';
 
 import { SessionService } from './session.service';
 import { Customer } from '../models/customer';
-import { CreateCustomerReq } from '../models/create-customer-req';
-import { UpdateCustomerReq } from '../models/update-customer-req';
 
 
 const httpOptions = {
@@ -31,9 +29,9 @@ export class CustomerService
 
 
 
-	customerLogin(username: string | undefined, password: string | undefined): Observable<Customer>
+	customerLogin(email: string | undefined, password: string | undefined): Observable<Customer>
 	{
-		return this.httpClient.get<Customer>(this.baseUrl + "/customerLogin?username=" + username + "&password=" + password).pipe
+		return this.httpClient.get<Customer>(this.baseUrl + "/customerLogin?email=" + email + "&password=" + password).pipe
 		(
 			catchError(this.handleError)
 		);
@@ -59,17 +57,18 @@ export class CustomerService
 		return throwError(errorMessage);		
 	}
 
+  //retrieveCustomerByEmail in rws
 	getCustomers(): Observable<Customer[]>
   {				
-    return this.httpClient.get<Customer[]>(this.baseUrl + "/retrieveAllCustomers?username=" + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe
+    return this.httpClient.get<Customer[]>(this.baseUrl + "/retrieveAllCustomers?email=" + this.sessionService.getEmail() + "&password=" + this.sessionService.getPassword()).pipe
     (
       catchError(this.handleError)
     );
   }
     
-  getCustomerByCustomerId(customerId: number): Observable<Customer>
+  getCustomerById(userId: number): Observable<Customer>
   {
-    return this.httpClient.get<Customer>(this.baseUrl + "/retrieveCustomer/" + customerId + "?username=" + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe
+    return this.httpClient.get<Customer>(this.baseUrl + "/retrieveCustomerById?customerId=" + userId ).pipe
     (
       catchError(this.handleError)
     );
@@ -77,34 +76,35 @@ export class CustomerService
 	
   createNewCustomer(newCustomer: Customer): Observable<number>
   {		
-    let createCustomerReq: CreateCustomerReq = new CreateCustomerReq(newCustomer);
-    
-    return this.httpClient.put<number>(this.baseUrl, createCustomerReq, httpOptions).pipe
+    return this.httpClient.put<number>(this.baseUrl, newCustomer, httpOptions).pipe
     (
       catchError(this.handleError)
     );
   }
 	
-	
-	
-  updateCustomer(customerToUpdate: Customer): Observable<any>
+  customerUpdate(customerToUpdate: Customer): Observable<any>
   {
-    let updateCustomerReq: UpdateCustomerReq = new UpdateCustomerReq(customerToUpdate);
-    
-    return this.httpClient.post<any>(this.baseUrl, updateCustomerReq, httpOptions).pipe
+    return this.httpClient.post<any>(this.baseUrl, customerToUpdate, httpOptions).pipe
     (
       catchError(this.handleError)
     );
   }
-	
-  
-  
-  deleteCustomer(customerId: number): Observable<any>
+
+  changePassword(customerToUpdate: Customer): Observable<any>
   {
-    return this.httpClient.delete<any>(this.baseUrl + "/" + customerId + "?username=" + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe
+    return this.httpClient.post<any>(this.baseUrl, customerToUpdate, httpOptions).pipe
     (
       catchError(this.handleError)
     );
   }
+  
+ //Dont think can delete customer 
+  // deleteCustomer(customerId: number): Observable<any>
+  // {
+  //   return this.httpClient.delete<any>(this.baseUrl + "/" + customerId + "?email=" + this.sessionService.getEmail() + "&password=" + this.sessionService.getPassword()).pipe
+  //   (
+  //     catchError(this.handleError)
+  //   );
+  // }
 
 }
