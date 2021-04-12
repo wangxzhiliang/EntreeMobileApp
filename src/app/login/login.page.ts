@@ -18,6 +18,7 @@ export class LoginPage implements OnInit {
 	password: string;
 	loginError: boolean;
 	errorMessage: string;
+	cardNumber: string;
 
 	constructor(private router: Router,
 		public sessionService: SessionService,
@@ -51,6 +52,7 @@ export class LoginPage implements OnInit {
 						this.sessionService.setIsLogin(true);
 						this.sessionService.setCurrentCustomer(customer);
 						this.loginError = false;
+						this.sessionService.setCreditCard(customer.creditCard);
 					}
 					else {
 						this.loginError = true;

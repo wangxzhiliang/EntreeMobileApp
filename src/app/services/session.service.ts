@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { CreditCard } from '../models/credit-card';
 
 import { Customer } from '../models/customer';
 
@@ -47,7 +48,17 @@ export class SessionService
 		sessionStorage.currentCustomer = JSON.stringify(currentCustomer);
 	}
 
+	
 
+	getCreditCard(): CreditCard
+	{
+		return JSON.parse(sessionStorage.creditCard);
+	}
+
+	setCreditCard(creditCard: CreditCard | null): void
+	{
+		sessionStorage.creditCard = JSON.stringify(creditCard);
+	}
 
 	getEmail(): string
 	{
@@ -68,10 +79,10 @@ export class SessionService
 		return sessionStorage.password;
 	}
 
-
-
 	setPassword(password: string | undefined): void
 	{
 		sessionStorage.password = password;
 	}
+
+
 }
