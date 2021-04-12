@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
 import { VoucherService } from '../services/voucher.service';
+import { SessionService } from '../services/session.service';
 import { Voucher } from '../models/voucher';
 
 @Component({
@@ -11,6 +12,7 @@ import { Voucher } from '../models/voucher';
   templateUrl: './checkout-voucher.page.html',
   styleUrls: ['./checkout-voucher.page.scss'],
 })
+
 export class CheckoutVoucherPage implements OnInit {
 
   voucherToView: Voucher
@@ -24,7 +26,8 @@ export class CheckoutVoucherPage implements OnInit {
   constructor(private router: Router,
     private voucherService: VoucherService,
     private activatedRoute: ActivatedRoute,
-    public alertController: AlertController) { 
+    public alertController: AlertController,
+    private sessionService: SessionService) { 
       this.retrieveVoucherError = false;
       this.error = false;
       this.resultSuccess = false;
@@ -40,7 +43,6 @@ export class CheckoutVoucherPage implements OnInit {
   }
 
   refreshVoucher() {
-
     this.voucherService.getVoucherById(this.voucherId).subscribe(
       response => {
         this.voucherToView = response;
