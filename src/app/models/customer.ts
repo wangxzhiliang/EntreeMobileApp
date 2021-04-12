@@ -7,7 +7,6 @@ export class Customer
 	password: string | undefined;
 	
 	
-	
 	constructor(customerId?: number, firstName?: string, lastName?: string, username?: string, password?: string)
 	{
 		this.customerId = customerId;		

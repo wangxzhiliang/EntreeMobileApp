@@ -16,7 +16,8 @@ export class AppComponent {
 	public appPagesLogout = [
 		{ title: 'Home', url: '/index', icon: 'home' },
 		{ title: 'Login', url: '/login', icon: 'lock-closed' },
-    { title: 'Create New Customer Account', url: '/systemAdministration/create-new-customer', icon: 'add-circle' }
+    { title: 'Create New Customer Account', url: '/systemAdministration/create-new-customer', icon: 'add-circle' },
+    { title: 'View All Restaurants', url: '/viewAllRestaurants', icon: 'arrow-forward' }
 	];
 
 	public appPagesSystemAdministration = [
@@ -25,8 +26,6 @@ export class AppComponent {
 			url: '/systemAdministration/update-customer',
 			icon: 'add-circle'
 		},
-    { title: 'View All Records', url: '/viewAllRecords', icon: 'arrow-forward' },
-		{ title: 'Create New Record', url: '/createNewRecord', icon: 'arrow-forward' },
     { title: 'View All Restaurants', url: '/viewAllRestaurants', icon: 'arrow-forward' }
 	];
   

@@ -18,13 +18,19 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'create-new-customer',
+    path: 'createNewCustomer',
     loadChildren: () => import('./systemAdministration/create-new-customer/create-new-customer.module').then( m => m.CreateNewCustomerPageModule)
   },
   {
-    path: 'update-customer',
+    path: 'updateCustomer',
     loadChildren: () => import('./systemAdministration/update-customer/update-customer.module').then( m => m.UpdateCustomerPageModule)
-  }
+  },
+  {
+    path: 'viewAllRestaurants',
+    loadChildren: () => import('./view-all-restaurants/view-all-restaurants.module').then( m => m.ViewAllRestaurantsPageModule),
+    canActivate: [AuthGuard]
+  },
+
 ];
 
 @NgModule({

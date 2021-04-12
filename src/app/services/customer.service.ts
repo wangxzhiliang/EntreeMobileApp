@@ -96,7 +96,7 @@ export class CustomerService
     );
   }
   
-  //Dont think can delete customer 
+ //Dont think can delete customer 
   // deleteCustomer(customerId: number): Observable<any>
   // {
   //   return this.httpClient.delete<any>(this.baseUrl + "/" + customerId + "?username=" + this.sessionService.getUsername() + "&password=" + this.sessionService.getPassword()).pipe
