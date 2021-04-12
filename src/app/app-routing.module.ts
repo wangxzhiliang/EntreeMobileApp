@@ -59,7 +59,13 @@ const routes: Routes = [
     path: 'restaurantAdministration/viewRestaurantDetails/:restaurantId',
     loadChildren: () => import('./restaurantAdministration/view-restaurant-details/view-restaurant-details.module').then( m => m.ViewRestaurantDetailsPageModule),
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'addCreditCard',
+    loadChildren: () => import('./systemAdministration/add-credit-card/add-credit-card.module').then( m => m.AddCreditCardPageModule),
+    canActivate: [AuthGuard]
   }
+  
 
 ];
 
