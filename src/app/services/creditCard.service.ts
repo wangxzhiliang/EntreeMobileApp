@@ -33,7 +33,7 @@ export class CreditCardService
 		let errorMessage: string = "";
 		
 		if (error.error instanceof ErrorEvent) 
-		{		
+		{
 			errorMessage = "An unknown error has occurred: " + error.error;
 		} 
 		else 
@@ -48,7 +48,7 @@ export class CreditCardService
 
 	viewCreditCardDetailsBycreditCardId(): Observable<CreditCard>
   {				
-    return this.httpClient.get<CreditCard>(this.baseUrl + this.sessionService.getCurrentCustomer().userId + "/viewCreditCardDetails?creditCardId=" + this.sessionService.getCreditCard().creditCardId).pipe
+    return this.httpClient.get<CreditCard>(this.baseUrl + this.sessionService.getCurrentCustomer().userId + "/viewCreditCardDetails?creditCardId=" + this.sessionService.getCreditCardId()).pipe
     (
       catchError(this.handleError)
     );

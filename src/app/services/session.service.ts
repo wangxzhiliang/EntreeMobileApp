@@ -28,6 +28,14 @@ export class SessionService
 		}
 	}
 
+	setCreditCardId(creditCardId: number | null): void {
+		sessionStorage.creditCardId = creditCardId;
+	}
+
+	getCreditCardId(): number {
+		return sessionStorage.creditCardId;
+	}
+
 
 
 	setIsLogin(isLogin: boolean): void
