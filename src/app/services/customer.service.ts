@@ -7,7 +7,7 @@ import { SessionService } from './session.service';
 import { Customer } from '../models/customer';
 import { Review } from '../models/review';
 import {CustomerVoucher} from '../models/customer-voucher';
-
+import {Reservation} from '../models/reservation';
 
 const httpOptions = {
 	headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -127,9 +127,9 @@ export class CustomerService
     );
   }
 
-  getMyReservations(customerId: number): Observable<Reservation>
+  getMyReservations(userId: number): Observable<Reservation>
   {
-    return this.httpClient.get<Reservation>("/api/Reservation/retrieveMyReservationForCustomer/customerId?=" + customerId).pipe
+    return this.httpClient.get<Reservation>("/api/Reservation/retrieveMyReservationForCustomer?customerId=" + userId).pipe
     (
       catchError(this.handleError)
     );

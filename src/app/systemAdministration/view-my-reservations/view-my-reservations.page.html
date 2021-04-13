@@ -1,9 +1,68 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>view-my-reservations</ion-title>
-  </ion-toolbar>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+		<ion-title>
+			View My Reservations
+		</ion-title>
+	</ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content *ngIf="resultSuccess == true && reservations.size > 1">
+	<ion-card *ngFor="let reservation of reservations">
+		<ion-card-header>
+          <ion-card-title>Restaurant: {{reservation.restaurant.name}}</ion-card-title>
+        </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                Date: {{reservations.reservationDate}}
+              </ion-item>
+              <ion-item>
+                Time: {{reservations.reservationTime}}
+              </ion-item>
+              <ion-item>
+                Number of pax: {{reservations.numOfPax}}
+              </ion-item>
+              <ion-item>
+                Table size: {{reservations.tableSizeAssigned}}
+              </ion-item>
+              <ion-item>
+                Remarks: {{reservations.remark}}
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+	</ion-card>
+</ion-content>
+<ion-content *ngIf="resultSuccess == true">
+	<ion-card>
+		<ion-card-header>
+          <ion-card-title>Restaurant: {{reservations.restaurant.name}}</ion-card-title>
+        </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <ion-item>
+                Date: {{reservations.reservationDate}}
+              </ion-item>
+              <ion-item>
+                Time: {{reservations.reservationTime}}
+              </ion-item>
+              <ion-item>
+                Number of pax: {{reservations.numOfPax}}
+              </ion-item>
+              <ion-item>
+                Table size: {{reservations.tableSizeAssigned}}
+              </ion-item>
+              <ion-item>
+                Remarks: {{reservations.remark}}
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+	</ion-card>
+</ion-content>
+<ion-content *ngIf="resultSuccess == false ">
+  <ion-card>
+    You have not made any reservations yet.
+  </ion-card>
 </ion-content>
