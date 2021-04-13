@@ -66,6 +66,11 @@ const routes: Routes = [
     loadChildren: () => import('./restaurantAdministration/create-new-reservation/create-new-reservation.module').then( m => m.CreateNewReservationPageModule)
   },
   {
+
+    path: 'restaurantAdministration/createNewReservation/:restaurantId',
+    loadChildren: () => import('./restaurantAdministration/create-new-reservation/create-new-reservation.module').then( m => m.CreateNewReservationPageModule)
+  },
+  {
     path: 'addCreditCard',
     loadChildren: () => import('./systemAdministration/add-credit-card/add-credit-card.module').then( m => m.AddCreditCardPageModule),
     canActivate: [AuthGuard]
