@@ -15,9 +15,16 @@
 			<ion-card-subtitle>Credit Card Details</ion-card-subtitle>
 		</ion-card-header>
 
-		<div *ngIf="sessionService.getCreditCard() == null" style="color: red;">
-			No credit card add yet
-		</div>
+		<ion-list *ngIf="sessionService.getCreditCard() == null" style="color: red;" >
+			<ion-label>
+				No credit card added yet
+			</ion-label>    
+			<ion-item>
+				<ion-button (click)="addCard()">
+				  Add Card
+				</ion-button>
+			  </ion-item>
+		</ion-list>
 
 		<ion-list *ngIf="sessionService.getCreditCard() != null">
 

@@ -1,0 +1,26 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+		<ion-title>
+			View My Reviews
+		</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="resultSuccess == true ">
+	<ion-card *ngFor="let review of reviews" button (click)="viewReviewDetails(review)">
+		<ion-card-header>
+          <ion-card-title>Rating: {{review.rating}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Content: {{review.content}}
+        </ion-card-content>
+	</ion-card>
+</ion-content>
+<ion-content *ngIf="resultSuccess == false ">
+  <ion-card>
+    No reviews yet
+  </ion-card>
+</ion-content>

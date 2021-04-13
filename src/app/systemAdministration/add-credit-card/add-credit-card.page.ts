@@ -53,8 +53,9 @@ export class AddCreditCardPage implements OnInit {
           this.resultSuccess = true;
           this.resultError = false;
           this.message = "Card with number: " + this.newCreditCard.cardNumber + " addded successfully";
-
+          this.newCreditCard.creditCardId = newCreditCardId;
           this.sessionService.setCreditCard(this.newCreditCard);
+          console.log(newCreditCardId);
           this.newCreditCard = new CreditCard();
           this.submitted = false;
           createCreditCardForm.reset();

@@ -27,14 +27,10 @@ export class ViewCreditCardPage implements OnInit {
    }
 
   ngOnInit() {
-    this.updateModel();
+    this.creditCard = this.sessionService.getCreditCard();
   }
 
   ionViewWillEnter() {
-    this.updateModel();
-  }
-
-  updateModel() {
     this.creditCard = this.sessionService.getCreditCard();
     this.creditCardId = this.sessionService.getCreditCard().creditCardId;
   }
@@ -43,10 +39,14 @@ export class ViewCreditCardPage implements OnInit {
     this.router.navigate(["/index"]);
   }
 
-  async deleteCard(cc: CreditCard) {
+  addCard() {
+    this.router.navigate(["/addCreditCard"]);
+  }
+
+  async deleteCard() {
     const alert = await this.alertController.create({
       header: 'Confirm Delete Card',
-      message: 'Confirm delete card <strong>' + cc.cardNumber + '</strong>?',
+      message: 'Confirm delete card <strong>' + this.creditCard.cardNumber + '</strong>?',
       buttons: [
         {
           text: 'Cancel',
@@ -58,11 +58,12 @@ export class ViewCreditCardPage implements OnInit {
         }, {
           text: 'Okay',
           handler: () => {
-            console.log(cc.creditCardId)
-            this.creditCardService.deleteCreditCard(cc.creditCardId).subscribe(
+            console.log(this.sessionService.getCreditCard().creditCardId)
+            this.creditCardService.deleteCreditCard(this.sessionService.getCreditCard().creditCardId).subscribe(
               response => {
                 this.resultSuccess = true;
                 this.creditCard = null;
+                this.sessionService.setCreditCard(null);
               },
               error => {
                 this.error = true;

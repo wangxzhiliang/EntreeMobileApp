@@ -1,4 +1,5 @@
 {
+
 	"/api": {
 		"target": "http://localhost:8080/RestaurantReviewRws/Resources",
 		"secure": false,
@@ -7,3 +8,4 @@
 		}
 	}
 }
+

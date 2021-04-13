@@ -39,16 +39,7 @@ export class ChangePasswordPage implements OnInit {
 
   ngOnInit() {
     this.userId = this.sessionService.getCurrentCustomer().userId;
-
-    this.customerService.getCustomerById(this.userId).subscribe(
-      response => {
-        this.customerToChange = response;
-      },
-      error => {
-        this.retrieveCustomerError = true;
-        console.log('********** UpdateCustomerPage.ts: ' + error);
-      }
-    );
+    this.customerToChange = this.sessionService.getCurrentCustomer();
   }
 
 
