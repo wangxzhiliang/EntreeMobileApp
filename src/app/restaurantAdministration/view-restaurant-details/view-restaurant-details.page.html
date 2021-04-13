@@ -53,13 +53,20 @@
 				<ion-label><b>Restaurant Opening Hours</b></ion-label>
 				{{restaurantToView.openTime}} - {{restaurantToView.closeTime}}
 			</ion-item>
+			<ion-item>
+				<ion-button (click)="promptReservation()">
+					Make Reservation
+				</ion-button>
+			</ion-item>
 		</ion-list>
 	</ion-card>
 
 	<ion-card>
+
 		<ion-card-header>
 			<ion-card-subtitle>Dishes</ion-card-subtitle>
 		</ion-card-header>
+
 		<ion-list *ngIf="retrieveRestaurantError == false && restaurantToView != null 
 			&& restaurantToView.dishes.length>0">
 			<ion-slides>
@@ -85,4 +92,44 @@
 
 		</ion-list>
 	</ion-card>
+
+	<div *ngIf="retrieveRestaurantError == false && restaurantToView != null 
+			&& restaurantToView.reviews.length==0">
+		Restaurant does not have any reviews yet!
+	</div>
+	<div *ngIf="retrieveRestaurantError == false && restaurantToView != null 
+			&& restaurantToView.reviews.length>0">
+		<ion-card *ngFor="let review of restaurantToView.reviews">
+
+			<ion-card-header>
+				<ion-card-subtitle>Reviews</ion-card-subtitle>
+			</ion-card-header>
+
+			<ion-item>
+				<ion-label><b>Customer</b></ion-label>
+				{{review.creater.firstName}} {{review.creater.lastName}}
+			</ion-item>
+			<ion-item>
+				<ion-label><b>Content</b></ion-label>
+				{{review.content}}
+			</ion-item>
+			<ion-item>
+				<ion-label><b>Rating</b></ion-label>
+				{{review.rating}}
+			</ion-item>
+			<ion-item>
+				<ion-button (click)="handleLike()">
+					<ion-icon name="thumbs-up"></ion-icon>
+					Likes {{review.numOfLikes}}
+				</ion-button>
+
+				<ion-button (click)="handleDislike()">
+					<ion-icon name="thumbs-down"></ion-icon>
+					Dislikes {{review.numOfDislikes}}
+				</ion-button>
+			</ion-item>
+
+		</ion-card>
+	</div>
+
 </ion-content>
