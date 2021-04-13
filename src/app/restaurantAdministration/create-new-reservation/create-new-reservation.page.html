@@ -65,28 +65,30 @@
             <ion-label class="ion-text-wrap"><b>Reservation Time</b></ion-label>
             <ion-select placeholder="Select Time" id="reservationTime" name="reservationTime"
               [(ngModel)]="newReservation.reservationTime" required="true" #reservationTime="ngModel">
-              <ion-select-option *ngFor="let slot of reservationSlots">{{slot/1}} : {{slot%1*60}}
+              <ion-select-option *ngFor="let slot of reservationSlots">{{slot-slot%1}} : {{slot%1*6}}0
               </ion-select-option>
             </ion-select>
           </ion-item>
 
           <ion-item>
             <ion-label class="ion-text-wrap"><b>Number of Pax</b></ion-label>
-            <ion-input type="text" id="numOfPax" name="numOfPax" [(ngModel)]="newReservation.numOfPax" required="true"
+            <ion-input align="right" type="text" id="numOfPax" name="numOfPax" [(ngModel)]="newReservation.numOfPax" required="true"
               #numOfPax="ngModel"></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label class="ion-text-wrap"><b>Table Size</b></ion-label>
-            <ion-select id="tableSize" name="tableSize" [(ngModel)]="newReservation.tableSizeAssigned" required="true"
+            <ion-select id="tableSize" name="tableSize" [(ngModel)]="tableSizeChosen" required="true"
               #tableSize="ngModel">
-              <ion-select-option *ngFor="let enum of TableSize | keyvalue">{{enum.keyvalue}}</ion-select-option>
+              <ion-select-option>Small</ion-select-option>
+              <ion-select-option>Medium</ion-select-option>
+              <ion-select-option>Large</ion-select-option>
             </ion-select>
           </ion-item>
 
           <ion-item>
             <ion-label class="ion-text-wrap"><b>Remark</b></ion-label>
-            <ion-input type="text" id="remark" name="remark" [(ngModel)]="newReservation.remark" required="true"
+            <ion-input align="right" type="text" id="remark" name="remark" [(ngModel)]="newReservation.remark" required="true"
               #remark="ngModel"></ion-input>
           </ion-item>
 

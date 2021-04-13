@@ -41,7 +41,7 @@ export class RestaurantService {
   createNewReservation(newReservation: Reservation, restaurantId: number): Observable<number>
     {		
       let customerId = this.sessionService.getCurrentCustomer().userId;
-      
+      console.log(customerId);
       return this.httpClient.post<number>("/api/Reservation/?customerId=" + customerId + 
       "&restaurantId=" + restaurantId , Reservation, httpOptions).pipe
       (

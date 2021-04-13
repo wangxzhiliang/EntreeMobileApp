@@ -6,6 +6,7 @@ import { RestaurantService } from '../../services/restaurant.service';
 import { Restaurant } from '../../models/restaurant';
 import { Reservation } from '../../models/reservation';
 import { TableConfiguration } from 'src/app/models/table-configuration';
+import { TableSize } from 'src/app/models/table-size.enum';
 
 @Component({
   selector: 'app-create-new-reservation',
@@ -18,6 +19,7 @@ export class CreateNewReservationPage implements OnInit {
   retrieveRestaurantError: boolean;
   newReservation: Reservation;
   submitted: boolean;
+  tableSize: string;
 
   reservationSlots: number[];
   numSmallTables: number;
@@ -36,10 +38,10 @@ export class CreateNewReservationPage implements OnInit {
     this.reservationSlots = new Array();
     this.resultSuccess = false;
     this.resultError = false;
+    this.tableSize = "";
   }
 
   ngOnInit() {
-    console.log('**********ngOnInit');
     this.restaurantId = parseInt(this.activatedRoute.snapshot.paramMap.get('restaurantId'));
     this.refreshRestaurant();
   
@@ -88,6 +90,14 @@ export class CreateNewReservationPage implements OnInit {
 
     this.submitted = true;
 
+    if (this.tableSize === "Small"){
+      this.newReservation.tableSizeAssigned = TableSize.SMALL;
+    } else if (this.tableSize === "Medium") {
+      this.newReservation.tableSizeAssigned = TableSize.MEDIUM;
+    } else {
+      this.newReservation.tableSizeAssigned = TableSize.LARGE;
+    }
+
     if (createReservationForm.valid) {
       this.restaurantService.createNewReservation(this.newReservation, this.restaurant.userId).subscribe(
         response => {
@@ -102,6 +112,7 @@ export class CreateNewReservationPage implements OnInit {
           this.numLargeTables = 0;
           this.reservationSlots = new Array();
           this.submitted = false;
+          this.tableSize = "";
           createReservationForm.reset();
         },
         error => {
