@@ -3,6 +3,7 @@ import { Restaurant} from './restaurant';
 
 export class Reservation {
 
+    reservationId: number | undefined;
     reservationDate: Date | undefined;
     reservationTime: number | undefined;
     numOfPax: number | undefined;
@@ -10,8 +11,9 @@ export class Reservation {
     remark: string | null;
     restaurant: Restaurant | undefined;
 
-    constructor(reservationDate?: Date, reservationTime?: number, numOfPax?: number,
+    constructor(reservationId?: number, reservationDate?: Date, reservationTime?: number, numOfPax?: number,
         tableSizeAssigned?: TableSize, remark?: string, restaurant?: Restaurant) {
+        this.reservationId = reservationId;
         this.reservationDate = reservationDate;
         this.reservationTime = reservationTime;
         this.numOfPax = numOfPax;

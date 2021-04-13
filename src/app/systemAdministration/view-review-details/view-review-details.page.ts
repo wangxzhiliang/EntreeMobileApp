@@ -33,7 +33,6 @@ export class ViewReviewDetailsPage implements OnInit {
     this.customerService.getReviewByReviewId(this.reviewId).subscribe(
       response => {
         this.reviewToView = response;
-        console.log(this.reviewToView);
         this.retrieveReviewError = false;
       },
       error => {

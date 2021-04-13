@@ -20,13 +20,13 @@
 	</ion-card>
 </ion-content>
 
-<ion-content *ngIf="resultSuccess == true && saleTransactions?.length == 1">
+<ion-content *ngIf="resultSuccess == true && saleTransactions?.length > 0 && !(saleTransactions?.length> 1)">
 	<ion-card>
 		<ion-card-header>
-			<ion-card-title>Transaction Date: {{saleTransaction.transactionDate}}</ion-card-title>
+			<ion-card-title>Transaction Date: {{saleTransactions.transactionDate}}</ion-card-title>
 		</ion-card-header>
 		<ion-card-content>
-        Amount paid: ${{saleTransaction.paidAmount}}.00
+        	Amount paid: ${{saleTransactions.paidAmount}}.00
 		</ion-card-content>
 	</ion-card>
 </ion-content>
