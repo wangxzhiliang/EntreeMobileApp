@@ -12,12 +12,12 @@ export class ViewVoucherDetailsPage implements OnInit {
 
   customerVoucherId: number;
   customerVoucherToView: CustomerVoucher;
-  retrieveReviewError: boolean;
+  retrieveVoucherError: boolean;
 
   constructor(private router: Router, 
     private activatedRoute: ActivatedRoute,
     private customerService: CustomerService,) { 
-    this.retrieveReviewError = false;
+    this.retrieveVoucherError = false;
   }
 
   ngOnInit() {
@@ -33,11 +33,10 @@ export class ViewVoucherDetailsPage implements OnInit {
     this.customerService.getVoucherByVoucherId(this.customerVoucherId).subscribe(
       response => {
         this.customerVoucherToView = response;
-        console.log(this.customerVoucherToView);
-        this.retrieveReviewError = false;
+        this.retrieveVoucherError = false;
       },
       error => {
-        this.retrieveReviewError = true;
+        this.retrieveVoucherError = true;
         console.log('********** ViewCustomerVoucherDetailsPage.ts: ' + error);
       }
     );

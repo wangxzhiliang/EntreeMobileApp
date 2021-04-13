@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ViewMyVouchersPage implements OnInit {
 
-  vouchers: CustomerVoucher | null;
+  customerVouchers: CustomerVoucher | null;
   error: boolean;
   errorMessage: string;
   resultSuccess: boolean;
@@ -35,8 +35,8 @@ export class ViewMyVouchersPage implements OnInit {
   updateModel() {
     this.customerService.getMyVouchers(this.sessionService.getCurrentCustomer().userId).subscribe(
       response => {
-        this.vouchers = response;
-        console.log(this.vouchers);
+        this.customerVouchers = response;
+        console.log(this.customerVouchers[0].voucher);
         this.resultSuccess = true;
       }, 
       error => {
@@ -46,7 +46,7 @@ export class ViewMyVouchersPage implements OnInit {
     );
   }
 
-  // viewVoucherDetails(voucher) {
-  //   this.router.navigate(["/viewVoucherDetails/" + voucher.customerVoucherId]);
-  // }
+  viewVoucherDetails(voucher) {
+    this.router.navigate(["/viewVoucherDetails/" + voucher.customerVoucherId]);
+  }
 }
