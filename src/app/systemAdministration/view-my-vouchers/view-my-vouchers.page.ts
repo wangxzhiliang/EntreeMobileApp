@@ -37,7 +37,7 @@ export class ViewMyVouchersPage implements OnInit {
       response => {
         this.customerVouchers = response;
         let cus = this.customerVouchers;
-        console.log(this.customerVouchers)
+        console.log(cus)
         if (this.customerVouchers[1] == null){
           this.customerVouchers = cus[0];
         }
