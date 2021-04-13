@@ -64,7 +64,7 @@ export class CreditCardService
 	
   createNewCreditCard(newCreditCard: CreditCard): Observable<number>
   {		
-    return this.httpClient.put<number>(this.baseUrl + this.sessionService.getCurrentCustomer().userId, newCreditCard, httpOptions).pipe
+    return this.httpClient.put<number>(this.baseUrl + this.sessionService.getCurrentCustomer().userId + "/createNewCreditCard", newCreditCard, httpOptions).pipe
     (
       catchError(this.handleError)
     );

@@ -5,6 +5,7 @@ import { catchError } from 'rxjs/operators';
 
 import { SessionService } from './session.service';
 import { Customer } from '../models/customer';
+import { Review } from '../models/review'
 
 
 const httpOptions = {
@@ -98,13 +99,19 @@ export class CustomerService
     );
   }
   
- //Dont think can delete customer 
-  // deleteCustomer(customerId: number): Observable<any>
-  // {
-  //   return this.httpClient.delete<any>(this.baseUrl + "/" + customerId + "?email=" + this.sessionService.getEmail() + "&password=" + this.sessionService.getPassword()).pipe
-  //   (
-  //     catchError(this.handleError)
-  //   );
-  // }
+  getMyReviews(customerId: number): Observable<Review>
+  {
+    return this.httpClient.get<Review>("/api/Review/retrieveMyReviews/" + this.sessionService.getCurrentCustomer().userId).pipe
+    (
+      catchError(this.handleError)
+    );
+  }
+
+  getReviewByReviewId(reviewId: number): Observable<Review>{
+  return this.httpClient.get<Review>("/api/Review/retrieveReviewById/" + reviewId).pipe
+    (
+      catchError(this.handleError)
+    );
+  }
 
 }
