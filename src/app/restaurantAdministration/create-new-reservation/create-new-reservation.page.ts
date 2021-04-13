@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SystemJsNgModuleLoader } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
@@ -33,25 +33,25 @@ export class CreateNewReservationPage implements OnInit {
     this.retrieveRestaurantError = false;
     this.submitted = false;
     this.newReservation = new Reservation();
-
+    this.reservationSlots = new Array();
     this.resultSuccess = false;
     this.resultError = false;
   }
 
   ngOnInit() {
+    console.log('**********ngOnInit');
     this.restaurantId = parseInt(this.activatedRoute.snapshot.paramMap.get('restaurantId'));
     this.refreshRestaurant();
   
   }
 
   ionViewWillEnter() {
-    this.refreshRestaurant();
 
     for (let i = this.restaurant.openTime; i < this.restaurant.closeTime; i = i + 0.5) {
       this.reservationSlots.push(i);
     }
     
-    this.reservationSlots = new Array();
+    
   }
 
   refreshRestaurant() {
@@ -61,7 +61,7 @@ export class CreateNewReservationPage implements OnInit {
       },
       error => {
         this.retrieveRestaurantError = true;
-        console.log('********** ViewRestaurantDetailsPage.ts: ' + error);
+        console.log('********** CreateNewReservationPage.ts: ' + error);
       }
     );
   }

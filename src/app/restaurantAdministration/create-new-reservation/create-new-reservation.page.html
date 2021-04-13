@@ -23,14 +23,14 @@
 
         <div style="color: red;">
 
-          <div *ngIf="reservationDate.invalid && (reservationDate.dirty || reservationDate.touched || submitted)"
+          <!-- <div *ngIf="inreservationDate.invalid && (inreservationDate.dirty || inreservationDate.touched || submitted)"
             class="errorText">
-            <div *ngIf="reservationDate.errors.required">
+            <div *ngIf="inreservationDate.errors.required">
               Reservation Date is required.
             </div>
           </div>
 
-          <div *ngIf="reservationTime.invalid && (reservationTime.dirty || reservationTime.touched || submitted)"
+           <div *ngIf="reservationTime.invalid && (reservationTime.dirty || reservationTime.touched || submitted)"
             class="errorText">
             <div *ngIf="reservationTime.errors.required">
               Reservation Time is required.
@@ -43,12 +43,12 @@
             </div>
           </div>
 
-          <div *ngIf="tableSizeAssigned.invalid && (tableSizeAssigned.dirty || tableSizeAssigned.touched || submitted)"
+         <div *ngIf="tableSizeAssigned.invalid && (tableSizeAssigned.dirty || tableSizeAssigned.touched || submitted)"
             class="errorText">
             <div *ngIf="tableSizeAssigned.errors.required">
               Table Size is required.
             </div>
-          </div>
+          </div> -->
 
         </div>
 
@@ -57,14 +57,14 @@
           <ion-item>
             <ion-label class="ion-text-wrap"><b>Reservation Date</b></ion-label>
             <ion-datetime id="reservationDate" name="reservationDate" value="2021-04-13" placeholder="Select Date"
-              [(ngModel)]="newReservation.reservationDate" required="true" #reservationDate="ngModel">
+              [(ngModel)]="newReservation.reservationDate" required="true" #inreservationDate="ngModel">
             </ion-datetime>
           </ion-item>
 
           <ion-item>
             <ion-label class="ion-text-wrap"><b>Reservation Time</b></ion-label>
             <ion-select placeholder="Select Time" id="reservationTime" name="reservationTime"
-              #reservationTimey="ngModel" [(ngModel)]="newReservation.reservationTime" required="true">
+              [(ngModel)]="newReservation.reservationTime" required="true" #reservationTime="ngModel">
               <ion-select-option *ngFor="let slot of reservationSlots">{{slot/1}} : {{slot%1*60}}
               </ion-select-option>
             </ion-select>
