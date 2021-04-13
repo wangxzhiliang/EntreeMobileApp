@@ -1,0 +1,51 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-button (click)="back()">
+				<ion-icon slot="start" name="arrow-back"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+		<ion-title>View Review Details</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+		<ion-card-header>
+			<ion-card-subtitle>Review Details</ion-card-subtitle>
+		</ion-card-header>
+
+		<ion-list *ngIf="retrieveReviewError == false && reviewToView != null">
+			<ion-item>
+				<ion-label><b>Review Rating</b></ion-label>
+				{{reviewToView.rating}}
+			</ion-item>
+
+			<ion-item>
+				<ion-label><b>Review content</b></ion-label>
+				{{reviewToView.content}}
+			</ion-item>
+			<ion-item>
+				<ion-label><b>Date of posting</b></ion-label>
+				{{reviewToView.timeOfCreation}}
+			</ion-item>
+			<ion-item>
+				<ion-label><b>Number of likes</b></ion-label>
+				{{reviewToView.numOfLikes}}
+			</ion-item>
+			<!-- <ion-item>
+				<ion-label><b>Number of dislikes</b></ion-label>
+				{{reviewToView.numOfDislikes}}
+			</ion-item> -->
+			<ion-item>
+				<ion-label><b>Photos</b></ion-label>
+			<ion-slides>
+				<ion-slide *ngFor="let photo of reviewToView.photos">
+					<img src="{{photo}}" />
+				</ion-slide>
+				</ion-slides>
+			</ion-item>
+ 
+		</ion-list>
+	</ion-card>
+</ion-content>

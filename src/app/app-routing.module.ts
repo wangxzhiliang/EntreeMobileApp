@@ -73,6 +73,22 @@ const routes: Routes = [
   {
     path: 'viewCreditCard',
     loadChildren: () => import('./systemAdministration/view-credit-card/view-credit-card.module').then( m => m.ViewCreditCardPageModule)
+  },
+  {
+    path: 'viewMyReviews',
+    loadChildren: () => import('./systemAdministration/view-my-reviews/view-my-reviews.module').then( m => m.ViewMyReviewsPageModule)
+  },
+  {
+    path: 'viewReviewDetails/:reviewId',
+    loadChildren: () => import('./systemAdministration/view-review-details/view-review-details.module').then( m => m.ViewReviewDetailsPageModule)
+  },
+  {
+    path: 'viewMyVouchers',
+    loadChildren: () => import('./systemAdministration/view-my-vouchers/view-my-vouchers.module').then( m => m.ViewMyVouchersPageModule)
+  },
+  {
+    path: 'viewVoucherDetails/:customerVoucherId',
+    loadChildren: () => import('./systemAdministration/view-voucher-details/view-voucher-details.module').then( m => m.ViewVoucherDetailsPageModule)
   }
 
 ];

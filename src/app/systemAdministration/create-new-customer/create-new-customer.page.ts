@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-
+import { SessionService } from '../../services/session.service';
 import { CustomerService } from '../../services/customer.service';
 import { Customer } from '../../models/customer';
 
@@ -21,7 +21,8 @@ export class CreateNewCustomerPage implements OnInit {
 
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
-    private customerService: CustomerService,) {
+    private customerService: CustomerService,
+    private sessionService: SessionService) {
     this.submitted = false;
     this.newCustomer = new Customer();
 
@@ -51,10 +52,12 @@ export class CreateNewCustomerPage implements OnInit {
           this.resultSuccess = true;
           this.resultError = false;
           this.message = "Congratulations " + this.newCustomer.firstName + " " + this.newCustomer.lastName + "! You have created an account successfully";
-
+          this.newCustomer.userId = newCustomerId;
+          this.sessionService.setCurrentCustomer(this.newCustomer);
           this.newCustomer = new Customer();
           this.submitted = false;
           createCustomerForm.reset();
+          this.sessionService.setIsLogin(true);
         },
         error => {
           this.resultError = true;

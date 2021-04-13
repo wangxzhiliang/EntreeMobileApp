@@ -39,15 +39,7 @@ export class UpdateCustomerPage implements OnInit {
 
   ngOnInit() {
     this.userId = this.sessionService.getCurrentCustomer().userId;
-    this.customerService.getCustomerById(this.userId).subscribe(
-      response => {
-        this.customerToUpdate = response;
-      },
-      error => {
-        this.retrieveCustomerError = true;
-        console.log('********** UpdateCustomerPage.ts: ' + error);
-      }
-    );
+    this.customerToUpdate = this.sessionService.getCurrentCustomer();
   }
 
 
