@@ -38,7 +38,7 @@ export class ViewReviewDetailsPage implements OnInit {
       },
       error => {
         this.retrieveReviewError = true;
-        console.log('********** ViewRestaurantDetailsPage.ts: ' + error);
+        console.log('********** ViewReviewDetailsPage.ts: ' + error);
       }
     );
   }

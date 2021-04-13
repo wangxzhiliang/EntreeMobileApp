@@ -81,6 +81,14 @@ const routes: Routes = [
   {
     path: 'viewReviewDetails/:reviewId',
     loadChildren: () => import('./systemAdministration/view-review-details/view-review-details.module').then( m => m.ViewReviewDetailsPageModule)
+  },
+  {
+    path: 'viewMyVouchers',
+    loadChildren: () => import('./systemAdministration/view-my-vouchers/view-my-vouchers.module').then( m => m.ViewMyVouchersPageModule)
+  },
+  {
+    path: 'viewVoucherDetails/:customerVoucherId',
+    loadChildren: () => import('./systemAdministration/view-voucher-details/view-voucher-details.module').then( m => m.ViewVoucherDetailsPageModule)
   }
 
 ];

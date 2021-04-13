@@ -5,7 +5,8 @@ import { catchError } from 'rxjs/operators';
 
 import { SessionService } from './session.service';
 import { Customer } from '../models/customer';
-import { Review } from '../models/review'
+import { Review } from '../models/review';
+import {CustomerVoucher} from '../models/customer-voucher';
 
 
 const httpOptions = {
@@ -21,13 +22,10 @@ export class CustomerService
 {
 	baseUrl: string = "/api/Customer";
 
-
-
 	constructor(private httpClient: HttpClient,
 				private sessionService: SessionService)
 	{    
 	}
-
 
 
 	customerLogin(email: string | undefined, password: string | undefined): Observable<Customer>
@@ -109,6 +107,21 @@ export class CustomerService
 
   getReviewByReviewId(reviewId: number): Observable<Review>{
   return this.httpClient.get<Review>("/api/Review/retrieveReviewById/" + reviewId).pipe
+    (
+      catchError(this.handleError)
+    );
+  }
+
+  getMyVouchers(customerId: number): Observable<CustomerVoucher>
+  {
+    return this.httpClient.get<CustomerVoucher>("/api/Voucher/retrieveMyCustomerVouchers/" + this.sessionService.getCurrentCustomer().userId).pipe
+    (
+      catchError(this.handleError)
+    );
+  }
+
+  getVoucherByVoucherId(voucherId: number): Observable<CustomerVoucher>{
+  return this.httpClient.get<CustomerVoucher>("/api/Voucher/retrieveCustomerVoucherDetails/" + voucherId).pipe
     (
       catchError(this.handleError)
     );

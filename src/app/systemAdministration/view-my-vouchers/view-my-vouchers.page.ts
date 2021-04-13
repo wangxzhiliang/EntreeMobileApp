@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { Review } from '../../models/review';
+import { CustomerVoucher } from '../../models/customer-voucher';
 import { CustomerService } from '../../services/customer.service';
 import { SessionService } from '../../services/session.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-view-my-reviews',
-  templateUrl: './view-my-reviews.page.html',
-  styleUrls: ['./view-my-reviews.page.scss'],
+  selector: 'app-view-my-vouchers',
+  templateUrl: './view-my-vouchers.page.html',
+  styleUrls: ['./view-my-vouchers.page.scss'],
 })
-export class ViewMyReviewsPage implements OnInit {
+export class ViewMyVouchersPage implements OnInit {
 
-  reviews: Review | null;
+  vouchers: CustomerVoucher | null;
   error: boolean;
   errorMessage: string;
   resultSuccess: boolean;
-  creditCardId: number;
+  voucherId: number;
 
   constructor(private router: Router, 
     private customerService: CustomerService,
@@ -33,21 +33,20 @@ export class ViewMyReviewsPage implements OnInit {
   }
 
   updateModel() {
-    this.customerService.getMyReviews(this.sessionService.getCurrentCustomer().userId).subscribe(
+    this.customerService.getMyVouchers(this.sessionService.getCurrentCustomer().userId).subscribe(
       response => {
-        this.reviews = response;
+        this.vouchers = response;
+        console.log(this.vouchers);
         this.resultSuccess = true;
       }, 
       error => {
         this.resultSuccess = false;
-        console.log("**********ViewMyReviews.ts: " + error);
+        console.log("**********ViewMyVouchers.ts: " + error);
       }
-      
     );
   }
 
-  viewReviewDetails(review) {
-    this.router.navigate(["/viewReviewDetails/" + review.reviewId]);
-  }
-
+  // viewVoucherDetails(voucher) {
+  //   this.router.navigate(["/viewVoucherDetails/" + voucher.customerVoucherId]);
+  // }
 }
