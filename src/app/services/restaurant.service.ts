@@ -40,10 +40,10 @@ export class RestaurantService {
 
   createNewReservation(newReservation: Reservation, restaurantId: number): Observable<number>
     {		
-      let createRestaurantReq: CreateReservationReq = new CreateReservationReq(newReservation, 
-        this.sessionService.getCurrentCustomer().userId, restaurantId);
+      let customerId = this.sessionService.getCurrentCustomer().userId;
       
-      return this.httpClient.put<number>(this.baseUrl, createRestaurantReq, httpOptions).pipe
+      return this.httpClient.post<number>("/api/Reservation/?customerId=" + customerId + 
+      "&restaurantId=" + restaurantId , Reservation, httpOptions).pipe
       (
         catchError(this.handleError)
       );

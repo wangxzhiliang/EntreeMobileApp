@@ -35,22 +35,22 @@
             <div *ngIf="reservationTime.errors.required">
               Reservation Time is required.
             </div>
-          </div> -->
-
-        <!-- <div *ngIf="numOfPax.invalid && (numOfPax.dirty || numOfPax.touched || submitted)" class="errorText">
-          <div *ngIf="numOfPax.errors.required">
-            Number of Pax is required.
           </div>
-        </div>
 
-        <div *ngIf="tableSizeAssigned.invalid && (tableSizeAssigned.dirty || tableSizeAssigned.touched || submitted)"
-          class="errorText">
-          <div *ngIf="tableSizeAssigned.errors.required">
-            Table Size is required.
+          <div *ngIf="numOfPax.invalid && (numOfPax.dirty || numOfPax.touched || submitted)" class="errorText">
+            <div *ngIf="numOfPax.errors.required">
+              Number of Pax is required.
+            </div>
           </div>
-        </div>
 
-        </div> 
+          <div *ngIf="tableSizeAssigned.invalid && (tableSizeAssigned.dirty || tableSizeAssigned.touched || submitted)"
+            class="errorText">
+            <div *ngIf="tableSizeAssigned.errors.required">
+              Table Size is required.
+            </div>
+          </div>
+
+        </div>
 
         <ion-list>
 
@@ -63,8 +63,8 @@
 
           <ion-item>
             <ion-label class="ion-text-wrap"><b>Reservation Time</b></ion-label>
-            <ion-select placeholder="Select Time" id="reservationTime" name="reservationTime" 
-            #reservationTimey="ngModel" [(ngModel)]="newReservation.reservationTime" required="true">
+            <ion-select placeholder="Select Time" id="reservationTime" name="reservationTime"
+              #reservationTimey="ngModel" [(ngModel)]="newReservation.reservationTime" required="true">
               <ion-select-option *ngFor="let slot of reservationSlots">{{slot/1}} : {{slot%1*60}}
               </ion-select-option>
             </ion-select>
@@ -78,15 +78,16 @@
 
           <ion-item>
             <ion-label class="ion-text-wrap"><b>Table Size</b></ion-label>
-            <ion-select id="tableSize" name="tableSize" [(ngModel)]="tableSize" required="true" #tableSize="ngModel">
+            <ion-select id="tableSize" name="tableSize" [(ngModel)]="newReservation.tableSizeAssigned" required="true"
+              #tableSize="ngModel">
               <ion-select-option *ngFor="let enum of TableSize | keyvalue">{{enum.keyvalue}}</ion-select-option>
             </ion-select>
           </ion-item>
 
           <ion-item>
             <ion-label class="ion-text-wrap"><b>Remark</b></ion-label>
-            <ion-input type="text" id="remark" name="remark" [(ngModel)]="newReservation.remark"
-              required="true" #remark="ngModel"></ion-input>
+            <ion-input type="text" id="remark" name="remark" [(ngModel)]="newReservation.remark" required="true"
+              #remark="ngModel"></ion-input>
           </ion-item>
 
         </ion-list>
@@ -103,7 +104,7 @@
           Create
         </ion-button>
       </ion-card-content>
-      
+
     </ion-card>
 
   </form>

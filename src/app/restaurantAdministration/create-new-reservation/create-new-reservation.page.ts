@@ -23,7 +23,6 @@ export class CreateNewReservationPage implements OnInit {
   numSmallTables: number;
   numMediumTables: number;
   numLargeTables: number;
-  tableSize: string;
 
   resultSuccess: boolean;
   resultError: boolean;
@@ -42,14 +41,17 @@ export class CreateNewReservationPage implements OnInit {
   ngOnInit() {
     this.restaurantId = parseInt(this.activatedRoute.snapshot.paramMap.get('restaurantId'));
     this.refreshRestaurant();
-    this.reservationSlots = new Array();
+  
   }
 
   ionViewWillEnter() {
     this.refreshRestaurant();
+
     for (let i = this.restaurant.openTime; i < this.restaurant.closeTime; i = i + 0.5) {
       this.reservationSlots.push(i);
     }
+    
+    this.reservationSlots = new Array();
   }
 
   refreshRestaurant() {
@@ -82,34 +84,36 @@ export class CreateNewReservationPage implements OnInit {
      );
   }
 
-  // create(createReservationForm: NgForm) {
+  create(createReservationForm: NgForm) {
 
-  //   this.submitted = true;
+    this.submitted = true;
 
-  //   if (createProductForm.valid) {
-  //     this.productService.createNewProduct(this.newProduct, parseInt(this.categoryId), longTagIds).subscribe(
-  //       response => {
-  //         let newProductId: number = response;
-  //         this.resultSuccess = true;
-  //         this.resultError = false;
-  //         this.message = "New product " + newProductId + " created successfully";
+    if (createReservationForm.valid) {
+      this.restaurantService.createNewReservation(this.newReservation, this.restaurant.userId).subscribe(
+        response => {
+          let newReservationId: number = response;
+          this.resultSuccess = true;
+          this.resultError = false;
+          this.message = "New reservation " + newReservationId + " created successfully";
 
-  //         this.newProduct = new Product();
-  //         this.categoryId = '';
-  //         this.tagIds = new Array();
-  //         this.submitted = false;
-  //         createProductForm.reset();
-  //       },
-  //       error => {
-  //         this.resultError = true;
-  //         this.resultSuccess = false;
-  //         this.message = "An error has occurred while creating the new product: " + error;
+          this.newReservation = new Reservation();
+          this.numSmallTables = 0;
+          this.numMediumTables = 0;
+          this.numLargeTables = 0;
+          this.reservationSlots = new Array();
+          this.submitted = false;
+          createReservationForm.reset();
+        },
+        error => {
+          this.resultError = true;
+          this.resultSuccess = false;
+          this.message = "An error has occurred while creating the new product: " + error;
 
-  //         console.log('********** CreateNewProductPage.ts: ' + error);
-  //       }
-  //     );
-  //   }
-  // }
+          console.log('********** CreateNewProductPage.ts: ' + error);
+        }
+      );
+    }
+  }
 
   clear() {
     this.submitted = false;
@@ -119,6 +123,5 @@ export class CreateNewReservationPage implements OnInit {
   back() {
     this.router.navigate(["/restaurantAdministration/viewRestaurantDetails/" + this.restaurantId]);
   }
-
 
 }
