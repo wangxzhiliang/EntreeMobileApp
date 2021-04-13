@@ -65,22 +65,22 @@ export class CreateNewReservationPage implements OnInit {
   }
 
 
-  // getAvailableTables() {
-  //    this.restaurantService.getAvailableTables(this.restaurant.userId, 
-  //     this.newReservation.reservationDate.getTime(), this.newReservation.reservationTime).subscribe(
-  //       response => {
-  //         let availableTables: number[] = response;
-  //         this.numSmallTables = availableTables[0];
-  //         this.numMediumTables = availableTables[1];
-  //         this.numLargeTables = availableTables[2];
-  //       }, 
-  //       error => {
-  //         this.message = "An error has occurred while retrieving availbale tables: " + error;
+  getAvailableTables() {
+     this.restaurantService.getAvailableTables(this.restaurant.userId, 
+      this.newReservation.reservationDate, this.newReservation.reservationTime).subscribe(
+        response => {
+          let availableTables: number[] = response;
+          this.numSmallTables = availableTables[0];
+          this.numMediumTables = availableTables[1];
+          this.numLargeTables = availableTables[2];
+        }, 
+        error => {
+          this.message = "An error has occurred while retrieving availbale tables: " + error;
 
-  //         console.log('********** CreateNewReservation.ts: ' + error);
-  //       }
-  //    );
-  // }
+          console.log('********** CreateNewReservation.ts: ' + error);
+        }
+     );
+  }
 
   // create(createReservationForm: NgForm) {
 

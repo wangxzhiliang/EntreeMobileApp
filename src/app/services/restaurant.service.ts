@@ -49,9 +49,16 @@ export class RestaurantService {
       );
     }
 
-    // getAvailableTables(restaurantId: number, reservationDate: number, reservationTime: number): Observable<number[]> {
-      
-    // }
+    getAvailableTables(restaurantId: number, reservationDate: Date, reservationTime: number): Observable<number[]> {
+      let dateString: string = reservationDate.toISOString().split('T')[0];
+
+      return this.httpClient.get<number[]>(
+        "/api/Reservation/retrieveRestaurantAvailableTableByTime?restaurantId=" + restaurantId
+        + "&date=" + dateString + "&time=" + reservationTime).pipe
+      (
+        catchError(this.handleError)
+      );
+    }
 
   private handleError(error: HttpErrorResponse) {
     let errorMessage: string = "";
