@@ -11,8 +11,8 @@
 
 <ion-content>
 <ion-card *ngFor="let restaurant of restaurants" button (click)="viewRestaurantDetails(restaurant)">
-	<!-- <img src="{{restaurant.photos[0]}}" *ngIf="restaurant.photos.length>0"> -->
-	<img src="../../../assets/img/home.jpg">
+	<img src="{{restaurant.photos[0]}}" *ngIf="restaurant.photos.length>0">
+	<!-- <img src="../../../assets/img/home.jpg"> -->
 	<ion-card-header>
 		<ion-card-title>{{restaurant.name}}</ion-card-title>
 	</ion-card-header>

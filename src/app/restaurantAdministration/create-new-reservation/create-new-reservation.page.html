@@ -23,14 +23,14 @@
 
         <div style="color: red;">
 
-          <div *ngIf="reservationDate.invalid && (reservationDate.dirty || reservationDate.touched || submitted)"
+          <!-- <div *ngIf="inreservationDate.invalid && (inreservationDate.dirty || inreservationDate.touched || submitted)"
             class="errorText">
-            <div *ngIf="reservationDate.errors.required">
+            <div *ngIf="inreservationDate.errors.required">
               Reservation Date is required.
             </div>
           </div>
 
-          <div *ngIf="reservationTime.invalid && (reservationTime.dirty || reservationTime.touched || submitted)"
+           <div *ngIf="reservationTime.invalid && (reservationTime.dirty || reservationTime.touched || submitted)"
             class="errorText">
             <div *ngIf="reservationTime.errors.required">
               Reservation Time is required.
@@ -43,12 +43,12 @@
             </div>
           </div>
 
-          <div *ngIf="tableSizeAssigned.invalid && (tableSizeAssigned.dirty || tableSizeAssigned.touched || submitted)"
+         <div *ngIf="tableSizeAssigned.invalid && (tableSizeAssigned.dirty || tableSizeAssigned.touched || submitted)"
             class="errorText">
             <div *ngIf="tableSizeAssigned.errors.required">
               Table Size is required.
             </div>
-          </div>
+          </div> -->
 
         </div>
 
@@ -57,36 +57,38 @@
           <ion-item>
             <ion-label class="ion-text-wrap"><b>Reservation Date</b></ion-label>
             <ion-datetime id="reservationDate" name="reservationDate" value="2021-04-13" placeholder="Select Date"
-              [(ngModel)]="newReservation.reservationDate" required="true" #reservationDate="ngModel">
+              [(ngModel)]="newReservation.reservationDate" required="true" #inreservationDate="ngModel">
             </ion-datetime>
           </ion-item>
 
           <ion-item>
             <ion-label class="ion-text-wrap"><b>Reservation Time</b></ion-label>
             <ion-select placeholder="Select Time" id="reservationTime" name="reservationTime"
-              #reservationTimey="ngModel" [(ngModel)]="newReservation.reservationTime" required="true">
-              <ion-select-option *ngFor="let slot of reservationSlots">{{slot/1}} : {{slot%1*60}}
+              [(ngModel)]="newReservation.reservationTime" required="true" #reservationTime="ngModel">
+              <ion-select-option *ngFor="let slot of reservationSlots">{{slot}}
               </ion-select-option>
             </ion-select>
           </ion-item>
 
           <ion-item>
             <ion-label class="ion-text-wrap"><b>Number of Pax</b></ion-label>
-            <ion-input type="text" id="numOfPax" name="numOfPax" [(ngModel)]="newReservation.numOfPax" required="true"
+            <ion-input align="right" type="text" id="numOfPax" name="numOfPax" [(ngModel)]="newReservation.numOfPax" required="true"
               #numOfPax="ngModel"></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label class="ion-text-wrap"><b>Table Size</b></ion-label>
-            <ion-select id="tableSize" name="tableSize" [(ngModel)]="newReservation.tableSizeAssigned" required="true"
-              #tableSize="ngModel">
-              <ion-select-option *ngFor="let enum of TableSize | keyvalue">{{enum.keyvalue}}</ion-select-option>
+            <ion-select id="tableSize" name="tableSize" [(ngModel)]="tableSizeChosen" required="true"
+              #tableSize="ngModel" (click)="getAvailableTables()">
+              <ion-select-option *ngIf="smallAvailable == true">Small</ion-select-option>
+              <ion-select-option *ngIf="mediumAvailable == true">Medium</ion-select-option>
+              <ion-select-option *ngIf="largeAvailable == true">Large</ion-select-option>
             </ion-select>
           </ion-item>
 
           <ion-item>
             <ion-label class="ion-text-wrap"><b>Remark</b></ion-label>
-            <ion-input type="text" id="remark" name="remark" [(ngModel)]="newReservation.remark" required="true"
+            <ion-input align="right" type="text" id="remark" name="remark" [(ngModel)]="newReservation.remark" required="true"
               #remark="ngModel"></ion-input>
           </ion-item>
 

@@ -41,7 +41,7 @@ export class RestaurantService {
   createNewReservation(newReservation: Reservation, restaurantId: number): Observable<number>
     {		
       let customerId = this.sessionService.getCurrentCustomer().userId;
-      
+      console.log(customerId);
       return this.httpClient.post<number>("/api/Reservation/?customerId=" + customerId + 
       "&restaurantId=" + restaurantId , Reservation, httpOptions).pipe
       (
@@ -50,7 +50,7 @@ export class RestaurantService {
     }
 
     getAvailableTables(restaurantId: number, reservationDate: Date, reservationTime: number): Observable<number[]> {
-      let dateString: string = reservationDate.toISOString().split('T')[0];
+      let dateString: string = reservationDate.toString().split('T')[0];
 
       return this.httpClient.get<number[]>(
         "/api/Reservation/retrieveRestaurantAvailableTableByTime?restaurantId=" + restaurantId

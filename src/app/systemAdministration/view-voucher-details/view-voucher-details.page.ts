@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../../services/customer.service';
 import { CustomerVoucher } from '../../models/customer-voucher';
 import { ActivatedRoute, Router } from '@angular/router';
+import Big from 'big.js';
 
 @Component({
   selector: 'app-view-voucher-details',
@@ -33,6 +34,7 @@ export class ViewVoucherDetailsPage implements OnInit {
     this.customerService.getVoucherByVoucherId(this.customerVoucherId).subscribe(
       response => {
         this.customerVoucherToView = response;
+        console.log(this.customerVoucherToView[0].voucher.amountRedeemable)
         this.retrieveVoucherError = false;
       },
       error => {

@@ -28,14 +28,26 @@
         <div style="color: red;">
 
           <div *ngIf="email.invalid && (email.dirty || email.touched || submitted)" class="errorText">
-            <div *ngIf="email.errors.required">
+            <div *ngIf="inemail.errors.required">
               Email is required.
+            </div>
+            <div *ngIf="inemail.errors.minlength">
+              Email must be at least 4 characters long.
+            </div>
+            <div *ngIf="inemail.errors.maxlength">
+              Email cannot exceed 32 characters.
             </div>
           </div>
 
           <div *ngIf="password.invalid && (password.dirty || password.touched || submitted)" class="errorText">
-            <div *ngIf="password.errors.required">
+            <div *ngIf="inpassword.errors.required">
               Password is required.
+            </div>
+            <div *ngIf="inpassword.errors.minlength">
+              Password must be at least 4 characters long.
+            </div>
+            <div *ngIf="inpassword.errors.maxlength">
+              Password cannot exceed 32 characters.
             </div>
           </div>
 

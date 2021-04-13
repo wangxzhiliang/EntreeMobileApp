@@ -36,7 +36,6 @@ export class ViewMyVouchersPage implements OnInit {
     this.customerService.getMyVouchers(this.sessionService.getCurrentCustomer().userId).subscribe(
       response => {
         this.customerVouchers = response;
-        console.log(this.customerVouchers[0].voucher);
         this.resultSuccess = true;
       }, 
       error => {

@@ -41,7 +41,8 @@ export class VoucherService {
 
   buyVoucher(voucherId: number): Observable<number>
   {
-    return this.httpClient.put<number>(this.baseUrl + "/buyVoucher?voucherId=" + voucherId + "&customerId=" + this.sessionService.getCurrentCustomer().userId, httpOptions).pipe(
+    return this.httpClient.put<number>(this.baseUrl + "/buyVoucher?voucherId=" + voucherId + 
+          "&customerId=" + this.sessionService.getCurrentCustomer().userId, httpOptions).pipe(
       catchError(this.handleError)
     );
   }

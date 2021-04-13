@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 import { RestaurantService } from '../../services/restaurant.service';
 import { Restaurant } from '../../models/restaurant';
+import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-view-restaurant-details',
@@ -15,8 +17,11 @@ export class ViewRestaurantDetailsPage implements OnInit {
   restaurantToView: Restaurant;
   retrieveRestaurantError: boolean;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute,
-    private restaurantService: RestaurantService,) { 
+  constructor(private router: Router, 
+    private activatedRoute: ActivatedRoute,
+    private restaurantService: RestaurantService, 
+    public alertController: AlertController, 
+    private sessionService: SessionService,) { 
     this.retrieveRestaurantError = false;
   }
 
@@ -55,8 +60,36 @@ handleDislike(){
   console.log('**********handleDislike()');
 }
 
-promptReservation(){
-  this.router.navigate(["restaurantAdministration/createNewReservation/"+ this.restaurantToView.userId]);
+async promptReservation(){
+  
+  if(this.sessionService.getIsLogin()) {
+    this.router.navigate(["restaurantAdministration/createNewReservation/"+ this.restaurantToView.userId]);;
+  }
+  else {
+
+    const alert = await this.alertController.create({
+      header: 'Login to Continue',
+      message: 'Are you sure you want to login?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+
+          }
+        }, {
+          text: 'Okay',
+          handler: () => {
+            this.router.navigate(["/login"]);
+          }
+        }
+      ]
+    });
+
+    await alert.present();  
+    
+  }
 }
 
 }
