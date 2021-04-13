@@ -36,6 +36,7 @@ export class ViewMyReviewsPage implements OnInit {
     this.customerService.getMyReviews(this.sessionService.getCurrentCustomer().userId).subscribe(
       response => {
         this.reviews = response;
+        console.log(this.reviews[0].receiver);
         this.resultSuccess = true;
       }, 
       error => {

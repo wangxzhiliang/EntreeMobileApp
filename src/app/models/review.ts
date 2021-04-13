@@ -10,10 +10,10 @@ export class Review {
     numOfDislikes: number | undefined;
     timeOfCreation: Date | undefined;
     creater: Customer | undefined;
-    restaurant: Restaurant | undefined;
+    receiver: Restaurant | undefined;
 
     constructor(reviewId?: number, content?: string, rating?: number, photos?: string[],
-        numOfLikes?: number, numOfDislikes?: number, timeOfCreation?: Date, creater?: Customer, restaurant?: Restaurant) {
+        numOfLikes?: number, numOfDislikes?: number, timeOfCreation?: Date, creater?: Customer, receiver?: Restaurant) {
         this.reviewId = reviewId;
         this.content = content;
         this.rating = rating;
@@ -22,6 +22,6 @@ export class Review {
         this.numOfDislikes = numOfDislikes;
         this.timeOfCreation = timeOfCreation;
         this.creater = creater;
-        this.restaurant = restaurant;
+        this.receiver = receiver;
     }
 }
