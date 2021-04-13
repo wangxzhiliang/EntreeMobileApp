@@ -7,7 +7,8 @@ import { SessionService } from './session.service';
 import { Customer } from '../models/customer';
 import { Review } from '../models/review';
 import {CustomerVoucher} from '../models/customer-voucher';
-
+import {Reservation} from '../models/reservation';
+import {SaleTransaction} from '../models/sale-transaction';
 
 const httpOptions = {
 	headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -67,7 +68,7 @@ export class CustomerService
     
   getCustomerById(userId: number): Observable<Customer>
   {
-    return this.httpClient.get<Customer>(this.baseUrl + "/retrieveCustomerById/" + userId ).pipe
+    return this.httpClient.get<Customer>(this.baseUrl + "/retrieveCustomerById?customerId=" + userId ).pipe
     (
       catchError(this.handleError)
     );
@@ -75,7 +76,7 @@ export class CustomerService
 	
   createNewCustomer(newCustomer: Customer): Observable<number>
   {		
-    return this.httpClient.put<number>(this.baseUrl + "/createNewCustomer", newCustomer, httpOptions).pipe
+    return this.httpClient.put<number>(this.baseUrl, newCustomer, httpOptions).pipe
     (
       catchError(this.handleError)
     );
@@ -83,7 +84,7 @@ export class CustomerService
 	
   customerUpdate(customerToUpdate: Customer): Observable<any>
   {
-    return this.httpClient.put<number>(this.baseUrl, customerToUpdate, httpOptions).pipe
+    return this.httpClient.post<any>(this.baseUrl, customerToUpdate, httpOptions).pipe
     (
       catchError(this.handleError)
     );
@@ -91,7 +92,7 @@ export class CustomerService
 
   changePassword(customerToUpdate: Customer): Observable<any>
   {
-    return this.httpClient.put<number>(this.baseUrl, customerToUpdate, httpOptions).pipe
+    return this.httpClient.post<any>(this.baseUrl, customerToUpdate, httpOptions).pipe
     (
       catchError(this.handleError)
     );
@@ -122,6 +123,22 @@ export class CustomerService
 
   getVoucherByVoucherId(voucherId: number): Observable<CustomerVoucher>{
   return this.httpClient.get<CustomerVoucher>("/api/Voucher/retrieveCustomerVoucherDetails/" + voucherId).pipe
+    (
+      catchError(this.handleError)
+    );
+  }
+
+  getMyReservations(userId: number): Observable<Reservation>
+  {
+    return this.httpClient.get<Reservation>("/api/Reservation/retrieveMyReservationForCustomer?customerId=" + userId).pipe
+    (
+      catchError(this.handleError)
+    );
+  }
+
+  getMyTransactions(userId: number): Observable<SaleTransaction>
+  {
+    return this.httpClient.get<SaleTransaction>("/api/Transaction/retrieveMyTransactions/" + this.sessionService.getCurrentCustomer().userId).pipe
     (
       catchError(this.handleError)
     );

@@ -19,7 +19,9 @@ export class AppComponent {
 		{ title: 'Add Credit Card', url: '/addCreditCard', icon: 'add-circle'},
 		{ title: 'View Credit Card', url: '/viewCreditCard', icon: 'arrow-forward'},
 		{ title: 'View My Reviews', url: '/viewMyReviews', icon: 'arrow-forward'},
-		{ title: 'View My Vouchers', url: '/viewMyVouchers', icon: 'arrow-forward'}
+		{ title: 'View My Vouchers', url: '/viewMyVouchers', icon: 'arrow-forward'},
+		{ title: 'View My Reservations', url: '/viewMyReservations', icon: 'arrow-forward'},
+		{ title: 'View My Transactions', url: '/viewMyTransactions', icon: 'arrow-forward'}
 		// { title: 'View Vouchers', url: '/'}
 	];
 

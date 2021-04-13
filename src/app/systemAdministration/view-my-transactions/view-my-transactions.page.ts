@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { CustomerVoucher } from '../../models/customer-voucher';
+import { SaleTransaction } from '../../models/sale-transaction';
 import { CustomerService } from '../../services/customer.service';
 import { SessionService } from '../../services/session.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-view-my-vouchers',
-  templateUrl: './view-my-vouchers.page.html',
-  styleUrls: ['./view-my-vouchers.page.scss'],
+  selector: 'app-view-my-transactions',
+  templateUrl: './view-my-transactions.page.html',
+  styleUrls: ['./view-my-transactions.page.scss'],
 })
-export class ViewMyVouchersPage implements OnInit {
+export class ViewMyTransactionsPage implements OnInit {
 
-  customerVouchers: CustomerVoucher | null;
+  saleTransactions: SaleTransaction | null;
   error: boolean;
   errorMessage: string;
   resultSuccess: boolean;
@@ -33,9 +33,9 @@ export class ViewMyVouchersPage implements OnInit {
   }
 
   updateModel() {
-    this.customerService.getMyVouchers(this.sessionService.getCurrentCustomer().userId).subscribe(
+    this.customerService.getMyTransactions(this.sessionService.getCurrentCustomer().userId).subscribe(
       response => {
-        this.customerVouchers = response;
+        this.saleTransactions = response;
         this.resultSuccess = true;
       }, 
       error => {
@@ -45,7 +45,4 @@ export class ViewMyVouchersPage implements OnInit {
     );
   }
 
-  viewVoucherDetails(voucher) {
-    this.router.navigate(["/viewVoucherDetails/" + voucher.customerVoucherId]);
-  }
 }
