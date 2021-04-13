@@ -1,0 +1,54 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-button (click)="back()">
+				<ion-icon slot="start" name="arrow-back"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+		<ion-title>View Voucher Details</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+		<ion-card-header>
+			<ion-card-subtitle>Voucher Details</ion-card-subtitle>
+		</ion-card-header>
+
+		<ion-list *ngIf="retrieveVoucherError == false && customerVoucherToView != null">
+			<ion-item>
+				<ion-label><b>Title</b></ion-label>
+				{{customerVoucherToView.voucher.title}}
+			</ion-item>
+			<ion-item>
+				<ion-label><b>T&C</b></ion-label>
+				{{customerVoucherToView.voucher.content}}
+			</ion-item>
+			<ion-item *ngIf="customerVoucherToView.redeemed == true" style="color: red;">
+				<ion-label><b>Voucher Redemption Status</b></ion-label>
+				{{customerVoucherToView.redeemed}}
+			</ion-item>
+			<ion-item *ngIf="customerVoucherToView.redeemed == false">
+				<ion-label><b>Voucher Redemption Status</b></ion-label>
+				{{customerVoucherToView.redeemed}}
+			</ion-item>
+			<ion-item>
+				<ion-label><b>Date of purchase</b></ion-label>
+				{{customerVoucherToView.timeOfCreation}}
+			</ion-item>
+			<ion-item>
+				<ion-label><b>Six digit code</b></ion-label>
+				{{customerVoucherToView.sixDigitCode}}
+			</ion-item>
+			<!-- <ion-item>
+				<ion-label><b>Photos</b></ion-label>
+			<ion-slides>
+				<ion-slide *ngFor="let photo of customerVoucherToView.photos">
+					<img src="{{photo}}" />
+				</ion-slide>
+				</ion-slides>
+			</ion-item> -->
+ 
+		</ion-list>
+	</ion-card>
+</ion-content>

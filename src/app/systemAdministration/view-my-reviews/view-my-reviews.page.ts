@@ -1,0 +1,54 @@
+import { Component, OnInit } from '@angular/core';
+import { Review } from '../../models/review';
+import { CustomerService } from '../../services/customer.service';
+import { SessionService } from '../../services/session.service';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-view-my-reviews',
+  templateUrl: './view-my-reviews.page.html',
+  styleUrls: ['./view-my-reviews.page.scss'],
+})
+export class ViewMyReviewsPage implements OnInit {
+
+  reviews: Review | null;
+  error: boolean;
+  errorMessage: string;
+  resultSuccess: boolean;
+  creditCardId: number;
+
+  constructor(private router: Router, 
+    private customerService: CustomerService,
+    private sessionService: SessionService) {
+      this.error = false;
+      this.resultSuccess = false;
+   }
+
+   ngOnInit() {
+    this.updateModel();
+  }
+
+  ionViewWillEnter() {
+    this.updateModel();
+  }
+
+  updateModel() {
+    this.customerService.getMyReviews(this.sessionService.getCurrentCustomer().userId).subscribe(
+      response => {
+        this.reviews = response;
+        console.log(this.reviews[0].receiver);
+        this.resultSuccess = true;
+      }, 
+      error => {
+        this.resultSuccess = false;
+        console.log("**********ViewMyReviews.ts: " + error);
+      }
+      
+    );
+  }
+
+  viewReviewDetails(review) {
+    this.router.navigate(["/viewReviewDetails/" + review.reviewId]);
+  }
+
+}

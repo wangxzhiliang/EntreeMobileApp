@@ -1,0 +1,52 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-button (click)="back()">
+				<ion-icon slot="start" name="arrow-back"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+		<ion-title>View Credit Card Details</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+		<ion-card-header>
+			<ion-card-subtitle>Credit Card Details</ion-card-subtitle>
+		</ion-card-header>
+
+		<ion-list *ngIf="sessionService.getCreditCard() == null" style="color: red;" >
+			<ion-label>
+				No credit card added yet
+			</ion-label>    
+			<ion-item>
+				<ion-button (click)="addCard()">
+				  Add Card
+				</ion-button>
+			  </ion-item>
+		</ion-list>
+
+		<ion-list *ngIf="sessionService.getCreditCard() != null">
+
+			<ion-item>
+				<ion-label><b>Card Number</b></ion-label>
+				{{creditCard.cardNumber}}
+			</ion-item>
+
+			<ion-item>
+				<ion-label><b>Expiry date</b></ion-label>
+				{{creditCard.expiryDate}}
+			</ion-item>
+			<ion-item>
+				<ion-label><b>Name on card</b></ion-label>
+				{{creditCard.nameOnCard}}
+			</ion-item>
+			<ion-item>
+				<ion-button (click)="deleteCard(sessionService.getCreditCard())">
+				  Delete Card
+				</ion-button>
+			  </ion-item>
+		</ion-list>
+	</ion-card>
+
+</ion-content>

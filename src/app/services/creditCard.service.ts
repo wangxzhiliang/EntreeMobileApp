@@ -53,18 +53,26 @@ export class CreditCardService
       catchError(this.handleError)
     );
   }
+
+  viewAllCreditCardDetails(): Observable<CreditCard>
+  {				
+    return this.httpClient.get<CreditCard>(this.baseUrl + this.sessionService.getCurrentCustomer().userId + "/retrieveMyCreditCards").pipe
+    (
+      catchError(this.handleError)
+    );
+  }
 	
   createNewCreditCard(newCreditCard: CreditCard): Observable<number>
   {		
-    return this.httpClient.put<number>(this.baseUrl + this.sessionService.getCurrentCustomer().userId, newCreditCard, httpOptions).pipe
+    return this.httpClient.put<number>(this.baseUrl + this.sessionService.getCurrentCustomer().userId + "/createNewCreditCard", newCreditCard, httpOptions).pipe
     (
       catchError(this.handleError)
     );
   }
 
-  deleteCreditCard(creditCardId: number): Observable<any>
+  deleteCreditCard(creditCardId : number): Observable<any>
   {
-    return this.httpClient.delete<any>(this.baseUrl + this.sessionService.getCurrentCustomer().userId + this.sessionService.getCreditCard().creditCardId).pipe
+    return this.httpClient.delete<any>(this.baseUrl + this.sessionService.getCurrentCustomer().userId + "?creditCardId=" + creditCardId).pipe
     (
       catchError(this.handleError)
     );
