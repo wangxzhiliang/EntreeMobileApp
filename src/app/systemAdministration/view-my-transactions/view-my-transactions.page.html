@@ -1,0 +1,38 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+		<ion-title>
+			View My Transactions
+		</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="resultSuccess == true && saleTransactions?.length > 1">
+	<ion-card *ngFor="let saleTransaction of saleTransactions">
+		<ion-card-header>
+			<ion-card-title>Transaction Date: {{saleTransaction.transactionDate}}</ion-card-title>
+		</ion-card-header>
+		<ion-card-content>
+        Amount paid: ${{saleTransaction.paidAmount}}.00
+		</ion-card-content>
+	</ion-card>
+</ion-content>
+
+<ion-content *ngIf="resultSuccess == true && saleTransactions?.length == 1">
+	<ion-card>
+		<ion-card-header>
+			<ion-card-title>Transaction Date: {{saleTransaction.transactionDate}}</ion-card-title>
+		</ion-card-header>
+		<ion-card-content>
+        Amount paid: ${{saleTransaction.paidAmount}}.00
+		</ion-card-content>
+	</ion-card>
+</ion-content>
+
+<ion-content *ngIf="resultSuccess == false ">
+	<ion-card>
+		You have not had any transactions.
+	</ion-card>
+</ion-content>

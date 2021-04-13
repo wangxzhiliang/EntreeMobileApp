@@ -98,6 +98,10 @@ const routes: Routes = [
   {
     path: 'viewMyReservations',
     loadChildren: () => import('./systemAdministration/view-my-reservations/view-my-reservations.module').then( m => m.ViewMyReservationsPageModule)
+  },
+  {
+    path: 'viewMyTransactions',
+    loadChildren: () => import('./systemAdministration/view-my-transactions/view-my-transactions.module').then( m => m.ViewMyTransactionsPageModule)
   }
 
 ];
