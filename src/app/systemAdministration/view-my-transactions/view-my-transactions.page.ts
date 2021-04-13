@@ -36,6 +36,10 @@ export class ViewMyTransactionsPage implements OnInit {
     this.customerService.getMyTransactions(this.sessionService.getCurrentCustomer().userId).subscribe(
       response => {
         this.saleTransactions = response;
+        let st = this.saleTransactions;
+        if(this.saleTransactions[1] == null){
+          this.saleTransactions = st[0];
+        }
         this.resultSuccess = true;
       }, 
       error => {

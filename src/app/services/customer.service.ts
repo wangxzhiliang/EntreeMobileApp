@@ -113,6 +113,13 @@ export class CustomerService
     );
   }
 
+  deleteMyReservation(reservationId: number): Observable<any>{
+    return this.httpClient.delete<any>("api/Reservation/deleteReservation?reservationId=" + reservationId).pipe
+    (
+      catchError(this.handleError)
+    );
+  }
+
   getMyVouchers(customerId: number): Observable<CustomerVoucher>
   {
     return this.httpClient.get<CustomerVoucher>("/api/Voucher/retrieveMyCustomerVouchers/" + this.sessionService.getCurrentCustomer().userId).pipe
@@ -128,9 +135,9 @@ export class CustomerService
     );
   }
 
-  getMyReservations(userId: number): Observable<Reservation>
+  getMyReservations(customerId: number): Observable<Reservation>
   {
-    return this.httpClient.get<Reservation>("/api/Reservation/retrieveMyReservationForCustomer?customerId=" + userId).pipe
+    return this.httpClient.get<Reservation>("/api/Reservation/retrieveMyReservationForCustomer?customerId=" + customerId).pipe
     (
       catchError(this.handleError)
     );
