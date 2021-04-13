@@ -38,12 +38,12 @@ export class RestaurantService {
       );
   }
 
-  createNewReservation(newReservation: Reservation, restaurantId: number): Observable<number>
+  createNewReservation(newReservation: Reservation): Observable<number>
     {		
-      let customerId = this.sessionService.getCurrentCustomer().userId;
-      console.log(customerId);
-      return this.httpClient.post<number>("/api/Reservation/?customerId=" + customerId + 
-      "&restaurantId=" + restaurantId , Reservation, httpOptions).pipe
+      // let customerId = this.sessionService.getCurrentCustomer().userId;
+      
+      console.log(newReservation.reservationDate);
+      return this.httpClient.post<number>("/api/Reservation" , newReservation, httpOptions).pipe
       (
         catchError(this.handleError)
       );

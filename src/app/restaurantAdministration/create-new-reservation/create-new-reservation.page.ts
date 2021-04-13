@@ -7,6 +7,7 @@ import { Restaurant } from '../../models/restaurant';
 import { Reservation } from '../../models/reservation';
 import { TableConfiguration } from 'src/app/models/table-configuration';
 import { TableSize } from 'src/app/models/table-size.enum';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
   selector: 'app-create-new-reservation',
@@ -21,6 +22,9 @@ export class CreateNewReservationPage implements OnInit {
   submitted: boolean;
   tableSize: string;
 
+  tableSizeChosen: string;
+
+
   reservationSlots: number[];
   smallAvailable: boolean;
   mediumAvailable: boolean;
@@ -31,7 +35,8 @@ export class CreateNewReservationPage implements OnInit {
   message: string;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute,
-    private restaurantService: RestaurantService,) {
+    private restaurantService: RestaurantService,
+    private sessionService: SessionService) {
     this.retrieveRestaurantError = false;
     this.submitted = false;
     this.newReservation = new Reservation();
@@ -104,16 +109,24 @@ export class CreateNewReservationPage implements OnInit {
 
     this.submitted = true;
 
-    if (this.tableSize === "Small") {
-      this.newReservation.tableSizeAssigned = TableSize.SMALL;
-    } else if (this.tableSize === "Medium") {
-      this.newReservation.tableSizeAssigned = TableSize.MEDIUM;
-    } else {
-      this.newReservation.tableSizeAssigned = TableSize.LARGE;
-    }
+    // if (this.tableSizeChosen === "Small") {
+    //   console.log("Table size: " + this.tableSizeChosen);
+    //   this.newReservation.tableSizeAssigned = TableSize.SMALL.toString();
+    // } else if (this.tableSizeChosen === "Medium") {
+    //   this.newReservation.tableSizeAssigned = TableSize.MEDIUM.toString();
+    // } else {
+    //   this.newReservation.tableSizeAssigned = TableSize.LARGE.toString();
+    // }
+
+
+    
 
     if (createReservationForm.valid) {
-      this.restaurantService.createNewReservation(this.newReservation, this.restaurant.userId).subscribe(
+      this.newReservation.restaurant = this.restaurant;
+      this.newReservation.customer = this.sessionService.getCurrentCustomer();
+      this.newReservation.tableSizeAssigned = 'SMALL';
+      // console.log("Table size: " + this.tableSizeChosen);
+      this.restaurantService.createNewReservation(this.newReservation).subscribe(
         response => {
           let newReservationId: number = response;
           this.resultSuccess = true;
