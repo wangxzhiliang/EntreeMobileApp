@@ -93,6 +93,38 @@
 		</ion-list>
 	</ion-card>
 
+	<ion-card>
+
+		<ion-card-header>
+			<ion-card-subtitle>Promotions</ion-card-subtitle>
+		</ion-card-header>
+
+		<ion-list *ngIf="retrieveRestaurantError == false && restaurantToView != null 
+			&& restaurantToView.promotions.length>0">
+			<ion-slides>
+				<ion-slide *ngFor="let promotion of restaurantToView.promotions">
+					<div>
+						<img src="{{promotion.photo}}" />
+						<ion-item>
+							<ion-label><b>Promotion Title</b></ion-label>
+							{{promotion.title}}
+						</ion-item>
+						<ion-item>
+							<ion-label><b>Promotion Content</b></ion-label>
+							{{promotion.content}}
+						</ion-item>
+						<ion-item>
+							<ion-label><b>Promotion Period</b></ion-label>
+							{{promotion.startDate}}-{{promotion.endDate}}
+						</ion-item>
+					</div>
+
+				</ion-slide>
+			</ion-slides>
+
+		</ion-list>
+	</ion-card>
+
 	<div *ngIf="retrieveRestaurantError == false && restaurantToView != null 
 			&& restaurantToView.reviews.length==0">
 		Restaurant does not have any reviews yet!

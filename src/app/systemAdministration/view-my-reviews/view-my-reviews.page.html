@@ -12,10 +12,10 @@
 <ion-content *ngIf="resultSuccess == true ">
 	<ion-card *ngFor="let review of reviews" button (click)="viewReviewDetails(review)">
 		<ion-card-header>
-          <ion-card-title>Rating: {{review.rating}}</ion-card-title>
+          <ion-card-title>Restaurant: {{review.receiver.name}}</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          Content: {{review.content}}
+          Rating: {{review.rating}}
         </ion-card-content>
 	</ion-card>
 </ion-content>

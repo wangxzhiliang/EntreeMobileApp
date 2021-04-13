@@ -17,6 +17,10 @@
 
 		<ion-list *ngIf="retrieveReviewError == false && reviewToView != null">
 			<ion-item>
+				<ion-label><b>Restaurant</b></ion-label>
+				{{reviewToView.receiver.name}}
+			</ion-item>
+			<ion-item>
 				<ion-label><b>Review Rating</b></ion-label>
 				{{reviewToView.rating}}
 			</ion-item>

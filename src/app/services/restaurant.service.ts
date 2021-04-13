@@ -4,6 +4,10 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { Restaurant } from '../models/restaurant';
+import { Reservation } from '../models/reservation';
+import { CreateReservationReq } from '../models/create-reservation-req';
+import { SessionService } from '../services/session.service';
+import { GetAvailableTablesReq } from '../models/get-available-tables-req';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -16,7 +20,7 @@ export class RestaurantService {
 
   baseUrl: string = "/api/Restaurant";
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private sessionService: SessionService) {
 
   }
 
@@ -27,9 +31,30 @@ export class RestaurantService {
       );
   }
 
-  getRestaurantByRestaurantId(userId: number): Observable<Restaurant>
-    {
-      return this.httpClient.get<Restaurant>(this.baseUrl + "/retrieveRestaurantDetails?restaurantId=" + userId).pipe
+  getRestaurantByRestaurantId(userId: number): Observable<Restaurant> {
+    return this.httpClient.get<Restaurant>(this.baseUrl + "/retrieveRestaurantDetails?restaurantId=" + userId).pipe
+      (
+        catchError(this.handleError)
+      );
+  }
+
+  createNewReservation(newReservation: Reservation, restaurantId: number): Observable<number>
+    {		
+      let customerId = this.sessionService.getCurrentCustomer().userId;
+      
+      return this.httpClient.post<number>("/api/Reservation/?customerId=" + customerId + 
+      "&restaurantId=" + restaurantId , Reservation, httpOptions).pipe
+      (
+        catchError(this.handleError)
+      );
+    }
+
+    getAvailableTables(restaurantId: number, reservationDate: Date, reservationTime: number): Observable<number[]> {
+      let dateString: string = reservationDate.toISOString().split('T')[0];
+
+      return this.httpClient.get<number[]>(
+        "/api/Reservation/retrieveRestaurantAvailableTableByTime?restaurantId=" + restaurantId
+        + "&date=" + dateString + "&time=" + reservationTime).pipe
       (
         catchError(this.handleError)
       );
