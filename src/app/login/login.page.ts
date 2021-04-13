@@ -43,17 +43,19 @@ export class LoginPage implements OnInit {
 		if (customerLoginForm.valid) {
 			this.sessionService.setEmail(this.email);
 			this.sessionService.setPassword(this.password);
-
 			this.customerService.customerLogin(this.email, this.password).subscribe(
 				response => {
 					let customer: Customer = response;
-
+					console.log(customer.firstName);
 					if (customer != null) {
 						this.sessionService.setIsLogin(true);
 						this.sessionService.setCurrentCustomer(customer);
 						this.loginError = false;
 						this.sessionService.setCreditCard(customer.creditCard);
 						this.sessionService.setCreditCardId(customer.creditCard.creditCardId);
+						if (customer.creditCard != null){
+							this.sessionService.setCreditCard(customer.creditCard);
+						}
 					}
 					else {
 						this.loginError = true;
@@ -75,6 +77,7 @@ export class LoginPage implements OnInit {
 	customerLogout(): void {
 		this.sessionService.setIsLogin(false);
 		this.sessionService.setCurrentCustomer(null);
+		this.sessionService.setCreditCard(null);
 	}
 
 

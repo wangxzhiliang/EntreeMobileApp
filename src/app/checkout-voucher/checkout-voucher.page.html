@@ -1,17 +1,21 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-			<ion-button (click)="back()">
-				<ion-icon slot="start" name="arrow-back"></ion-icon>
-			</ion-button>
-		</ion-buttons>
+      <ion-button (click)="back()">
+        <ion-icon slot="start" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>checkout-voucher</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card *ngIf="retrieveVoucherError == false && voucherToView != null">
-    <img src="../../assets/img/voucher.jpg"/>
+  <ion-card *ngIf="retrieveVoucherError == false && voucherToView != null && creditCard != null">
+
+    
+
+
+    <img src="../../assets/img/voucher.jpg" />
     <ion-card-header>
       <ion-card-title>{{voucherToView.title}}</ion-card-title>
       <ion-card-subtitle>Price: ${{voucherToView.price}}.00</ion-card-subtitle>
@@ -24,28 +28,53 @@
 
     <ion-item>
       <ion-icon name="card-outline"></ion-icon>
-      <ion-label>{{sessionService.getCreditCard().cardNumber}}</ion-label>
+      <ion-label>**** **** **** {{creditCard.cardNumber | slice :12:16}}</ion-label>
     </ion-item>
 
-    
-    <ion-item>
-      <ion-icon name="person-circle-outline"></ion-icon>
-      <ion-label>{{sessionService.getCreditCard().nameOnCard}}</ion-label>
-    </ion-item>
 
     <ion-item>
       <ion-icon name="person-circle-outline"></ion-icon>
-      <ion-label>{{sessionService.getCreditCard().expiryDate}}</ion-label>
+      <ion-label>{{creditCard.nameOnCard}}</ion-label>
     </ion-item>
+
+    <!-- <ion-item>
+      <ion-icon name="person-circle-outline"></ion-icon>
+      <ion-label>{{creditCard.expiryDate}}</ion-label>
+    </ion-item> -->
 
     <ion-item>
       <ion-icon name="calendar-outline"></ion-icon>
       <!-- <ion-label>{{validDate}}</ion-label> -->
       <ion-datetime value="{{voucherToView.expiryDate}}" displayFormat="MM/YY" disabled></ion-datetime>
       <!-- <ion-datetime [(ngModel)]="validDate" displayFormat="MM/YY" disabled></ion-datetime> -->
-
     </ion-item>
 
+    <form #submitCvvForm="ngForm" (ngSubmit)="confirmCheckout(submitCvvForm)">
+      <div style="color: red;">
+
+        <div *ngIf="inCvv.invalid && (inCvv.dirty || inCvv.touched || submitted)" class="errorText">
+          <div *ngIf="inCvv.errors.required">
+            CVV is required.
+          </div>
+          <div *ngIf="inCvv.errors.minlength">
+            CVV must be at least 3 characters long.
+          </div>
+          <div *ngIf="inCvv.errors.maxlength">
+            CVV cannot exceed 3 characters.
+          </div>
+        </div>
+      </div>
+      
+      
+      
+      <ion-item>
+        <ion-icon name="lock-closed-outline"></ion-icon>
+        <ion-input type="text" id="cvv" name="cvv" [(ngModel)]="cvv" minlength="3" maxlength="3" required="true" #inCvv="ngModel">
+        </ion-input>
+      </ion-item>
+      <ion-button expand="full" type="submit">Confirm</ion-button>
+    </form>
   </ion-card>
-  <ion-button expand="full">Confirm</ion-button>
+  
+
 </ion-content>
