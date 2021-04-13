@@ -56,7 +56,7 @@ handleDislike(){
 }
 
 promptReservation(){
-  this.router.navigate(["/createNewReservation"]);
+  this.router.navigate(["restaurantAdministration/createNewReservation/"+ this.restaurantToView.userId]);
 }
 
 }

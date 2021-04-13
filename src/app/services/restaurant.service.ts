@@ -4,6 +4,10 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { Restaurant } from '../models/restaurant';
+import { Reservation } from '../models/reservation';
+import { CreateReservationReq } from '../models/create-reservation-req';
+import { SessionService } from '../services/session.service';
+import { GetAvailableTablesReq } from '../models/get-available-tables-req';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -16,7 +20,7 @@ export class RestaurantService {
 
   baseUrl: string = "/api/Restaurant";
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private sessionService: SessionService) {
 
   }
 
@@ -27,13 +31,27 @@ export class RestaurantService {
       );
   }
 
-  getRestaurantByRestaurantId(userId: number): Observable<Restaurant>
-    {
-      return this.httpClient.get<Restaurant>(this.baseUrl + "/retrieveRestaurantDetails?restaurantId=" + userId).pipe
+  getRestaurantByRestaurantId(userId: number): Observable<Restaurant> {
+    return this.httpClient.get<Restaurant>(this.baseUrl + "/retrieveRestaurantDetails?restaurantId=" + userId).pipe
+      (
+        catchError(this.handleError)
+      );
+  }
+
+  createNewReservation(newReservation: Reservation, restaurantId: number): Observable<number>
+    {		
+      let createRestaurantReq: CreateReservationReq = new CreateReservationReq(newReservation, 
+        this.sessionService.getCurrentCustomer().userId, restaurantId);
+      
+      return this.httpClient.put<number>(this.baseUrl, createRestaurantReq, httpOptions).pipe
       (
         catchError(this.handleError)
       );
     }
+
+    // getAvailableTables(restaurantId: number, reservationDate: number, reservationTime: number): Observable<number[]> {
+      
+    // }
 
   private handleError(error: HttpErrorResponse) {
     let errorMessage: string = "";
