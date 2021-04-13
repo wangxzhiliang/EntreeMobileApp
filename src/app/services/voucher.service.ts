@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { Voucher } from '../models/voucher';
+import { SessionService } from './session.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'aplication/json' })
@@ -18,7 +19,8 @@ export class VoucherService {
   baseUrl: string = "/api/Voucher";
 
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,
+    private sessionService: SessionService) { }
 
 
   getVouchers(): Observable<Voucher[]>
@@ -33,6 +35,13 @@ export class VoucherService {
   {
     return this.httpClient.get<Voucher>(this.baseUrl + "/retrieveVoucherDetails/" + voucherId).pipe
     (
+      catchError(this.handleError)
+    );
+  }
+
+  buyVoucher(voucherId: number): Observable<number>
+  {
+    return this.httpClient.put<number>(this.baseUrl + "/buyVoucher?voucherId=" + voucherId + "&customerId=" + this.sessionService.getCurrentCustomer().userId, httpOptions).pipe(
       catchError(this.handleError)
     );
   }

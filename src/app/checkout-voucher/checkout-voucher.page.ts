@@ -23,6 +23,7 @@ export class CheckoutVoucherPage implements OnInit {
   validDate: Date;
   creditCard: CreditCard;
   cvv: string;
+  transactionId: number;
 
   submitted = false;
   retrieveVoucherError: boolean;
@@ -66,6 +67,7 @@ export class CheckoutVoucherPage implements OnInit {
         this.voucherToView = response;
       },
       error => {
+        this.errorMessage = error;
         this.retrieveVoucherError = true;
         console.log('********** CheckoutVoucher.ts: ' + error);
       }
@@ -80,6 +82,7 @@ export class CheckoutVoucherPage implements OnInit {
         console.log(this.creditCard.cvv );
       },
       error => {
+        this.errorMessage = error;
         this.retrieveVoucherError = true;
         console.log('********** CheckoutVoucher.ts: ' + error);
       }
@@ -108,6 +111,18 @@ export class CheckoutVoucherPage implements OnInit {
               // this.router.navigate(["/login"]);
               if(this.creditCard.cvv == this.cvv) {
                 console.log("Buy!!");
+                this.voucherService.buyVoucher(this.voucherId).subscribe(
+                  response => {
+                    this.resultSuccess = true;
+                    this.transactionId = response;
+                    console.log("New transaction ID: " + this.transactionId);
+                    // the redirect to view my transaction page
+                  },
+                  error => {
+                    this.errorMessage = error;
+                    console.log('********** CheckoutVoucher.ts: ' + error);
+                  }
+                )
               }
               else {
                 this.errorAlert();

@@ -34,7 +34,7 @@ export class VoucherPage implements OnInit {
 
       const alert = await this.alertController.create({
         header: 'Login to Continue',
-        message: 'Confirm delete product <strong>Strong???</strong>?',
+        message: 'Are you sure you want to login?',
         buttons: [
           {
             text: 'Cancel',

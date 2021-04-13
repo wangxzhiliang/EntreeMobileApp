@@ -16,7 +16,7 @@ export class ViewVoucherDetailsPage implements OnInit {
 
   constructor(private router: Router, 
     private activatedRoute: ActivatedRoute,
-    private customerService: CustomerService,) { 
+    private customerService: CustomerService) {
     this.retrieveVoucherError = false;
   }
 
