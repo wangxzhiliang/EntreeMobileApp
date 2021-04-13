@@ -127,4 +127,12 @@ export class CustomerService
     );
   }
 
+  getMyReservations(customerId: number): Observable<Reservation>
+  {
+    return this.httpClient.get<Reservation>("/api/Reservation/retrieveMyReservationForCustomer/customerId?=" + customerId).pipe
+    (
+      catchError(this.handleError)
+    );
+  }
+
 }

@@ -89,6 +89,10 @@ const routes: Routes = [
   {
     path: 'viewVoucherDetails/:customerVoucherId',
     loadChildren: () => import('./systemAdministration/view-voucher-details/view-voucher-details.module').then( m => m.ViewVoucherDetailsPageModule)
+  },
+  {
+    path: 'viewMyReservations',
+    loadChildren: () => import('./systemAdministration/view-my-reservations/view-my-reservations.module').then( m => m.ViewMyReservationsPageModule)
   }
 
 ];
