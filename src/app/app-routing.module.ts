@@ -66,6 +66,11 @@ const routes: Routes = [
     loadChildren: () => import('./restaurantAdministration/create-new-reservation/create-new-reservation.module').then( m => m.CreateNewReservationPageModule)
   },
   {
+
+    path: 'restaurantAdministration/createNewReservation/:restaurantId',
+    loadChildren: () => import('./restaurantAdministration/create-new-reservation/create-new-reservation.module').then( m => m.CreateNewReservationPageModule)
+  },
+  {
     path: 'addCreditCard',
     loadChildren: () => import('./systemAdministration/add-credit-card/add-credit-card.module').then( m => m.AddCreditCardPageModule),
     canActivate: [AuthGuard]
@@ -89,6 +94,10 @@ const routes: Routes = [
   {
     path: 'viewVoucherDetails/:customerVoucherId',
     loadChildren: () => import('./systemAdministration/view-voucher-details/view-voucher-details.module').then( m => m.ViewVoucherDetailsPageModule)
+  },
+  {
+    path: 'viewMyReservations',
+    loadChildren: () => import('./systemAdministration/view-my-reservations/view-my-reservations.module').then( m => m.ViewMyReservationsPageModule)
   }
 
 ];

@@ -1,9 +1,110 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>createNewReservation</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Create New Reservation</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <form #createReservationForm="ngForm" (ngSubmit)="create(createReservationForm)">
+    <ion-card>
 
+      <ion-card-content>
+
+        <div *ngIf="resultSuccess == true" style="color: blue;">
+          {{message}}
+        </div>
+
+        <div *ngIf="resultError == true" style="color: red;">
+          {{message}}
+        </div>
+
+        <div style="color: red;">
+
+          <div *ngIf="reservationDate.invalid && (reservationDate.dirty || reservationDate.touched || submitted)"
+            class="errorText">
+            <div *ngIf="reservationDate.errors.required">
+              Reservation Date is required.
+            </div>
+          </div>
+
+          <div *ngIf="reservationTime.invalid && (reservationTime.dirty || reservationTime.touched || submitted)"
+            class="errorText">
+            <div *ngIf="reservationTime.errors.required">
+              Reservation Time is required.
+            </div>
+          </div> -->
+
+        <!-- <div *ngIf="numOfPax.invalid && (numOfPax.dirty || numOfPax.touched || submitted)" class="errorText">
+          <div *ngIf="numOfPax.errors.required">
+            Number of Pax is required.
+          </div>
+        </div>
+
+        <div *ngIf="tableSizeAssigned.invalid && (tableSizeAssigned.dirty || tableSizeAssigned.touched || submitted)"
+          class="errorText">
+          <div *ngIf="tableSizeAssigned.errors.required">
+            Table Size is required.
+          </div>
+        </div>
+
+        </div> 
+
+        <ion-list>
+
+          <ion-item>
+            <ion-label class="ion-text-wrap"><b>Reservation Date</b></ion-label>
+            <ion-datetime id="reservationDate" name="reservationDate" value="2021-04-13" placeholder="Select Date"
+              [(ngModel)]="newReservation.reservationDate" required="true" #reservationDate="ngModel">
+            </ion-datetime>
+          </ion-item>
+
+          <ion-item>
+            <ion-label class="ion-text-wrap"><b>Reservation Time</b></ion-label>
+            <ion-select placeholder="Select Time" id="reservationTime" name="reservationTime" 
+            #reservationTimey="ngModel" [(ngModel)]="newReservation.reservationTime" required="true">
+              <ion-select-option *ngFor="let slot of reservationSlots">{{slot/1}} : {{slot%1*60}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label class="ion-text-wrap"><b>Number of Pax</b></ion-label>
+            <ion-input type="text" id="numOfPax" name="numOfPax" [(ngModel)]="newReservation.numOfPax" required="true"
+              #numOfPax="ngModel"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label class="ion-text-wrap"><b>Table Size</b></ion-label>
+            <ion-select id="tableSize" name="tableSize" [(ngModel)]="tableSize" required="true" #tableSize="ngModel">
+              <ion-select-option *ngFor="let enum of TableSize | keyvalue">{{enum.keyvalue}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label class="ion-text-wrap"><b>Remark</b></ion-label>
+            <ion-input type="text" id="remark" name="remark" [(ngModel)]="newReservation.remark"
+              required="true" #remark="ngModel"></ion-input>
+          </ion-item>
+
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card style="text-align: center;">
+
+      <ion-card-content>
+        <ion-button (click)="clear()">
+          Clear
+        </ion-button>
+        <ion-button type="submit" ion-button block>
+          Create
+        </ion-button>
+      </ion-card-content>
+      
+    </ion-card>
+
+  </form>
 </ion-content>
