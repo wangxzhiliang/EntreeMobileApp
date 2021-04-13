@@ -34,6 +34,7 @@ export class ViewRestaurantDetailsPage implements OnInit {
     this.restaurantService.getRestaurantByRestaurantId(this.restaurantId).subscribe(
       response => {
         this.restaurantToView = response;
+    
       },
       error => {
         this.retrieveRestaurantError = true;
@@ -45,5 +46,17 @@ export class ViewRestaurantDetailsPage implements OnInit {
 back() {
     this.router.navigate(["/viewAllRestaurants"]);
   }
+
+handleLike(){
+  console.log('**********handleLikes()');
+}
+
+handleDislike(){
+  console.log('**********handleDislike()');
+}
+
+promptReservation(){
+  this.router.navigate(["/createNewReservation"]);
+}
 
 }
