@@ -65,7 +65,7 @@
             <ion-label class="ion-text-wrap"><b>Reservation Time</b></ion-label>
             <ion-select placeholder="Select Time" id="reservationTime" name="reservationTime"
               [(ngModel)]="newReservation.reservationTime" required="true" #reservationTime="ngModel">
-              <ion-select-option *ngFor="let slot of reservationSlots">{{slot-slot%1}} : {{slot%1*6}}0
+              <ion-select-option *ngFor="let slot of reservationSlots">{{slot}}
               </ion-select-option>
             </ion-select>
           </ion-item>
@@ -79,10 +79,10 @@
           <ion-item>
             <ion-label class="ion-text-wrap"><b>Table Size</b></ion-label>
             <ion-select id="tableSize" name="tableSize" [(ngModel)]="tableSizeChosen" required="true"
-              #tableSize="ngModel">
-              <ion-select-option>Small</ion-select-option>
-              <ion-select-option>Medium</ion-select-option>
-              <ion-select-option>Large</ion-select-option>
+              #tableSize="ngModel" (click)="getAvailableTables()">
+              <ion-select-option *ngIf="smallAvailable == true">Small</ion-select-option>
+              <ion-select-option *ngIf="mediumAvailable == true">Medium</ion-select-option>
+              <ion-select-option *ngIf="largeAvailable == true">Large</ion-select-option>
             </ion-select>
           </ion-item>
 

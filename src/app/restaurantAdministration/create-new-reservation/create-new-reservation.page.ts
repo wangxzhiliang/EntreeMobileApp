@@ -22,9 +22,9 @@ export class CreateNewReservationPage implements OnInit {
   tableSize: string;
 
   reservationSlots: number[];
-  numSmallTables: number;
-  numMediumTables: number;
-  numLargeTables: number;
+  smallAvailable: boolean;
+  mediumAvailable: boolean;
+  largeAvailable: boolean;
 
   resultSuccess: boolean;
   resultError: boolean;
@@ -39,12 +39,15 @@ export class CreateNewReservationPage implements OnInit {
     this.resultSuccess = false;
     this.resultError = false;
     this.tableSize = "";
+    this.smallAvailable = false;
+    this.mediumAvailable = false;
+    this.largeAvailable = false;
   }
 
   ngOnInit() {
     this.restaurantId = parseInt(this.activatedRoute.snapshot.paramMap.get('restaurantId'));
     this.refreshRestaurant();
-  
+
   }
 
   ionViewWillEnter() {
@@ -52,8 +55,8 @@ export class CreateNewReservationPage implements OnInit {
     for (let i = this.restaurant.openTime; i < this.restaurant.closeTime; i = i + 0.5) {
       this.reservationSlots.push(i);
     }
-    
-    
+
+
   }
 
   refreshRestaurant() {
@@ -70,27 +73,38 @@ export class CreateNewReservationPage implements OnInit {
 
 
   getAvailableTables() {
-     this.restaurantService.getAvailableTables(this.restaurant.userId, 
+    this.restaurantService.getAvailableTables(this.restaurant.userId,
       this.newReservation.reservationDate, this.newReservation.reservationTime).subscribe(
         response => {
           let availableTables: number[] = response;
-          this.numSmallTables = availableTables[0];
-          this.numMediumTables = availableTables[1];
-          this.numLargeTables = availableTables[2];
-        }, 
+          if (availableTables[0] > 0) {
+            this.smallAvailable = true;
+          }
+          if (availableTables[1] > 0) {
+            this.mediumAvailable = true;
+          }
+          if (availableTables[2] > 0) {
+            this.largeAvailable = true;
+          }
+
+          console.log('********** getAvailableTables.ts: ' + availableTables[0] + " " 
+          + availableTables[1] + " " + availableTables[2]);
+
+        },
         error => {
           this.message = "An error has occurred while retrieving availbale tables: " + error;
 
           console.log('********** CreateNewReservation.ts: ' + error);
         }
-     );
+      );
   }
+
 
   create(createReservationForm: NgForm) {
 
     this.submitted = true;
 
-    if (this.tableSize === "Small"){
+    if (this.tableSize === "Small") {
       this.newReservation.tableSizeAssigned = TableSize.SMALL;
     } else if (this.tableSize === "Medium") {
       this.newReservation.tableSizeAssigned = TableSize.MEDIUM;
@@ -107,18 +121,18 @@ export class CreateNewReservationPage implements OnInit {
           this.message = "New reservation " + newReservationId + " created successfully";
 
           this.newReservation = new Reservation();
-          this.numSmallTables = 0;
-          this.numMediumTables = 0;
-          this.numLargeTables = 0;
           this.reservationSlots = new Array();
           this.submitted = false;
+          this.smallAvailable = false;
+          this.mediumAvailable = false;
+          this.largeAvailable = false;
           this.tableSize = "";
           createReservationForm.reset();
         },
         error => {
           this.resultError = true;
           this.resultSuccess = false;
-          this.message = "An error has occurred while creating the new product: " + error;
+          this.message = "An error has occurred while creating the new reservation: " + error;
 
           console.log('********** CreateNewProductPage.ts: ' + error);
         }
