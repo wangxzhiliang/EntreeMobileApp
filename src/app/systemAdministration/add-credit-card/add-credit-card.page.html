@@ -1,11 +1,9 @@
 <ion-header>
 
   <ion-toolbar>
-		<ion-buttons slot="start">      
-			<ion-button (click)="back()">
-				<ion-icon slot="start" name="arrow-back"></ion-icon>
-			</ion-button>
-		</ion-buttons>
+		<ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
 		<ion-title>Add Credit Card</ion-title>
 	</ion-toolbar>
 
@@ -109,7 +107,7 @@
 
   </form>
 
-  <ion-card *ngIf="sessionService.getCreditCard() != null">
+  <ion-card *ngIf="sessionService.getHasCreditCard()">
 	      
     <ion-card-content>
       <ion-item>
@@ -125,8 +123,8 @@
 
 </ion-content>
 
-<ion-footer>
+<!-- <ion-footer>
 
   <ion-title>&copy; 2021 IS3106.</ion-title>
 
-</ion-footer>
+</ion-footer> -->

@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 import { CreditCardService } from '../../services/creditCard.service';
-import { CreditCard } from '../../models/creditCard';
+import { CreditCard } from '../../models/credit-Card';
 import { SessionService } from '../../services/session.service';
 
 @Component({
@@ -54,7 +54,10 @@ export class AddCreditCardPage implements OnInit {
           this.resultError = false;
           this.message = "Card with number: " + this.newCreditCard.cardNumber + " addded successfully";
           this.newCreditCard.creditCardId = newCreditCardId;
+          // this.newCreditCard.deleted = false;
+          this.sessionService.setHasCreditCard(true);
           this.sessionService.setCreditCard(this.newCreditCard);
+          this.sessionService.setCreditCardId(this.newCreditCard.creditCardId);
           console.log(newCreditCardId);
           this.newCreditCard = new CreditCard();
           this.submitted = false;

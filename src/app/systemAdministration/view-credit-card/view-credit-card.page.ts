@@ -27,12 +27,20 @@ export class ViewCreditCardPage implements OnInit {
    }
 
   ngOnInit() {
-    this.creditCard = this.sessionService.getCreditCard();
+    if(this.sessionService.getHasCreditCard())
+    {
+      this.creditCard = this.sessionService.getCreditCard();
+      this.creditCardId = this.sessionService.getCreditCard().creditCardId;
+    }
+    
   }
 
   ionViewWillEnter() {
-    this.creditCard = this.sessionService.getCreditCard();
-    this.creditCardId = this.sessionService.getCreditCard().creditCardId;
+    if(this.sessionService.getHasCreditCard()){
+      this.creditCard = this.sessionService.getCreditCard();
+      this.creditCardId = this.sessionService.getCreditCard().creditCardId;
+    }
+    
   }
 
   back() {
@@ -64,6 +72,8 @@ export class ViewCreditCardPage implements OnInit {
                 this.resultSuccess = true;
                 this.creditCard = null;
                 this.sessionService.setCreditCard(null);
+                this.sessionService.setCreditCardId(null);
+                this.sessionService.setHasCreditCard(false);
               },
               error => {
                 this.error = true;

@@ -27,34 +27,43 @@ export class VoucherPage implements OnInit {
   }
 
   async checkoutVocher(event, voucher) {
-    if(this.sessionService.getIsLogin()) {
+    if(this.sessionService.getIsLogin() && this.sessionService.getHasCreditCard()) {
       this.router.navigate(["/checkoutVoucher/" + voucher.voucherId]);
     }
     else {
-
-      const alert = await this.alertController.create({
-        header: 'Login to Continue',
-        message: 'Are you sure you want to login?',
-        buttons: [
-          {
-            text: 'Cancel',
-            role: 'cancel',
-            cssClass: 'secondary',
-            handler: (blah) => {
+      this.errorAlert();
+      // const alert = await this.alertController.create({
+      //   header: 'Message',
+      //   message: 'You have to login and has a valid credit card inorder to make any transaction',
+      //   buttons: [
+      //     {
+      //       text: 'Cancel',
+      //       role: 'cancel',
+      //       cssClass: 'secondary',
+      //       handler: (blah) => {
   
-            }
-          }, {
-            text: 'Okay',
-            handler: () => {
-              this.router.navigate(["/login"]);
-            }
-          }
-        ]
-      });
+      //       }
+      //     }, {
+      //       text: 'Okay',
+      //       handler: () => {
+      //         // this.router.navigate(["/login"]);
+      //       }
+      //     }
+      //   ]
+      // });
   
-      await alert.present();  
+      // await alert.present();  
       
     }
+  }
+
+  async errorAlert() {
+    const alert = await this.alertController.create({
+      header: 'Invalid Purchase',
+      message: 'You have to login and has a valid credit card inorder to make any Purchase',
+      buttons: ['OK']
+    });
+    await alert.present(); 
   }
 
   refreshVouchers() {

@@ -76,7 +76,7 @@ export class CustomerService
 	
   createNewCustomer(newCustomer: Customer): Observable<number>
   {		
-    return this.httpClient.put<number>(this.baseUrl, newCustomer, httpOptions).pipe
+    return this.httpClient.put<number>(this.baseUrl + "/createNewCustomer", newCustomer, httpOptions).pipe
     (
       catchError(this.handleError)
     );
@@ -84,7 +84,7 @@ export class CustomerService
 	
   customerUpdate(customerToUpdate: Customer): Observable<any>
   {
-    return this.httpClient.post<any>(this.baseUrl, customerToUpdate, httpOptions).pipe
+    return this.httpClient.put<any>(this.baseUrl, customerToUpdate, httpOptions).pipe
     (
       catchError(this.handleError)
     );
