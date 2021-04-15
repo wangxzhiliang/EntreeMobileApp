@@ -76,7 +76,7 @@ export class CustomerService
 	
   createNewCustomer(newCustomer: Customer): Observable<number>
   {		
-    return this.httpClient.put<number>(this.baseUrl, newCustomer, httpOptions).pipe
+    return this.httpClient.put<number>(this.baseUrl + "/createNewCustomer", newCustomer, httpOptions).pipe
     (
       catchError(this.handleError)
     );

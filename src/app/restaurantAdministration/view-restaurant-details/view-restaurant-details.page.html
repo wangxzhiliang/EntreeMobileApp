@@ -33,8 +33,8 @@
 			</ion-item>
 
 			<ion-item>
-				<ion-label class="ion-text-wrap"><b>Restaurant Description</b></ion-label>
-				{{restaurantToView.description}}
+				<ion-label>Restaurant Description</ion-label>
+				<ion-card-content>{{restaurantToView.description}}</ion-card-content>
 			</ion-item>
 
 			<ion-item>
@@ -54,7 +54,7 @@
 				{{restaurantToView.openTime}} - {{restaurantToView.closeTime}}
 			</ion-item>
 			<ion-item>
-				<ion-button (click)="promptReservation()">
+				<ion-button (click)="promptReservation()" *ngIf="restaurantToView.acceptReservation">
 					Make Reservation
 				</ion-button>
 			</ion-item>
@@ -113,10 +113,10 @@
 							<ion-label><b>Promotion Content</b></ion-label>
 							{{promotion.content}}
 						</ion-item>
-						<ion-item>
+						<!-- <ion-item>
 							<ion-label><b>Promotion Period</b></ion-label>
 							{{promotion.startDate}}-{{promotion.endDate}}
-						</ion-item>
+						</ion-item> -->
 					</div>
 
 				</ion-slide>

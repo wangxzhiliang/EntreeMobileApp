@@ -1,47 +1,62 @@
 <ion-header>
-	<ion-toolbar>
-		<ion-buttons slot="start">
-			<ion-menu-button></ion-menu-button>
-		</ion-buttons>
-		<ion-title>
-			View My Reservations
-		</ion-title>
-	</ion-toolbar>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      View My Reservations
+    </ion-title>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="resultSuccess == true && reservations?.length >= 2">
-	<ion-card *ngFor="let reservation of reservations">
-		<ion-card-header>
+<ion-content>
+
+  <ion-content *ngIf="resultSuccess == false ">
+    <ion-card>
+      You have not made any reservations yet.
+    </ion-card>
+  </ion-content>
+
+  <ion-card>
+    
+
+    <!-- <div *ngIf="noReservation == false" style="color: blue;">
+      You do not have any reservation currently.
+    </div> -->
+
+    
+    
+    <ion-card-content *ngIf="reservations?.length > 0 && resultSuccess == true">
+      <ion-list *ngFor="let reservation of reservations">
+        <ion-card-header>
           <ion-card-title>Restaurant: {{reservation.restaurant.name}}</ion-card-title>
         </ion-card-header>
-          <ion-card-content>
-            <ion-list>
-              <ion-item>
-                Date: {{reservation.reservationDate}}
-              </ion-item>
-              <ion-item>
-                Time: {{reservation.reservationTime}}
-              </ion-item>
-              <ion-item>
-                Number of pax: {{reservation.numOfPax}}
-              </ion-item>
-              <ion-item>
-                Table size: {{reservation.tableSizeAssigned}}
-              </ion-item>
-              <ion-item>
-                Remarks: {{reservation.remark}}
-              </ion-item>
-              <ion-item>
-                <ion-button (click)="deleteReservation(reservation)">
-                  Cancel Reservation
-                </ion-button>
-              </ion-item>
-            </ion-list>
-          </ion-card-content>
-	</ion-card>
+        <ion-item>
+          Date: {{reservation.reservationDate}}
+        </ion-item>
+        <ion-item>
+          Time: {{reservation.reservationTime}}
+        </ion-item>
+        <ion-item>
+          Number of pax: {{reservation.numOfPax}}
+        </ion-item>
+        <ion-item>
+          Table size: {{reservation.tableSizeAssigned}}
+        </ion-item>
+        <ion-item>
+          Remarks: {{reservation.remark}}
+        </ion-item>
+        <ion-item>
+          <ion-button (click)="deleteReservation($event, reservation)">
+            Cancel Reservation
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
 
-<ion-content *ngIf="resultSuccess == true && reservations?.length != 0 && !(reservations?.length > 2)">
+<!-- <ion-content *ngIf="resultSuccess == true && reservations?.length != 0 && !(reservations?.length > 2)">
 	<ion-card>
 		<ion-card-header>
           <ion-card-title>Restaurant: {{reservations.restaurant.name}}</ion-card-title>
@@ -71,10 +86,5 @@
             </ion-list>
           </ion-card-content>
 	</ion-card>
-</ion-content>
+</ion-content> -->
 
-<ion-content *ngIf="resultSuccess == false ">
-  <ion-card>
-    You have not made any reservations yet.
-  </ion-card>
-</ion-content>

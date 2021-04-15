@@ -9,7 +9,7 @@
 	</ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="resultSuccess == true && customerVouchers?.length > 1">
+<ion-content *ngIf="resultSuccess == true && customerVouchers?.length > 0">
 	<ion-card *ngFor="let customerVoucher of customerVouchers" button (click)="viewVoucherDetails(customerVoucher)">
 		<ion-card-header>
 			<ion-card-title>Title: {{customerVoucher.voucher.title}}</ion-card-title>
@@ -21,17 +21,16 @@
 	</ion-card>
 </ion-content>
 
-<ion-content *ngIf="resultSuccess == true && customerVouchers?.length > 0 && !(customerVouchers?.length>1)">
+<!-- <ion-content *ngIf="resultSuccess == true && customerVouchers?.length > 0 && !(customerVouchers?.length>0)">
 	<ion-card button (click)="viewVoucherDetails(customerVouchers)">
 		<ion-card-header>
 			<ion-card-title>Title: {{customerVouchers.voucher.title}}</ion-card-title>
 		</ion-card-header>
-		<!-- <ion-label>{{customerVouchers.voucher.expiryDate}}</ion-label> -->
-		<ion-card-content>
-			Redemption status: {{customerVouchers.redeemed}}
+		<ion-label>{{customerVouchers.voucher.expiryDate}}</ion-label>
+		<ion-card-content>Redemption status: {{customerVouchers.redeemed}}
 		</ion-card-content>
 	</ion-card>
-</ion-content>
+</ion-content> -->
 
 <ion-content>
 	<ion-card *ngIf="resultSuccess == false || customerVouchers?.length == 0">

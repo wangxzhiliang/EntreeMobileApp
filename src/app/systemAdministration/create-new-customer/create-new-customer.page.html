@@ -1,11 +1,14 @@
 <ion-header>
 
   <ion-toolbar>
-		<ion-buttons slot="start">      
+		<!-- <ion-buttons slot="start">      
 			<ion-button (click)="back()">
 				<ion-icon slot="start" name="arrow-back"></ion-icon>
 			</ion-button>
-		</ion-buttons>
+		</ion-buttons> -->
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
 		<ion-title>Create Account</ion-title>
 	</ion-toolbar>
 
@@ -78,14 +81,14 @@
           <ion-item>
             <ion-label><b>Email</b></ion-label>
             <ion-input type="text" id="email" name="email" [(ngModel)]="newCustomer.email" 
-            required="true" #email="ngModel">
+            required="true" #email="ngModel" minlength="4" maxlength="32">
             </ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label><b>Password</b></ion-label>
-            <ion-input type="text" id="password" name="password" [(ngModel)]="newCustomer.password"
-              required="true" #password="ngModel"></ion-input>
+            <ion-input type="password" id="password" name="password" [(ngModel)]="newCustomer.password"
+              required="true" minlength="4" maxlength="32" #password="ngModel"></ion-input>
           </ion-item>
 
           <ion-item>

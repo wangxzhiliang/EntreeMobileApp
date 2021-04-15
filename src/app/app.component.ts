@@ -32,11 +32,10 @@ export class AppComponent {
 	];
 
 	public appPagesSystemAdministration = [
-    	{ title: 'View All Restaurants', url: '/viewAllRestaurants', icon: 'arrow-forward' },
-		{ title: 'View Vouchers', url: '/voucher', icon: 'arrow-forward' }
+    	{ title: 'View All Restaurants', url: '/viewAllRestaurants', icon: 'fast-food-outline' },
+		{ title: 'View Vouchers', url: '/voucher', icon: 'cash-outline' }
 		// { title: 'Check Out', url: '/checkoutVoucher', icon: 'arrow-forward' },
 	];
-  
   constructor(public sessionService: SessionService) {
 	}
 

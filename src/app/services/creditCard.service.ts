@@ -4,7 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { SessionService } from './session.service';
-import { CreditCard } from '../models/creditCard';
+import { CreditCard } from '../models/credit-Card';
 
 
 const httpOptions = {

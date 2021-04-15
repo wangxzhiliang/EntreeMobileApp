@@ -51,11 +51,16 @@ export class LoginPage implements OnInit {
 						this.sessionService.setIsLogin(true);
 						this.sessionService.setCurrentCustomer(customer);
 						this.loginError = false;
-						this.sessionService.setCreditCard(customer.creditCard);
-						this.sessionService.setCreditCardId(customer.creditCard.creditCardId);
+						// this.sessionService.setCreditCard(customer.creditCard);
+						
 						if (customer.creditCard != null){
+							this.sessionService.setHasCreditCard(true);
 							this.sessionService.setCreditCard(customer.creditCard);
+							this.sessionService.setCreditCardId(customer.creditCard.creditCardId);
+						}else{
+							this.sessionService.setHasCreditCard(false);
 						}
+						this.router.navigate(["/viewAllRestaurants"]);
 					}
 					else {
 						this.loginError = true;

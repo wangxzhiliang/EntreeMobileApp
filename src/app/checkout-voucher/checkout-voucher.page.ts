@@ -115,6 +115,7 @@ export class CheckoutVoucherPage implements OnInit {
                   response => {
                     this.resultSuccess = true;
                     this.transactionId = response;
+                    this.router.navigate(["/viewMyVouchers"]);
                     console.log("New transaction ID: " + this.transactionId);
                     // the redirect to view my transaction page
                   },

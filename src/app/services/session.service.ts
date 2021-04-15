@@ -15,6 +15,31 @@ export class SessionService
 	}
   
 
+	setCreditCardId(creditCardId: number | null): void {
+		sessionStorage.creditCardId = creditCardId;
+	}
+
+	getCreditCardId(): number {
+		return sessionStorage.creditCardId;
+	}
+
+
+	setHasCreditCard(hasCard: boolean): void
+	{
+		sessionStorage.hasCard = hasCard;
+	}
+
+	getHasCreditCard(): boolean
+	{
+		if(sessionStorage.hasCard == "true")
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 
 	getIsLogin(): boolean
 	{
@@ -27,15 +52,6 @@ export class SessionService
 			return false;
 		}
 	}
-
-	setCreditCardId(creditCardId: number | null): void {
-		sessionStorage.creditCardId = creditCardId;
-	}
-
-	getCreditCardId(): number {
-		return sessionStorage.creditCardId;
-	}
-
 
 
 	setIsLogin(isLogin: boolean): void
