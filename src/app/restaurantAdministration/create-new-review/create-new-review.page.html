@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Create New Review</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form #createReviewForm="ngForm" (ngSubmit)="create(createReviewForm)">
+    <ion-card>
+
+      <ion-card-content>
+
+        <div *ngIf="resultSuccess == true" style="color: blue;">
+          {{message}}
+        </div>
+
+        <div *ngIf="resultError == true" style="color: red;">
+          {{message}}
+        </div>
+
+        <div style="color: red;">
+        </div>
+
+        <ion-list>
+          <ion-item>
+            <ion-label class="ion-text-wrap"><b>You are reviewing for restaurant with ID {{restaurantId}}</b></ion-label>
+          </ion-item>
+
+          <ion-item>
+            <ion-label class="ion-text-wrap" position="floating"><b>Review Content</b></ion-label>
+            <ion-textarea type="text" id="content" name="reviewContent" value="content" placeholder="Enter your reivew content"
+              [(ngModel)]="newReview.content" rows="6" cols="20" required="true" #content="ngModel">
+            </ion-textarea>
+          </ion-item>
+
+          <ion-item>
+            <ion-label class="ion-text-wrap"><b>Rating</b></ion-label>
+            <ion-range pin="true" ticks="true" min="0" max="5" step="1" snaps="true" name="reviewRating" [(ngModel)]="newReview.rating" required="true">
+            </ion-range>
+          </ion-item>
+
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card style="text-align: center;">
+
+      <ion-card-content>
+        <ion-button (click)="clear()">
+          Clear
+        </ion-button>
+        <ion-button type="submit" ion-button block>
+          Create
+        </ion-button>
+      </ion-card-content>
+
+    </ion-card>
+
+  </form>
+</ion-content>

@@ -16,6 +16,7 @@ export class ViewRestaurantDetailsPage implements OnInit {
   restaurantId: number;
   restaurantToView: Restaurant;
   retrieveRestaurantError: boolean;
+  isLogin: boolean;
 
   constructor(private router: Router, 
     private activatedRoute: ActivatedRoute,
@@ -27,7 +28,7 @@ export class ViewRestaurantDetailsPage implements OnInit {
 
   ngOnInit() {
     this.restaurantId = parseInt(this.activatedRoute.snapshot.paramMap.get('restaurantId'));
-
+    this.isLogin = this.sessionService.getIsLogin();
     this.refreshRestaurant();
   }
 
@@ -64,6 +65,38 @@ async promptReservation(){
   
   if(this.sessionService.getIsLogin()) {
     this.router.navigate(["restaurantAdministration/createNewReservation/"+ this.restaurantToView.userId]);;
+  }
+  else {
+
+    const alert = await this.alertController.create({
+      header: 'Login to Continue',
+      message: 'Are you sure you want to login?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+
+          }
+        }, {
+          text: 'Okay',
+          handler: () => {
+            this.router.navigate(["/login"]);
+          }
+        }
+      ]
+    });
+
+    await alert.present();  
+    
+  }
+}
+
+async promptReview(){
+  
+  if(this.sessionService.getIsLogin()) {
+    this.router.navigate(["restaurantAdministration/createNewReview/"+ this.restaurantToView.userId]);;
   }
   else {
 

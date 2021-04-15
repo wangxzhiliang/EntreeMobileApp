@@ -106,6 +106,14 @@ export class CustomerService
     );
   }
 
+  createNewReview(newReview: Review, restaurantId: number): Observable<number>
+  {		
+    return this.httpClient.put<number>("/api/Review/createNewReview/" + this.sessionService.getCurrentCustomer().userId + "?restaurantId=" + restaurantId, newReview, httpOptions).pipe
+    (
+      catchError(this.handleError)
+    );
+  }
+
   getReviewByReviewId(reviewId: number): Observable<Review>{
   return this.httpClient.get<Review>("/api/Review/retrieveReviewById/" + reviewId).pipe
     (

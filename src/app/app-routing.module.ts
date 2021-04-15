@@ -67,6 +67,16 @@ const routes: Routes = [
   },
   {
 
+    path: 'restaurantAdministration/createNewReview/:restaurantId',
+    loadChildren: () => import('./restaurantAdministration/create-new-review/create-new-review.module').then( m => m.CreateNewReservationPageModule)
+  },
+  {
+
+    path: 'restaurantAdministration/createNewReview',
+    loadChildren: () => import('./restaurantAdministration/create-new-review/create-new-review.module').then( m => m.CreateNewReservationPageModule)
+  },
+  {
+
     path: 'restaurantAdministration/createNewReservation/:restaurantId',
     loadChildren: () => import('./restaurantAdministration/create-new-reservation/create-new-reservation.module').then( m => m.CreateNewReservationPageModule)
   },
