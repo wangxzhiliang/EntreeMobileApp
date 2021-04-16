@@ -44,8 +44,8 @@
 
     <ion-item>
       <ion-icon name="calendar-outline"></ion-icon>
-      <!-- <ion-label>{{validDate}}</ion-label> -->
-      <ion-datetime value="{{voucherToView.expiryDate}}" displayFormat="MM/YY" disabled></ion-datetime>
+      <ion-label>{{validDate |  slice :5:7}} / {{validDate |  slice :2:4}}</ion-label>
+      <!-- <ion-datetime value="{{validDate}}" displayFormat="YYYY-MM-DD" disabled></ion-datetime> -->
       <!-- <ion-datetime [(ngModel)]="validDate" displayFormat="MM/YY" disabled></ion-datetime> -->
     </ion-item>
 

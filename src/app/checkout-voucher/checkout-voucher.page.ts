@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+
+import { formatDate } from '@angular/common';
 
 import { AlertController } from '@ionic/angular';
 
@@ -20,7 +22,7 @@ export class CheckoutVoucherPage implements OnInit {
 
   voucherToView: Voucher
   voucherId: number;
-  validDate: Date;
+  validDate: string;
   creditCard: CreditCard;
   cvv: string;
   transactionId: number;
@@ -36,7 +38,8 @@ export class CheckoutVoucherPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     public alertController: AlertController,
     private sessionService: SessionService,
-    private creditcardService: CreditCardService) { 
+    private creditcardService: CreditCardService,
+    @Inject(LOCALE_ID) private locale: string) { 
       this.retrieveVoucherError = false;
       this.error = false;
       this.resultSuccess = false;
@@ -78,7 +81,10 @@ export class CheckoutVoucherPage implements OnInit {
     this.creditcardService.viewCreditCardDetailsBycreditCardId().subscribe(
       response => {
         this.creditCard = response;
-        console.log("credit card numbe: " + this.voucherToView.expiryDate);
+        // this.validDate = this.creditCard.expiryDate;
+        this.validDate = this.creditCard.expiryDate.toString();
+        // console.log(typeof(this.creditCard.expiryDate));
+        console.log("credit card numbe: " + this.creditCard.expiryDate);
         console.log(this.creditCard.cvv );
       },
       error => {
@@ -154,4 +160,10 @@ export class CheckoutVoucherPage implements OnInit {
   back() {
     this.router.navigate(["/voucher"]);
   }
+
+
+  transformDate(date) {
+    return formatDate(date, 'MM-yyyy', this.locale);
+  }
+
 }
