@@ -9,18 +9,21 @@
 	</ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="resultSuccess == true && saleTransactions?.length > 1">
+<ion-content *ngIf="resultSuccess == true">
 	<ion-card *ngFor="let saleTransaction of saleTransactions">
-		<ion-card-header>
-			<ion-card-title>Transaction Date: {{saleTransaction.transactionDate}}</ion-card-title>
-		</ion-card-header>
 		<ion-card-content>
-        Amount paid: ${{saleTransaction.paidAmount}}.00
+			<b>Transaction Date: {{saleTransaction.transactionDate | slice :0:10}}</b>
+			<br/>        
+			<ion-label>Amount paid: ${{saleTransaction.paidAmount}}.00</ion-label>
 		</ion-card-content>
+
+			
+
+		
 	</ion-card>
 </ion-content>
 
-<ion-content *ngIf="resultSuccess == true && saleTransactions?.length > 0 && !(saleTransactions?.length> 1)">
+<!-- <ion-content *ngIf="resultSuccess == true && saleTransactions?.length > 0 && !(saleTransactions?.length> 1)">
 	<ion-card>
 		<ion-card-header>
 			<ion-card-title>Transaction Date: {{saleTransactions.transactionDate}}</ion-card-title>
@@ -29,7 +32,7 @@
         	Amount paid: ${{saleTransactions.paidAmount}}.00
 		</ion-card-content>
 	</ion-card>
-</ion-content>
+</ion-content> -->
 
 <ion-content *ngIf="resultSuccess == false ">
 	<ion-card>

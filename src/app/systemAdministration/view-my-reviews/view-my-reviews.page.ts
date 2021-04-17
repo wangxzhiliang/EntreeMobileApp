@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ViewMyReviewsPage implements OnInit {
 
-  reviews: Review | null;
+  reviews: Review[];
   error: boolean;
   errorMessage: string;
   resultSuccess: boolean;
@@ -36,10 +36,10 @@ export class ViewMyReviewsPage implements OnInit {
     this.customerService.getMyReviews(this.sessionService.getCurrentCustomer().userId).subscribe(
       response => {
         this.reviews = response;
-        let res = this.reviews;
-        if(this.reviews[1] == null){
-          this.reviews = res[0];
-        }
+        // let res = this.reviews;
+        // if(this.reviews[1] == null){
+        //   this.reviews = res[0];
+        // }
         this.resultSuccess = true;
       }, 
       error => {

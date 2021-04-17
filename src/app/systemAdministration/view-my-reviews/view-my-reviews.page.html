@@ -9,18 +9,22 @@
 	</ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="resultSuccess == true && reviews?.length >= 2">
+<ion-content *ngIf="resultSuccess == true">
 	<ion-card *ngFor="let review of reviews" button (click)="viewReviewDetails(review)">
 		<ion-card-header>
-          <ion-card-title>Restaurant: {{review.receiver.name}}</ion-card-title>
-        </ion-card-header>
+          <ion-card-title>{{review.receiver.name}}</ion-card-title>
+      
+		<ion-card-subtitle>Rating: {{review.rating}}</ion-card-subtitle>
+	</ion-card-header>
         <ion-card-content>
-          Rating: {{review.rating}}
+          {{review.content}}
         </ion-card-content>
+		
+
 	</ion-card>
 </ion-content>
 
-<ion-content *ngIf="resultSuccess == true && reviews?.length != 0 && !(reviews?.length>1)">
+<!-- <ion-content *ngIf="resultSuccess == true && reviews?.length != 0 && !(reviews?.length>1)">
 	<ion-card>
 		<ion-card-header>
           <ion-card-title>Restaurant: {{reviews.receiver.name}}</ion-card-title>
@@ -29,7 +33,7 @@
           Rating: {{reviews.rating}}
         </ion-card-content>
 	</ion-card>
-</ion-content>
+</ion-content> -->
 
 <ion-content *ngIf="resultSuccess == false ">
   <ion-card>

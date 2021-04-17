@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ViewMyTransactionsPage implements OnInit {
 
-  saleTransactions: SaleTransaction | null;
+  saleTransactions: SaleTransaction[];
   error: boolean;
   errorMessage: string;
   resultSuccess: boolean;
@@ -36,10 +36,10 @@ export class ViewMyTransactionsPage implements OnInit {
     this.customerService.getMyTransactions(this.sessionService.getCurrentCustomer().userId).subscribe(
       response => {
         this.saleTransactions = response;
-        let st = this.saleTransactions;
-        if(this.saleTransactions[1] == null){
-          this.saleTransactions = st[0];
-        }
+        // let st = this.saleTransactions;
+        // if(this.saleTransactions[1] == null){
+        //   this.saleTransactions = st[0];
+        // }
         this.resultSuccess = true;
       }, 
       error => {

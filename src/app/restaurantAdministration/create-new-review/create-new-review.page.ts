@@ -22,6 +22,7 @@ export class CreateNewReviewPage implements OnInit {
   submitted: boolean;
   content: string;
   rating: number;
+  restaurantName: string;
 
   resultSuccess: boolean;
   resultError: boolean;
@@ -48,6 +49,9 @@ export class CreateNewReviewPage implements OnInit {
     this.RestaurantService.getRestaurantByRestaurantId(this.restaurantId).subscribe(
       response => {
         this.restaurant = response;
+        // console.log("get restaurant!!!")
+        this.restaurantName = this.restaurant.name;
+        // console.log(this.restaurant.name);
       },
       error => {
         this.retrieveRestaurantError = true;
@@ -73,7 +77,7 @@ export class CreateNewReviewPage implements OnInit {
     
 
     if (createReviewForm.valid) {
-      this.newReview.creater = this.sessionService.getCurrentCustomer();
+      this.newReview.creator = this.sessionService.getCurrentCustomer();
       this.newReview.customerLikes = new Customer[10];
       console.log(this.newReview.rating);
       this.CustomerService.createNewReview(this.newReview, this.restaurantId).subscribe(

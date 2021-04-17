@@ -36,12 +36,12 @@ export class CheckoutVoucherPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     public alertController: AlertController,
     private sessionService: SessionService,
-    private creditcardService: CreditCardService) { 
-      this.retrieveVoucherError = false;
-      this.error = false;
-      this.resultSuccess = false;
-      this.submitted = false;
-    }
+    private creditcardService: CreditCardService) {
+    this.retrieveVoucherError = false;
+    this.error = false;
+    this.resultSuccess = false;
+    this.submitted = false;
+  }
 
   ngOnInit() {
     this.voucherId = parseInt(this.activatedRoute.snapshot.paramMap.get('voucherId'));
@@ -49,10 +49,10 @@ export class CheckoutVoucherPage implements OnInit {
     this.refreshCreditCard();
     console.log("Credit Card ID: " + this.sessionService.getCreditCardId());
     // this.validDate = this.sessionService.getCreditCard().expiryDate;
-    
 
 
-    
+
+
     // this.validDate = this.sessionService.getCreditCard().expiryDate.toISOString();
   }
 
@@ -71,7 +71,7 @@ export class CheckoutVoucherPage implements OnInit {
         this.retrieveVoucherError = true;
         console.log('********** CheckoutVoucher.ts: ' + error);
       }
-      )
+    )
   }
 
   refreshCreditCard() {
@@ -82,7 +82,7 @@ export class CheckoutVoucherPage implements OnInit {
         this.validDate = this.creditCard.expiryDate.toString();
         // console.log(typeof(this.creditCard.expiryDate));
         console.log("credit card numbe: " + this.creditCard.expiryDate);
-        console.log(this.creditCard.cvv );
+        console.log(this.creditCard.cvv);
       },
       error => {
         this.errorMessage = error;
@@ -96,7 +96,7 @@ export class CheckoutVoucherPage implements OnInit {
     this.submitted = true;
     console.log("")
 
-    if(submitCvvForm.valid) {
+    if (submitCvvForm.valid) {
       const alert = await this.alertController.create({
         header: 'Confirm Checkout',
         message: 'Are you sure you want to puchase this voucher?',
@@ -106,24 +106,26 @@ export class CheckoutVoucherPage implements OnInit {
             role: 'cancel',
             cssClass: 'secondary',
             handler: (blah) => {
-  
+
             }
           }, {
             text: 'Okay',
             handler: () => {
               // this.router.navigate(["/login"]);
-              if(this.creditCard.cvv == this.cvv) {
-                console.log("Buy!!");
+              if (this.creditCard.cvv == this.cvv) {
+                
                 this.voucherService.buyVoucher(this.voucherId).subscribe(
                   response => {
                     this.resultSuccess = true;
                     this.transactionId = response;
                     this.router.navigate(["/viewMyVouchers"]);
                     console.log("New transaction ID: " + this.transactionId);
+                    console.log("Buy!!");
                     // the redirect to view my transaction page
                   },
                   error => {
                     this.errorMessage = error;
+                    this.resultSuccess = false;
                     console.log('********** CheckoutVoucher.ts: ' + error);
                   }
                 )
@@ -136,22 +138,23 @@ export class CheckoutVoucherPage implements OnInit {
           }
         ]
       });
+
+      await alert.present();
+    }
+
+
+
+  }
+
+  async errorAlert() {
+    const alert = await this.alertController.create({
+      header: 'Payment Failed',
+      message: 'Inlivad cvv entered! Please try again.',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
   
-      await alert.present();  
-    }
-
-      
-      
-    }
-
-    async errorAlert() {
-      const alert = await this.alertController.create({
-        header: 'Payment Failed',
-        message: 'Inlivad cvv entered! Please try again.',
-        buttons: ['OK']
-      });
-      await alert.present(); 
-    }
 
 
   back() {

@@ -87,8 +87,8 @@ export class CustomerService {
       );
   }
 
-  getMyReviews(customerId: number): Observable<Review> {
-    return this.httpClient.get<Review>("/api/Review/retrieveMyReviews/" + this.sessionService.getCurrentCustomer().userId).pipe
+  getMyReviews(customerId: number): Observable<Review[]> {
+    return this.httpClient.get<Review[]>("/api/Review/retrieveMyReviews/" + this.sessionService.getCurrentCustomer().userId).pipe
       (
         catchError(this.handleError)
       );
@@ -110,6 +110,13 @@ export class CustomerService {
 
   getReviewByReviewId(reviewId: number): Observable<Review> {
     return this.httpClient.get<Review>("/api/Review/retrieveReviewById/" + reviewId).pipe
+      (
+        catchError(this.handleError)
+      );
+  }
+
+  deleteReviewById(reviewId: number): Observable<any> {
+    return this.httpClient.delete<any>("api/Review/deleteReview?reviewId=" + reviewId).pipe
       (
         catchError(this.handleError)
       );
@@ -143,8 +150,8 @@ export class CustomerService {
       );
   }
 
-  getMyTransactions(userId: number): Observable<SaleTransaction> {
-    return this.httpClient.get<SaleTransaction>("/api/Transaction/retrieveMyTransactions/" + this.sessionService.getCurrentCustomer().userId).pipe
+  getMyTransactions(userId: number): Observable<SaleTransaction[]> {
+    return this.httpClient.get<SaleTransaction[]>("/api/Transaction/retrieveMyTransactions/" + this.sessionService.getCurrentCustomer().userId).pipe
       (
         catchError(this.handleError)
       );

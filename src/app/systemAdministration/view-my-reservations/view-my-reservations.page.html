@@ -17,7 +17,7 @@
     </ion-card>
   </ion-content>
 
-  <ion-card>
+  <ion-card *ngFor="let reservation of reservations">
     
 
     <!-- <div *ngIf="noReservation == false" style="color: blue;">
@@ -27,18 +27,15 @@
     
     
     <ion-card-content *ngIf="reservations?.length > 0 && resultSuccess == true">
-      <ion-list *ngFor="let reservation of reservations">
+      <ion-list>
         <ion-card-header>
-          <ion-card-title>Restaurant: {{reservation.restaurant.name}}</ion-card-title>
+          <ion-card-title>{{reservation.restaurant.name}}</ion-card-title>
         </ion-card-header>
         <ion-item>
-          Date: {{reservation.reservationDate}}
+          Date: {{reservation.reservationDate | slice :0:10}}
         </ion-item>
         <ion-item>
-          Time: {{reservation.reservationTime}}
-        </ion-item>
-        <ion-item>
-          Number of pax: {{reservation.numOfPax}}
+          Time: {{reservation.reservationTime - reservation.reservationTime %1}} : {{reservation.reservationTime%1*6}}0
         </ion-item>
         <ion-item>
           Table size: {{reservation.tableSizeAssigned}}

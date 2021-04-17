@@ -38,7 +38,7 @@
 			</ion-item>
 			<ion-item>
 				<ion-label><b>Date of purchase</b></ion-label>
-				{{customerVoucherToView.timeOfCreation}}
+				{{customerVoucherToView.timeOfCreation | slice :0:10}}
 			</ion-item>
 			<ion-item>
 				<ion-label><b>Six digit code</b></ion-label>

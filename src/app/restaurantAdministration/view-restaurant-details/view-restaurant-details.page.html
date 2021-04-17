@@ -151,7 +151,7 @@
 
 			<ion-item>
 				<ion-label><b>Customer</b></ion-label>
-				{{review.creater.firstName}} {{review.creater.lastName}}
+				{{review.creator.firstName}} {{review.creator.lastName}}
 			</ion-item>
 			<ion-item>
 				<ion-label><b>Content</b></ion-label>
@@ -162,9 +162,9 @@
 				{{review.rating}}
 			</ion-item>
 			<ion-item>
-				<ion-icon name="thumbs-up"></ion-icon>
-				{{review.customerLikes.length}}
-				<ion-button (click)="handleLike(review)" *ngIf='review.hasLiked != true'>
+				<ion-icon color="danger" name="heart"></ion-icon>
+				{{review.customerLikes.length}}&nbsp; 
+				<ion-button color="danger" slot="end" (click)="handleLike(review)" *ngIf='review.hasLiked != true'>
 					Like this review
 				</ion-button>
 

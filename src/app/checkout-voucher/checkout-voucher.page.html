@@ -17,6 +17,11 @@
 
     <img src="../../assets/img/voucher.jpg" />
     <ion-card-header>
+
+      <div *ngIf="resultSuccess == false" style="color: red;">
+        {{errorMessage}}
+      </div>
+
       <ion-card-title>{{voucherToView.title}}</ion-card-title>
       <ion-card-subtitle>Price: ${{voucherToView.price}}.00</ion-card-subtitle>
       <ion-card-subtitle>Valid till: {{voucherToView.expiryDate}}</ion-card-subtitle>

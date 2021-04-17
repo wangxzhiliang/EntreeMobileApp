@@ -12,9 +12,11 @@
 <ion-content *ngIf="resultSuccess == true && customerVouchers?.length > 0">
 	<ion-card *ngFor="let customerVoucher of customerVouchers" button (click)="viewVoucherDetails(customerVoucher)">
 		<ion-card-header>
-			<ion-card-title>Title: {{customerVoucher.voucher.title}}</ion-card-title>
+			<ion-card-title>{{customerVoucher.voucher.title}}</ion-card-title>
+
+			<!-- <ion-label></ion-label> -->
+			<ion-card-subtitle>Expiry Date: {{customerVoucher.voucher.expiryDate}}</ion-card-subtitle>
 		</ion-card-header>
-		<!-- <ion-label>{{customerVoucher.voucher.expiryDate}}</ion-label> -->
 		<ion-card-content>
 			Redemption status: {{customerVoucher.redeemed}}
 		</ion-card-content>
