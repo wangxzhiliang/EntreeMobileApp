@@ -11,9 +11,7 @@
 
 <ion-content>
 	<ion-card>
-		<ion-card-header>
-			<ion-card-subtitle>Restaurant Details</ion-card-subtitle>
-		</ion-card-header>
+		
 
 		<div *ngIf="retrieveRestaurantError == true" style="color: red;">
 			Restaurant ID {{restaurantId}} does not exist!
@@ -21,48 +19,57 @@
 
 		<ion-list *ngIf="retrieveRestaurantError == false && restaurantToView != null">
 
+			<ion-card-header>
+				<!-- <ion-card-subtitle>Restaurant Details</ion-card-subtitle> -->
+				<ion-card-title>{{restaurantToView.name}}</ion-card-title>
+			</ion-card-header>
+
 			<ion-slides>
 				<ion-slide *ngFor="let photo of restaurantToView.photos">
 					<img src="{{photo}}" />
 				</ion-slide>
 			</ion-slides>
 
-			<ion-item>
+			<!-- <ion-item>
 				<ion-label><b>Restaurant Name</b></ion-label>
 				{{restaurantToView.name}}
-			</ion-item>
+			</ion-item> -->
 
 			<ion-item>
-				<ion-label>Restaurant Description</ion-label>
+				<!-- <ion-label>Restaurant Description</ion-label> -->
 				<ion-card-content>{{restaurantToView.description}}</ion-card-content>
 			</ion-item>
 
 			<ion-item>
-				<ion-label><b>Restaurant Address</b></ion-label>
+				<!-- <ion-label><b>Restaurant Address</b></ion-label> -->
+				<ion-icon name="navigate-outline"></ion-icon>
 				{{restaurantToView.address}}
 			</ion-item>
 			<ion-item>
-				<ion-label><b>Restaurant Postal Code</b></ion-label>
+				<!-- <ion-label><b>Restaurant Postal Code</b></ion-label> -->
+				<ion-icon name="pin-outline"></ion-icon>
 				{{restaurantToView.postalCode}}
 			</ion-item>
 			<ion-item>
-				<ion-label class="ion-text-wrap"><b>Restaurant Contact Number</b></ion-label>
+				<ion-icon name="call-outline"></ion-icon>
+				<!-- <ion-label class="ion-text-wrap"><b>Restaurant Contact Number</b></ion-label> -->
 				{{restaurantToView.contactNumber}}
 			</ion-item>
 			<ion-item>
-				<ion-label><b>Restaurant Opening Hours</b></ion-label>
+				<!-- <ion-label><b>Restaurant Opening Hours</b></ion-label> -->
+				<ion-icon name="time-outline"></ion-icon>
 				{{restaurantToView.openTime}} - {{restaurantToView.closeTime}}
 			</ion-item>
-			<ion-item>
-				<ion-button (click)="promptReservation()" *ngIf="restaurantToView.acceptReservation">
+			<!-- <ion-item> -->
+				<ion-button expand="block" color="success" size="default" (click)="promptReservation()" *ngIf="restaurantToView.acceptReservation">
 					Make Reservation
 				</ion-button>
-			</ion-item>
-			<ion-item>
-				<ion-button (click)="promptReview()">
+			<!-- </ion-item>
+			<ion-item> -->
+				<ion-button expand="block" color="secondary" size="default"  (click)="promptReview()">
 					Write Review
 				</ion-button>
-			</ion-item>
+			<!-- </ion-item> -->
 		</ion-list>
 	</ion-card>
 
@@ -88,7 +95,7 @@
 						</ion-item>
 						<ion-item>
 							<ion-label><b>Recommended</b></ion-label>
-							<ion-icon name="star" *ngIf="dish.recommended == true"></ion-icon>
+							<ion-icon name="star" color="warning" *ngIf="dish.recommended == true"></ion-icon>
 						</ion-item>
 					</div>
 

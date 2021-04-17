@@ -1,8 +1,6 @@
-import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-
-import { formatDate } from '@angular/common';
 
 import { AlertController } from '@ionic/angular';
 
@@ -38,8 +36,7 @@ export class CheckoutVoucherPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     public alertController: AlertController,
     private sessionService: SessionService,
-    private creditcardService: CreditCardService,
-    @Inject(LOCALE_ID) private locale: string) { 
+    private creditcardService: CreditCardService) { 
       this.retrieveVoucherError = false;
       this.error = false;
       this.resultSuccess = false;
@@ -159,11 +156,6 @@ export class CheckoutVoucherPage implements OnInit {
 
   back() {
     this.router.navigate(["/voucher"]);
-  }
-
-
-  transformDate(date) {
-    return formatDate(date, 'MM-yyyy', this.locale);
   }
 
 }

@@ -17,7 +17,17 @@
 		<ion-card-title>{{restaurant.name}}</ion-card-title>
 	</ion-card-header>
 	<ion-card-content>
-		{{restaurant.description}}
+		<!-- <ion-item> -->
+			{{restaurant.description}}
+		<!-- </ion-item> -->
+		
 	</ion-card-content>
+	<ion-item>
+		<ion-icon *ngIf="restaurant.acceptReservation" name="checkmark-circle-outline"></ion-icon>
+		<ion-icon *ngIf="!restaurant.acceptReservation" name="close-circle-outline"></ion-icon>
+		<ion-card-subtitle>Reservation</ion-card-subtitle>
+	</ion-item>
+	
+
 </ion-card>
 </ion-content>

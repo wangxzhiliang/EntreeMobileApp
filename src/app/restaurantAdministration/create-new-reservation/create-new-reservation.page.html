@@ -55,14 +55,14 @@
         <ion-list>
 
           <ion-item>
-            <ion-label class="ion-text-wrap"><b>Reservation Date</b></ion-label>
+            <ion-label class="ion-text-wrap"><b>Reservation Date*</b></ion-label>
             <ion-datetime id="reservationDate" name="reservationDate" value="2021-04-13" placeholder="Select Date"
               [(ngModel)]="newReservation.reservationDate" required="true" #inreservationDate="ngModel">
             </ion-datetime>
           </ion-item>
 
           <ion-item>
-            <ion-label class="ion-text-wrap"><b>Reservation Time</b></ion-label>
+            <ion-label class="ion-text-wrap"><b>Reservation Time*</b></ion-label>
             <ion-select placeholder="Select Time" id="reservationTime" name="reservationTime"
               [(ngModel)]="newReservation.reservationTime" required="true" #reservationTime="ngModel">
               <ion-select-option *ngFor="let slot of reservationSlots">{{slot}}
@@ -70,14 +70,14 @@
             </ion-select>
           </ion-item>
 
-          <ion-item>
+          <!-- <ion-item>
             <ion-label class="ion-text-wrap"><b>Number of Pax</b></ion-label>
             <ion-input align="right" type="text" id="numOfPax" name="numOfPax" [(ngModel)]="newReservation.numOfPax" required="true"
               #numOfPax="ngModel"></ion-input>
-          </ion-item>
+          </ion-item> -->
 
           <ion-item>
-            <ion-label class="ion-text-wrap"><b>Table Size</b></ion-label>
+            <ion-label class="ion-text-wrap"><b>Table Size*</b></ion-label>
             <ion-select id="tableSize" name="tableSize" [(ngModel)]="tableSizeChosen" required="true"
               #tableSize="ngModel" (click)="getAvailableTables()">
               <ion-select-option *ngIf="smallAvailable == true">Small</ion-select-option>
@@ -88,15 +88,29 @@
 
           <ion-item>
             <ion-label class="ion-text-wrap"><b>Remark</b></ion-label>
-            <ion-input align="right" type="text" id="remark" name="remark" [(ngModel)]="newReservation.remark" required="true"
-              #remark="ngModel"></ion-input>
+            <ion-textarea align="left" type="text" id="remark" name="remark" [(ngModel)]="newReservation.remark"
+              #remark="ngModel"></ion-textarea>
           </ion-item>
+
+          <ion-item>
+            <ion-label>Note on table size:<br/>Small: 1 - 4 pax <br/>Medium: 5 - 8 pax<br/>Large: < 9</ion-label>
+            <!-- <ion-label>Note: Small: 1 - 4 pax</ion-label> -->
+          </ion-item>
+
+          <ion-button expand="block" size="default" type="submit" ion-button>
+            Create
+          </ion-button>
+
+          <ion-button size="small" color="secondary" (click)="clear()">
+            Clear
+          </ion-button>
+          
 
         </ion-list>
       </ion-card-content>
     </ion-card>
 
-    <ion-card style="text-align: center;">
+    <!-- <ion-card style="text-align: center;">
 
       <ion-card-content>
         <ion-button (click)="clear()">
@@ -107,7 +121,7 @@
         </ion-button>
       </ion-card-content>
 
-    </ion-card>
+    </ion-card> -->
 
   </form>
 </ion-content>

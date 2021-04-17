@@ -14,7 +14,7 @@
   
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen>
 
 	<ion-card *ngIf="sessionService.getIsLogin() == false">
 	      
@@ -70,15 +70,19 @@
 					<ion-input type="password" id="password" name="password" [(ngModel)]="password" minlength="4" maxlength="32" required="true" #inpassword="ngModel"></ion-input>
 				</ion-item>
 				
-				<ion-item>
-					<ion-button (click)="clear()">
-						Clear
-					</ion-button>					
-					<ion-button type="submit" ion-button block>
+				<!-- <ion-item> -->
+					
+				<!-- </ion-item>
+				<ion-item>			 -->
+					<ion-button expand="block" size="default" type="submit" ion-button>
 						Login
 						
 					</ion-button>
-				</ion-item>
+
+					<ion-button size="small" color="secondary" (click)="clear()">
+						Clear
+					</ion-button>	
+				<!-- </ion-item> -->
 
 			</ion-list>
 			

@@ -8,6 +8,7 @@ import { Reservation } from '../../models/reservation';
 import { TableConfiguration } from 'src/app/models/table-configuration';
 import { TableSize } from 'src/app/models/table-size.enum';
 import { SessionService } from 'src/app/services/session.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-create-new-reservation',
@@ -21,6 +22,8 @@ export class CreateNewReservationPage implements OnInit {
   newReservation: Reservation;
   submitted: boolean;
   tableSize: string;
+
+  enabledTable: boolean;
 
   tableSizeChosen: string;
 
@@ -36,7 +39,8 @@ export class CreateNewReservationPage implements OnInit {
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute,
     private restaurantService: RestaurantService,
-    private sessionService: SessionService) {
+    private sessionService: SessionService,
+    public alertController: AlertController) {
     this.retrieveRestaurantError = false;
     this.submitted = false;
     this.newReservation = new Reservation();
@@ -47,6 +51,7 @@ export class CreateNewReservationPage implements OnInit {
     this.smallAvailable = false;
     this.mediumAvailable = false;
     this.largeAvailable = false;
+    this.enabledTable = false;
   }
 
   ngOnInit() {
@@ -78,30 +83,41 @@ export class CreateNewReservationPage implements OnInit {
 
 
   getAvailableTables() {
-    this.restaurantService.getAvailableTables(this.restaurant.userId,
-      this.newReservation.reservationDate, this.newReservation.reservationTime).subscribe(
-        response => {
-          let availableTables: number[] = response;
-          if (availableTables[0] > 0) {
-            this.smallAvailable = true;
-          }
-          if (availableTables[1] > 0) {
-            this.mediumAvailable = true;
-          }
-          if (availableTables[2] > 0) {
-            this.largeAvailable = true;
-          }
 
-          console.log('********** getAvailableTables.ts: ' + availableTables[0] + " " 
-          + availableTables[1] + " " + availableTables[2]);
+    // if(this.newReservation.reservationDate != null && this.newReservation.reservationTime != null)
+    // {
+      this.restaurantService.getAvailableTables(this.restaurant.userId,
+        this.newReservation.reservationDate, this.newReservation.reservationTime).subscribe(
+          response => {
+            let availableTables: number[] = response;
+            if (availableTables[0] > 0) {
+              this.smallAvailable = true;
+            }
+            if (availableTables[1] > 0) {
+              this.mediumAvailable = true;
+            }
+            if (availableTables[2] > 0) {
+              this.largeAvailable = true;
+            }
+            this.enabledTable = true;
+  
+            console.log('********** getAvailableTables.ts: ' + availableTables[0] + " " 
+            + availableTables[1] + " " + availableTables[2]);
+  
+          },
+          error => {
+            this.message = "An error has occurred while retrieving availbale tables: " + error;
+  
+            console.log('********** CreateNewReservation.ts: ' + error);
+          }
+        );
+    // }
+    // else
+    // {
+    //   console.log("Please fill in xxx");
+    // }
 
-        },
-        error => {
-          this.message = "An error has occurred while retrieving availbale tables: " + error;
-
-          console.log('********** CreateNewReservation.ts: ' + error);
-        }
-      );
+    
   }
 
 
@@ -151,6 +167,19 @@ export class CreateNewReservationPage implements OnInit {
         }
       );
     }
+    else
+    {
+      this.errorAlert();
+    }
+  }
+
+  async errorAlert() {
+    const alert = await this.alertController.create({
+      header: 'Reservation Failed',
+      message: 'Please fill in all the required fields',
+      buttons: ['OK']
+    });
+    await alert.present();
   }
 
   clear() {

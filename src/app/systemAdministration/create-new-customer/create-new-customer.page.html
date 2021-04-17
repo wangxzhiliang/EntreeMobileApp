@@ -108,23 +108,26 @@
             <ion-input type="text" id="phoneNumber" name="phoneNumber" [(ngModel)]="newCustomer.phoneNumber" 
               required="true" #phoneNumber="ngModel"></ion-input>
           </ion-item>
-        </ion-list>
+        
 
-      </ion-card-content>
+    <!-- <ion-card style="text-align: center;"> -->
 
-    </ion-card>
-
-    <ion-card style="text-align: center;">
-
-      <ion-card-content>
-        <ion-button (click)="clear()">
-          Clear
-        </ion-button>
-        <ion-button type="submit" ion-button block>
+      <!-- <ion-card-content> -->
+        <ion-button expand="block" type="submit" ion-button>
           Create
         </ion-button>
-      </ion-card-content>
+        <ion-button size="small" color="secondary" (click)="clear()">
+          Clear
+        </ion-button>
+        
 
-    </ion-card>
+      </ion-list>
+
+    </ion-card-content>
+
+  </ion-card>
+      <!-- </ion-card-content> -->
+
+    <!-- </ion-card> -->
 
   </form>

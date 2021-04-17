@@ -14,21 +14,21 @@ export class AppComponent {
 		// { title: 'Create New Record', url: '/createNewRecord', icon: 'arrow-forward' },
 		
 		{ title: 'Logout', url: '/login', icon: 'exit' },
-		{ title: 'Update Personal Details', url: '/updateCustomer', icon: 'add-circle'},
-		{ title: 'Change Password', url: '/changePassword', icon: 'add-circle'},
+		{ title: 'Update Personal Details', url: '/updateCustomer', icon: 'person'},
+		{ title: 'Change Password', url: '/changePassword', icon: 'lock-open'},
 		{ title: 'Add Credit Card', url: '/addCreditCard', icon: 'add-circle'},
-		{ title: 'View Credit Card', url: '/viewCreditCard', icon: 'arrow-forward'},
-		{ title: 'View My Reviews', url: '/viewMyReviews', icon: 'arrow-forward'},
-		{ title: 'View My Vouchers', url: '/viewMyVouchers', icon: 'arrow-forward'},
-		{ title: 'View My Reservations', url: '/viewMyReservations', icon: 'arrow-forward'},
-		{ title: 'View My Transactions', url: '/viewMyTransactions', icon: 'arrow-forward'}
+		{ title: 'View Credit Card', url: '/viewCreditCard', icon: 'card'},
+		{ title: 'View My Reviews', url: '/viewMyReviews', icon: 'chatbox-ellipses'},
+		{ title: 'View My Vouchers', url: '/viewMyVouchers', icon: 'cash'},
+		{ title: 'View My Reservations', url: '/viewMyReservations', icon: 'restaurant'},
+		{ title: 'View My Transactions', url: '/viewMyTransactions', icon: 'documents'}
 		// { title: 'View Vouchers', url: '/'}
 	];
 
 	public appPagesLogout = [
 		{ title: 'Home', url: '/index', icon: 'home' },
 		{ title: 'Login', url: '/login', icon: 'lock-closed' },
-    	{ title: 'Create Account', url: '/createNewCustomer', icon: 'add-circle' }
+    	{ title: 'Create Account', url: '/createNewCustomer', icon: 'person-add' }
 	];
 
 	public appPagesSystemAdministration = [

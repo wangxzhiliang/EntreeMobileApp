@@ -40,6 +40,7 @@ export class ViewRestaurantDetailsPage implements OnInit {
     this.restaurantService.getRestaurantByRestaurantId(this.restaurantId).subscribe(
       response => {
         this.restaurantToView = response;
+        console.log(this.restaurantToView.promotions[0].photo);
     
       },
       error => {
