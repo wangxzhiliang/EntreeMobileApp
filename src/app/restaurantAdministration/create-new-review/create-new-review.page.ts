@@ -7,6 +7,7 @@ import { RestaurantService } from '../../services/restaurant.service';
 import { Restaurant } from '../../models/restaurant';
 import { Review } from '../../models/review';
 import { SessionService } from 'src/app/services/session.service';
+import { Customer } from 'src/app/models/customer';
 
 @Component({
   selector: 'app-create-new-review',
@@ -73,8 +74,7 @@ export class CreateNewReviewPage implements OnInit {
 
     if (createReviewForm.valid) {
       this.newReview.creater = this.sessionService.getCurrentCustomer();
-      this.newReview.numOfLikes = 0;
-      this.newReview.numOfDislikes = 0;
+      this.newReview.customerLikes = new Customer[10];
       console.log(this.newReview.rating);
       this.CustomerService.createNewReview(this.newReview, this.restaurantId).subscribe(
         response => {

@@ -155,15 +155,12 @@
 				{{review.rating}}
 			</ion-item>
 			<ion-item>
-				<ion-button (click)="handleLike()">
-					<ion-icon name="thumbs-up"></ion-icon>
-					Likes {{review.numOfLikes}}
+				<ion-icon name="thumbs-up"></ion-icon>
+				{{review.customerLikes.length}}
+				<ion-button (click)="handleLike(review)" *ngIf='review.hasLiked != true'>
+					Like this review
 				</ion-button>
 
-				<ion-button (click)="handleDislike()">
-					<ion-icon name="thumbs-down"></ion-icon>
-					Dislikes {{review.numOfDislikes}}
-				</ion-button>
 			</ion-item>
 
 		</ion-card>
