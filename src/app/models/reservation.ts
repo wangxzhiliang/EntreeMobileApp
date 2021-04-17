@@ -7,7 +7,7 @@ export class Reservation {
     reservationId: number | undefined;
     reservationDate: Date | undefined;
     reservationTime: number | undefined;
-    numOfPax: number | undefined;
+    // numOfPax: number | undefined;
     // tableSizeAssigned: TableSize | undefined;
     tableSizeAssigned: string | undefined;
     remark: string | null;
@@ -25,11 +25,11 @@ export class Reservation {
     //     this.customer = customer;
     // }
 
-    constructor(reservationDate?: Date, reservationTime?: number, numOfPax?: number,
+    constructor(reservationDate?: Date, reservationTime?: number,
         tableSizeAssigned?: string, remark?: string, restaurant?: Restaurant, customer?: Customer) {
         this.reservationDate = reservationDate;
         this.reservationTime = reservationTime;
-        this.numOfPax = numOfPax;
+        // this.numOfPax = numOfPax;
         this.tableSizeAssigned = tableSizeAssigned;
         this.remark = remark;
         this.restaurant = restaurant;
