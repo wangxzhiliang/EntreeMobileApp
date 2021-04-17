@@ -140,7 +140,7 @@ export class CreateNewReservationPage implements OnInit {
     if (createReservationForm.valid) {
       this.newReservation.restaurant = this.restaurant;
       this.newReservation.customer = this.sessionService.getCurrentCustomer();
-      this.newReservation.tableSizeAssigned = 'SMALL';
+      // this.newReservation.tableSizeAssigned = 'SMALL';
       // console.log("Table size: " + this.tableSizeChosen);
       this.restaurantService.createNewReservation(this.newReservation).subscribe(
         response => {
