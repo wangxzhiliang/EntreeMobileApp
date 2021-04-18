@@ -38,7 +38,7 @@
 
 			<ion-item>
 				<ion-label><b>Expiry date</b></ion-label>
-				{{creditCard.expiryDate}}
+				{{creditCard.expiryDate |  slice :5:7}} / {{creditCard.expiryDate |  slice :2:4}}
 			</ion-item>
 			<ion-item>
 				<ion-label><b>Name on card</b></ion-label>

@@ -59,6 +59,8 @@ export class LoginPage implements OnInit {
 							this.sessionService.setCreditCardId(customer.creditCard.creditCardId);
 						}else{
 							this.sessionService.setHasCreditCard(false);
+							// this.sessionService.setCreditCard(null);
+							// this.sessionService.setCreditCardId(null);
 						}
 						this.router.navigate(["/viewAllRestaurants"]);
 					}
