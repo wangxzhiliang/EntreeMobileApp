@@ -8,7 +8,7 @@ import { Reservation } from '../../models/reservation';
 import { TableConfiguration } from 'src/app/models/table-configuration';
 import { TableSize } from 'src/app/models/table-size.enum';
 import { SessionService } from 'src/app/services/session.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-create-new-reservation',
@@ -40,7 +40,8 @@ export class CreateNewReservationPage implements OnInit {
   constructor(private router: Router, private activatedRoute: ActivatedRoute,
     private restaurantService: RestaurantService,
     private sessionService: SessionService,
-    public alertController: AlertController) {
+    public alertController: AlertController,
+    public loadingController: LoadingController) {
     this.retrieveRestaurantError = false;
     this.submitted = false;
     this.newReservation = new Reservation();
@@ -82,10 +83,23 @@ export class CreateNewReservationPage implements OnInit {
   }
 
 
-  getAvailableTables() {
+  async getAvailableTables() {
 
     // if(this.newReservation.reservationDate != null && this.newReservation.reservationTime != null)
     // {
+
+
+
+      const loading = await this.loadingController.create({
+        cssClass: 'my-custom-class',
+        message: 'Please wait...'
+      });
+      await loading.present();
+  
+      
+      // const { role, data } = await loading.onDidDismiss();
+      // console.log('Loading dismissed!');
+
     this.restaurantService.getAvailableTables(this.restaurant.userId,
       this.newReservation.reservationDate, this.newReservation.reservationTime).subscribe(
         response => {
@@ -100,14 +114,13 @@ export class CreateNewReservationPage implements OnInit {
             this.largeAvailable = true;
           }
           this.enabledTable = true;
-
           console.log('********** getAvailableTables.ts: ' + availableTables[0] + " "
             + availableTables[1] + " " + availableTables[2]);
-
+            loading.dismiss();
         },
         error => {
           this.message = "An error has occurred while retrieving availbale tables: " + error;
-
+          loading.dismiss();
           console.log('********** CreateNewReservation.ts: ' + error);
         }
       );
@@ -133,6 +146,11 @@ export class CreateNewReservationPage implements OnInit {
     } else {
       this.newReservation.tableSizeAssigned = 'LARGE';
     }
+
+
+
+
+
 
     if (createReservationForm.valid) {
       this.newReservation.restaurant = this.restaurant;
