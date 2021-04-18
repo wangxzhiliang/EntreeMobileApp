@@ -86,38 +86,38 @@ export class CreateNewReservationPage implements OnInit {
 
     // if(this.newReservation.reservationDate != null && this.newReservation.reservationTime != null)
     // {
-      this.restaurantService.getAvailableTables(this.restaurant.userId,
-        this.newReservation.reservationDate, this.newReservation.reservationTime).subscribe(
-          response => {
-            let availableTables: number[] = response;
-            if (availableTables[0] > 0) {
-              this.smallAvailable = true;
-            }
-            if (availableTables[1] > 0) {
-              this.mediumAvailable = true;
-            }
-            if (availableTables[2] > 0) {
-              this.largeAvailable = true;
-            }
-            this.enabledTable = true;
-  
-            console.log('********** getAvailableTables.ts: ' + availableTables[0] + " " 
-            + availableTables[1] + " " + availableTables[2]);
-  
-          },
-          error => {
-            this.message = "An error has occurred while retrieving availbale tables: " + error;
-  
-            console.log('********** CreateNewReservation.ts: ' + error);
+    this.restaurantService.getAvailableTables(this.restaurant.userId,
+      this.newReservation.reservationDate, this.newReservation.reservationTime).subscribe(
+        response => {
+          let availableTables: number[] = response;
+          if (availableTables[0] > 0) {
+            this.smallAvailable = true;
           }
-        );
+          if (availableTables[1] > 0) {
+            this.mediumAvailable = true;
+          }
+          if (availableTables[2] > 0) {
+            this.largeAvailable = true;
+          }
+          this.enabledTable = true;
+
+          console.log('********** getAvailableTables.ts: ' + availableTables[0] + " "
+            + availableTables[1] + " " + availableTables[2]);
+
+        },
+        error => {
+          this.message = "An error has occurred while retrieving availbale tables: " + error;
+
+          console.log('********** CreateNewReservation.ts: ' + error);
+        }
+      );
     // }
     // else
     // {
     //   console.log("Please fill in xxx");
     // }
 
-    
+
   }
 
 
@@ -125,17 +125,14 @@ export class CreateNewReservationPage implements OnInit {
 
     this.submitted = true;
 
-    // if (this.tableSizeChosen === "Small") {
-    //   console.log("Table size: " + this.tableSizeChosen);
-    //   this.newReservation.tableSizeAssigned = TableSize.SMALL.toString();
-    // } else if (this.tableSizeChosen === "Medium") {
-    //   this.newReservation.tableSizeAssigned = TableSize.MEDIUM.toString();
-    // } else {
-    //   this.newReservation.tableSizeAssigned = TableSize.LARGE.toString();
-    // }
-
-
-    
+    if (this.tableSizeChosen === "Small") {
+      console.log("Table size: " + this.tableSizeChosen);
+      this.newReservation.tableSizeAssigned = 'SMALL';
+    } else if (this.tableSizeChosen === "Medium") {
+      this.newReservation.tableSizeAssigned = 'MEDIUM';
+    } else {
+      this.newReservation.tableSizeAssigned = 'LARGE';
+    }
 
     if (createReservationForm.valid) {
       this.newReservation.restaurant = this.restaurant;
@@ -167,8 +164,7 @@ export class CreateNewReservationPage implements OnInit {
         }
       );
     }
-    else
-    {
+    else {
       this.errorAlert();
     }
   }

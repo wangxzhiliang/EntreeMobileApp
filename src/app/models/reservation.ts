@@ -7,7 +7,7 @@ export class Reservation {
     reservationId: number | undefined;
     reservationDate: Date | undefined;
     reservationTime: number | undefined;
-    tableSizeAssigned: TableSize | undefined;
+    tableSizeAssigned: string | undefined;
     remark: string | null;
     restaurant: Restaurant | undefined;
     customer: Customer | undefined;
@@ -23,7 +23,7 @@ export class Reservation {
     //     this.customer = customer;
     // }
 
-    constructor(reservationDate?: Date, reservationTime?: number, tableSizeAssigned?: TableSize, 
+    constructor(reservationDate?: Date, reservationTime?: number, tableSizeAssigned?: string, 
         remark?: string, restaurant?: Restaurant, customer?: Customer) {
         this.reservationDate = reservationDate;
         this.reservationTime = reservationTime;
